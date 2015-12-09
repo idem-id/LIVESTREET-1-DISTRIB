@@ -149,7 +149,8 @@ class ActionLogin extends Action {
 	protected function EventExit() {
 		$this->Security_ValidateSendForm();
 		$this->User_Logout();
-		$this->Viewer_Assign('bRefreshToHome',true);
+		//$this->Viewer_Assign('bRefreshToHome',true);
+		Router::Location(Config::Get('path.root.web').'/');
 	}
 	/**
 	 * Ajax запрос на восстановление пароля
