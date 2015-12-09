@@ -217,25 +217,18 @@ class ModuleText extends Module {
 	 */
 	public function Cut($sText) {
 		$sTextShort = $sText;
-		$sTextNew   = $sText;
-		$sTextCut   = null;
+		$sTextNew = $sText;
+		$sTextCut = null;
 
-		$sTextTemp=str_replace("\r\n",'[<rn>]',$sText);
-		$sTextTemp=str_replace("\n",'[<n>]',$sTextTemp);
-
-		if (preg_match("/^(.*)<cut(.*)>(.*)$/Ui",$sTextTemp,$aMatch)) {
-			$aMatch[1]=str_replace('[<rn>]',"\r\n",$aMatch[1]);
-			$aMatch[1]=str_replace('[<n>]',"\r\n",$aMatch[1]);
-			$aMatch[3]=str_replace('[<rn>]',"\r\n",$aMatch[3]);
-			$aMatch[3]=str_replace('[<n>]',"\r\n",$aMatch[3]);
-			$sTextShort=$aMatch[1];
-			$sTextNew=$aMatch[1].' <a name="cut"></a> '.$aMatch[3];
-			if (preg_match('/^\s*name\s*=\s*"(.+)"\s*\/?$/Ui',$aMatch[2],$aMatchCut)) {
-				$sTextCut=trim($aMatchCut[1]);
+		if (preg_match("#^(.*)<cut([^>]*+)>(.*)$#Usi", $sText, $aMatch)) {
+			$sTextShort = $aMatch[1];
+			$sTextNew = $aMatch[1] . ' <a name="cut"></a> ' . $aMatch[3];
+			if (preg_match('#^\s++name\s*+=\s*+"([^"]++)"\s*+\/?$#i', $aMatch[2], $aMatchCut)) {
+				$sTextCut = trim($aMatchCut[1]);
 			}
 		}
 
-		return array($sTextShort,$sTextNew,$sTextCut ? htmlspecialchars($sTextCut) : null);
+		return array($sTextShort, $sTextNew, $sTextCut ? htmlspecialchars($sTextCut) : null);
 	}
 	/**
 	 * Обработка тега ls в тексте
