@@ -14,6 +14,9 @@
 * Исправлен и оптимизирован метод _Cut_ модуля **Text**. [*](http://livestreetguide.com/dev/ispravlenie-i-optimizaciya-metoda-cut-modulya-text.html)
 * Исправлена ошибка парсера, когда тот исправлял (C), (R) и т.п. внутри тега **CODE**. [*](http://livestreetguide.com/faq/ispravlenie-oshibki-parsera-kogda-tot-ispravlyal-c-r-i-tp-vnutri-tega-code.html)
 * Исправлена ошибка переноса, когда тире в конце предложения и перевод строки "сьедался". [*](http://livestreetguide.com/faq/ispravlenie-oshibki-perenosa-kogda-tire-v-konce-predlozheniya-i-perevod-stroki-sedalsya.html)
+* Тег VIDEO стал адаптивным (только для bootstrap-based шаблонов). [*](http://livestreet.ru/blog/questions/18013.html)
+* Удалена страница перенаправления при выходе пользователя.
+* Отключено отображение ошибок PHP, тем самым предотвращено раскрытие путей на сервере. [*](http://livestreetguide.com/livestreet_security/predotvraschenie-raskrytiya-putey-na-servere.html)
 
 ## Лицензия
 
