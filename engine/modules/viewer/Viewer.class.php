@@ -17,7 +17,8 @@
 
 require_once(Config::Get('path.root.engine').'/lib/external/Smarty/libs/Smarty.class.php');
 require_once(Config::Get('path.root.engine').'/lib/external/CSSTidy-1.3/class.csstidy.php');
-require_once(Config::Get('path.root.engine').'/lib/external/JSMin-1.1.1/jsmin.php');
+//require_once(Config::Get('path.root.engine').'/lib/external/JSMin-1.1.1/jsmin.php');
+require_once(Config::Get('path.root.engine').'/lib/external/JShrink/Minifier.php');
 
 /**
  * Модуль обработки шаблонов используя шаблонизатор Smarty
@@ -1151,7 +1152,8 @@ class ModuleViewer extends Module {
 	 */
 	protected function CompressJs($sContent) {
 		$sContent = (Config::Get('compress.js.use'))
-			? JSMin::minify($sContent)
+			//? JSMin::minify($sContent)
+			? \JShrink\Minifier::minify($sContent, array('flaggedComments' => false))
 			: $sContent;
 		/**
 		 * Добавляем разделитель в конце файла
