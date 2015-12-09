@@ -8,7 +8,7 @@
 
 #### Модификации
 
-* Заменён компрессор JS на JShrink. [1]
+* Заменён компрессор JS на JShrink. [сноска][1]
 * Добавлены дополнительные правила regex для VideoParser. [The Ultimate YouTube regex for VideoParser](http://livestreet.ru/blog/tips_and_tricks/18041.html) от [lifecom](http://livestreet.ru/profile/lifecom/).
 * Введён дополнительный метод, позволяющий вывести количество публикаций каждого пользователя на страницу пользователей. [Как вынести количество публикаций каждого пользователя на страницу пользователей](http://livestreetguide.com/faq/kak-vynesti-kolichestvo-publikaciy-kazhdogo-polzovatelya-na-stranicu-polzovateley.html) от [PSNet](http://livestreetguide.com/developer/PSNet/).
 * Исправлен и оптимизирован метод Cut модуля Text. [Исправление и оптимизация метода Cut модуля Text](http://livestreetguide.com/dev/ispravlenie-i-optimizaciya-metoda-cut-modulya-text.html) от [PSNet](http://livestreetguide.com/developer/PSNet/).
