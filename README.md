@@ -8,7 +8,7 @@
 
 #### Модификации
 
-* Заменён компрессор JS на **JShrink**. [*](http://livestreet.ru/blog/tips_and_tricks/18081.html)
+* Компрессор **JSMin** заменён на **JShrink**. [*](http://livestreet.ru/blog/tips_and_tricks/18081.html)
 * Добавлены дополнительные правила REGEX для **VideoParser**. [*](http://livestreet.ru/blog/tips_and_tricks/18041.html)
 * Введён дополнительный метод, позволяющий вывести количество публикаций каждого пользователя на страницу пользователей. [*](http://livestreetguide.com/faq/kak-vynesti-kolichestvo-publikaciy-kazhdogo-polzovatelya-na-stranicu-polzovateley.html)
 * Исправлен и оптимизирован метод _Cut_ модуля **Text**. [*](http://livestreetguide.com/dev/ispravlenie-i-optimizaciya-metoda-cut-modulya-text.html)
