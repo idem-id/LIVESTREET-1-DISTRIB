@@ -450,6 +450,16 @@ class ModuleUser_EntityUser extends Entity {
 		}
 		return $this->_getDataOne('user_note');
 	}
+	/**
+	 * Возвращает количество созданных пользователем топиков и комментариев
+	 *
+	 * @return int
+	 */
+	public function getPublicationsCount() {
+		$iCountTopicUser=$this->Topic_GetCountTopicsPersonalByUser($this->getId(), 1);
+		$iCountCommentUser=$this->Comment_GetCountCommentsByUserId($this->getId(), 'topic');
+		return $iCountTopicUser + $iCountCommentUser;
+	}
 
 
 	/**
