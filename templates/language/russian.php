@@ -466,6 +466,7 @@ return array(
 	'user_search_empty' => 'Поиск не дал результатов',
 	'user_status_online' => 'Онлайн',
 	'user_status_offline' => 'Оффлайн',
+	'user_topic_count' => 'Количество публикаций',
 	/**
 	 * Меню профиля пользователя
 	 */

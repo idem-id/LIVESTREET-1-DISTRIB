@@ -466,6 +466,7 @@ return array(
 	'user_search_empty' => 'Search no match',
 	'user_status_online' => 'Online',
 	'user_status_offline' => 'Offline',
+	'user_topic_count' => 'Total topics',
 	/**
 	 * User's profile menu
 	 */
