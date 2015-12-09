@@ -217,8 +217,8 @@ class ModuleText extends Module {
 	 */
 	public function Cut($sText) {
 		$sTextShort = $sText;
-		$sTextNew = $sText;
-		$sTextCut = null;
+		$sTextNew 	= $sText;
+		$sTextCut 	= null;
 
 		if (preg_match("#^(.*)<cut([^>]*+)>(.*)$#Usi", $sText, $aMatch)) {
 			$sTextShort = $aMatch[1];
