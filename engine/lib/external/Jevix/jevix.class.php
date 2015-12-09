@@ -155,7 +155,7 @@ class Jevix{
 	const TR_TAG_IS_EMPTY = 13;      // Не короткий тег с пустым содержанием имеет право существовать
 	const TR_TAG_NO_AUTO_BR = 14;    // Тег в котором не нужна авто-расстановка <br>
 	const TR_TAG_CALLBACK = 15;      // Тег обрабатывается callback-функцией - в обработку уходит только контент тега(короткие теги не обрабатываются)
-	const TR_TAG_BLOCK_TYPE = 16;    // Тег после которого не нужна автоподстановка доп. <br> 
+	const TR_TAG_BLOCK_TYPE = 16;    // Тег после которого не нужна автоподстановка доп. <br>
 	const TR_TAG_CALLBACK_FULL = 17;    // Тег обрабатывается callback-функцией - в обработку уходит весь тег
 	const TR_PARAM_COMBINATION = 18;    // Проверка на возможные комбинации значений параметров тега
 
@@ -246,13 +246,13 @@ class Jevix{
 	}
 
 	/**
- 	* КОНФИГУРАЦИЯ: После тега не нужно добавлять дополнительный <br/> 
- 	* @param array|string $tags тег(и) 
- 	*/ 
+ 	* КОНФИГУРАЦИЯ: После тега не нужно добавлять дополнительный <br/>
+ 	* @param array|string $tags тег(и)
+ 	*/
 	function cfgSetTagBlockType($tags){
 		$this->_cfgSetTagsFlag($tags, self::TR_TAG_BLOCK_TYPE, true);
 	}
-	
+
 	/**
 	 * КОНФИГУРАЦИЯ: Добавление разрешённых параметров тега
 	 * @param string $tag тег
@@ -482,9 +482,6 @@ class Jevix{
 		}
 
 
-		if(!empty($this->autoReplace)){
-			$this->text = str_ireplace($this->autoReplace['from'], $this->autoReplace['to'], $this->text);
-		}
 		$this->textBuf = $this->strToArray($this->text);
 		$this->textLen = count($this->textBuf);
 		$this->getCh();
@@ -999,8 +996,8 @@ class Jevix{
 					}
 					$bOK=false;
 					foreach ($paramAllowedValues['#domain'] as $sDomain) {
-						$sDomain=preg_quote($sDomain);						
-						if (preg_match("@^(http|https|ftp)://([\w\d]+\.)?{$sDomain}/@ui",$value)) {							
+						$sDomain=preg_quote($sDomain);
+						if (preg_match("@^(http|https|ftp)://([\w\d]+\.)?{$sDomain}/@ui",$value)) {
 							$bOK=true;
 							break;
 						}
@@ -1085,7 +1082,7 @@ class Jevix{
 		      }
 		  }
 		}
-		
+
 		// Пустой некороткий тег удаляем кроме исключений
 		if (!isset($tagRules[self::TR_TAG_IS_EMPTY]) or !$tagRules[self::TR_TAG_IS_EMPTY]) {
 			if(!$short && $content == '') return '';
@@ -1221,6 +1218,15 @@ class Jevix{
 
 			// Текст
 			} elseif($this->text($text)){
+				/**
+				 * Исправление работы автозамены (cfgSetAutoReplace) на корректную
+				 *
+				 * fix by Serge Pustovit (PSNet) <light.feel@gmail.com> http://psnet.lookformp3.net
+				 * @link https://github.com/livestreet/livestreet-framework/issues/62
+				 */
+				if(!empty($this->autoReplace)){
+					$text = str_ireplace($this->autoReplace['from'], $this->autoReplace['to'], $text);
+				}
 				$content.=$text;
 			}
 		}
@@ -1241,7 +1247,7 @@ class Jevix{
 		$firstNL = $this->curCh;
 		$nl = $this->getCh();
 		while($this->curChClass & self::NL){
-			// Проверяем, не превышен ли лимит 
+			// Проверяем, не превышен ли лимит
 			if($limit>0 and $count>=$limit) break;
 			// Если символ новый строки ткой же как и первый увеличиваем счетчик
 			// новых строк. Это сработает при любых сочетаниях
