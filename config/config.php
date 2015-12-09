@@ -521,7 +521,6 @@ $config['head']['default']['js']  = array(
 	"___path.root.engine_lib___/internal/template/js/settings.js",
 	"___path.root.engine_lib___/internal/template/js/topic.js",
 	"___path.root.engine_lib___/internal/template/js/hook.js",
-  "//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" => array('merge'=>false),
 	"//yastatic.net/share2/share.js" => array('merge'=>false),
 );
 $config['head']['default']['css'] = array(
