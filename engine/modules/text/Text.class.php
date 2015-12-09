@@ -120,7 +120,11 @@ class ModuleText extends Module {
 		/**
 		 * youtube.com
 		 */
-		$sText = preg_replace('/<video>http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_\-]+)(&.+)?<\/video>/Ui', '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $sText);
+		$sText = preg_replace(
+				'/<video>(?:http(?:s|):|)(?:\/\/|)(?:www\.|)youtu(?:\.|)be(?:-nocookie|)(?:\.com|)\/(?:e(?:mbed|)\/|v\/|watch\?(?:.+&|)v=|)([a-zA-Z0-9_\-]+?)(&.+)?<\/video>/Ui',
+				'<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+				$sText
+		);
 		/**
 		 * vimeo.com
 		 */
