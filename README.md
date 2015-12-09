@@ -6,7 +6,7 @@
 
 Версия LiveStreet CMS, модифицированная [KitsuneSolar](https://kitsune.solar/) для своих проектов.
 
-### Модификации
+#### Модификации
 
 * [Меняем компрессор js](http://livestreet.ru/blog/tips_and_tricks/18081.html) от [lifecom](http://livestreet.ru/profile/lifecom/).
 * [The Ultimate YouTube regex for VideoParser](http://livestreet.ru/blog/tips_and_tricks/18041.html) от [lifecom](http://livestreet.ru/profile/lifecom/).
