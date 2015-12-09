@@ -4,7 +4,7 @@
 
 ## Описание
 
-Версия LiveStreet CMS, модифицированная [KitsuneSolar](https://kitsune.solar/) для своих проектов.
+Версия **LiveStreet CMS**, модифицированная [KitsuneSolar](https://kitsune.solar/) для своих проектов.
 
 #### Модификации
 
@@ -17,7 +17,7 @@
 
 ## Лицензия
 
-LiveStreet - open-source проект под лицензией [GPL-2.0](http://opensource.org/licenses/GPL-2.0).
+**LiveStreet** - open-source проект под лицензией [GPL-2.0](http://opensource.org/licenses/GPL-2.0).
 
 ## Документация
 
