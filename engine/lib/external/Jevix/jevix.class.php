@@ -1260,18 +1260,39 @@ class Jevix{
 		return true;
 	}
 
+	/**
+	 * Проверка на дефис
+	 * fix by Serge Pustovit (PSNet) <light.feel@gmail.com> http://psnet.lookformp3.net
+	 *
+	 * @param $dash                 возвращаемое представление дефиса
+	 * @return bool
+	 */
 	protected function dash(&$dash){
-		if($this->curCh != '-') return false;
+		if ($this->curCh != '-') {
+			return false;
+		}
 		$dash = '';
 		$this->saveState();
 		$this->getCh();
 		// Несколько подряд
-		while($this->curCh == '-') $this->getCh();
-		if(!$this->skipNL() && !$this->skipSpaces()){
+		while ($this->curCh == '-') {
+			$this->getCh();
+		}
+		/*
+		 * количество переводов строк
+		 */
+		$iNL = 0;
+		if (!$this->skipNL($iNL) && !$this->skipSpaces()) {
 			$this->restoreState();
 			return false;
 		}
 		$dash = $this->dash;
+		if ($iNL) {
+			/*
+			 * вернуть нужное количествово переводов строк
+			 */
+			$dash .= str_repeat($this->br, $iNL);
+		}
 		return true;
 	}
 
