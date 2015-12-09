@@ -8,11 +8,11 @@
 
 #### Модификации
 
-* Заменён компрессор JS на JShrink. [*](http://livestreet.ru/blog/tips_and_tricks/18081.html)
-* Добавлены дополнительные правила regex для VideoParser. [*](http://livestreet.ru/blog/tips_and_tricks/18041.html)
+* Заменён компрессор JS на **JShrink**. [*](http://livestreet.ru/blog/tips_and_tricks/18081.html)
+* Добавлены дополнительные правила REGEX для **VideoParser**. [*](http://livestreet.ru/blog/tips_and_tricks/18041.html)
 * Введён дополнительный метод, позволяющий вывести количество публикаций каждого пользователя на страницу пользователей. [*](http://livestreetguide.com/faq/kak-vynesti-kolichestvo-publikaciy-kazhdogo-polzovatelya-na-stranicu-polzovateley.html)
-* Исправлен и оптимизирован метод Cut модуля Text. [*](http://livestreetguide.com/dev/ispravlenie-i-optimizaciya-metoda-cut-modulya-text.html)
-* Исправлена ошибка парсера, когда тот исправлял (C), (R) и т.п. внутри тега code. [*](http://livestreetguide.com/faq/ispravlenie-oshibki-parsera-kogda-tot-ispravlyal-c-r-i-tp-vnutri-tega-code.html)
+* Исправлен и оптимизирован метод _Cut_ модуля **Text**. [*](http://livestreetguide.com/dev/ispravlenie-i-optimizaciya-metoda-cut-modulya-text.html)
+* Исправлена ошибка парсера, когда тот исправлял (C), (R) и т.п. внутри тега **CODE**. [*](http://livestreetguide.com/faq/ispravlenie-oshibki-parsera-kogda-tot-ispravlyal-c-r-i-tp-vnutri-tega-code.html)
 * Исправлена ошибка переноса, когда тире в конце предложения и перевод строки "сьедался". [*](http://livestreetguide.com/faq/ispravlenie-oshibki-perenosa-kogda-tire-v-konce-predlozheniya-i-perevod-stroki-sedalsya.html)
 
 ## Лицензия
