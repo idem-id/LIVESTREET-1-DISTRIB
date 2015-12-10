@@ -4,3 +4,5 @@ templates/compiled/*
 logs/*
 tmp/*
 config/config.local.php
+!.gitignore
+!.htaccess
