@@ -10,7 +10,7 @@
 
 * Компрессор **JSMin** заменён на **JSqueeze**.
 * Компрессор **CSSTidy-1.3** обновлён до **CSSTidy-1.5.5**.
-* Библиотека подсветки синтаксиса **Prettify* обновлена до актуальной версии.
+* Библиотека подсветки синтаксиса **Prettify** обновлена до актуальной версии.
 * Библиотека jQuery и ей плагины (jqModal, PoshyTip) обновлены до актуальных версий (jQuery = v1.11.3).
 * Добавлены дополнительные правила REGEX для **VideoParser**. [*](http://livestreet.ru/blog/tips_and_tricks/18041.html)
 * Введён дополнительный метод, позволяющий вывести количество публикаций каждого пользователя на страницу пользователей. [*](http://livestreetguide.com/faq/kak-vynesti-kolichestvo-publikaciy-kazhdogo-polzovatelya-na-stranicu-polzovateley.html)
