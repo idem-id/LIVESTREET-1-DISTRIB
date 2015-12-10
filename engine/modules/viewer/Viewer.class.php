@@ -16,8 +16,7 @@
 */
 
 require_once(Config::Get('path.root.engine').'/lib/external/Smarty/libs/Smarty.class.php');
-require_once(Config::Get('path.root.engine').'/lib/external/CSSTidy-1.3/class.csstidy.php');
-//require_once(Config::Get('path.root.engine').'/lib/external/JSMin-1.1.1/jsmin.php');
+require_once(Config::Get('path.root.engine').'/lib/external/CSSTidy/class.csstidy.php');
 require_once(Config::Get('path.root.engine').'/lib/external/JSqueeze/JSqueeze.php');
 
 /**
@@ -1153,7 +1152,6 @@ class ModuleViewer extends Module {
 	protected function CompressJs($sContent) {
 		$oJSqueeze = new \Patchwork\JSqueeze();
 		$sContent = (Config::Get('compress.js.use'))
-			//? JSMin::minify($sContent)
 			? $oJSqueeze->squeeze($sContent, true, false, false)
 			: $sContent;
 		/**
