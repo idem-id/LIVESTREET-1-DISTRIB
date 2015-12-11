@@ -43,7 +43,7 @@
     {if !$bTopicList}
       <div class="topic-share" id="topic_share_{$oTopic->getId()}">
         {hookb run="topic_share" topic=$oTopic bTopicList=$bTopicList}
-          <div class="yashare-auto-init" data-yashareTitle="{$oTopic->getTitle()|escape:'html'}" data-yashareLink="{$oTopic->getUrl()}" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj,gplus"></div>
+          <div class="ya-share2" data-title="{$oTopic->getTitle()|escape:'html'}" data-url="{$oTopic->getUrl()}" data-lang="ru" data-size="s" data-services="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj,gplus"></div>
         {/hookb}
       </div>
     {/if}
