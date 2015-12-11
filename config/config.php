@@ -18,7 +18,7 @@
 /**
  * Настройки HTML вида
  */
-$config['view']['skin']        = 'synio';                                                              // шаблон(скин)
+$config['view']['skin']        = 'ui.system';                                                              // шаблон(скин)
 $config['view']['name']        = 'Your Site';                   // название сайта
 $config['view']['description'] = 'Description your site'; // seo description
 $config['view']['keywords']    = 'site, google, internet';      // seo keywords
