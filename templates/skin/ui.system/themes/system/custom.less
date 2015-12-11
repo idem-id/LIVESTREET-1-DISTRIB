@@ -1,0 +1,414 @@
+/**
+ * Keyframes.
+ * -------------------------------------------------------------------------- */
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+/**
+ * Common.
+ * -------------------------------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 300px;
+  font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.count-new {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: #090;
+  color: #fff !important;
+}
+
+form.search {
+  margin-bottom: 40px;
+}
+
+.markItUpEditor {
+  font: 14px 'Trebuchet MS', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/**
+ * Header.
+ * -------------------------------------------------------------------------- */
+
+#header {
+  .navbar {
+    margin-bottom: 0;
+    span.site-name {
+      font-weight: bold;
+    }
+    .nav-userbar-username {
+      li {
+        &.item-stat {
+          overflow: hidden;
+          padding: 9px 10px 0;
+          color: #fff;
+          .strength,
+          .rating {
+            display: block;
+            color: #fff;
+            padding: 0 4px;
+            border-radius: 4px;
+          }
+          .strength {
+            float: left;
+            background-color: #0074d9;
+          }
+          .rating {
+            float: right;
+            background-color: #090;
+            &.negative {
+              background-color: #f00;
+            }
+          }
+        }
+        a {
+          i.fa {
+            padding: 5px 0;
+            margin-right: 10px;
+            width: 2em;
+            border-radius: 4px;
+            background: #333;
+            color: #fff;
+            opacity: .6;
+          }
+          &:hover {
+            i.fa {
+              opacity: 1;
+            }
+          }
+        }
+        .messages-count {
+          display: inline-block;
+          padding: 0 4px;
+          border-radius: 4px;
+          background-color: #090;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Footer.
+ * -------------------------------------------------------------------------- */
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 300px;
+  &.footer-dark {
+    .footer-center {
+      background-color: #222;
+      a {
+        color: #adadad;
+      }
+      .project-info {
+        color: #adadad;
+        h5 {
+          border-bottom: 1px dotted #222;
+          color: #fff;
+        }
+      }
+      .footer-list-header {
+        border-bottom: 1px dotted #222;
+        color: #fff;
+      }
+    }
+    .footer-bottom {
+      border-top: 1px dotted #111;
+      background-color: #222;
+      color: #adadad;
+      a {
+        color: #adadad;
+      }
+      .social-icons a:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+  .projects {
+    margin-top: 10px;
+    a {
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+}
+
+/**
+ * Block.
+ * -------------------------------------------------------------------------- */
+
+.block {
+  .block-header {
+    overflow: hidden;
+  }
+  .block-update {
+    float: right;
+    cursor: pointer;
+    &.active i.fa {
+      animation: fa-spin 2s infinite linear;
+    }
+  }
+  &.block-type-profile {
+    .profile-photo-wrapper {
+      text-align: center;
+    }
+  }
+}
+
+/**
+ * Topic.
+ * -------------------------------------------------------------------------- */
+
+.topic {
+  .thumbnail {
+    border: none;
+  }
+}
+
+/**
+ * Comment.
+ * -------------------------------------------------------------------------- */
+
+.comment {
+  .comment-actions {
+    text-align: right;
+  }
+}
+
+/**
+ * Modal.
+ * -------------------------------------------------------------------------- */
+
+.modal {
+  &.modal-write{
+    .write-list {
+      li {
+        .write-item-image {
+          background: #dde6ed;
+          border-radius: 4px;
+          .fa {
+            color: #fff;
+            line-height: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * URL.
+ * -------------------------------------------------------------------------- */
+
+article {
+  .topic-content {
+    a {
+      &[href*='amazon.com'],
+      &[href*='codepen.io'],
+      &[href*='deviantart.com'],
+      &[href*='dropbox.com'],
+      &[href*='facebook.com'],
+      &[href*='github.com'],
+      &[href*='google.com'],
+      &[href*='google.ru'],
+      &[href*='instagram.com'],
+      &[href*='jsfiddle.net'],
+      &[href*='last.fm'],
+      &[href*='microsoft.com'],
+      &[href*='ok.ru'],
+      &[href*='pinterest.com'],
+      &[href*='plus.google.com'],
+      &[href*='soundcloud.com'],
+      &[href*='stackoverflow.com'],
+      &[href*='steampowered.com'],
+      &[href*='twitter.com'],
+      &[href*='vimeo.com'],
+      &[href*='vk.com'],
+      &[href*='youtube.com'] {
+        &:before {
+          display: inline-block;
+          margin-right: 2px;
+          padding: 2px 0;
+          width: 1.5em;
+          border-radius: 2px;
+          background: #337ab7;
+          color: #fff;
+          content: '';
+          vertical-align: middle;
+          text-align: center;
+          font-weight: normal;
+          font-style: normal;
+          font-size: 85%;
+          font-family: 'FontAwesome';
+          line-height: 1;
+        }
+      }
+      &[href*='amazon.com']         {&:before {content: '\f270';}}
+      &[href*='codepen.io']         {&:before {content: '\f1cb';}}
+      &[href*='deviantart.com']     {&:before {content: '\f1bd';}}
+      &[href*='dropbox.com']        {&:before {content: '\f16b';}}
+      &[href*='facebook.com']       {&:before {content: '\f09a';}}
+      &[href*='github.com']         {&:before {content: '\f113';}}
+      &[href*='google.com']         {&:before {content: '\f1a0';}}
+      &[href*='google.ru']          {&:before {content: '\f1a0';}}
+      &[href*='instagram.com']      {&:before {content: '\f16d';}}
+      &[href*='jsfiddle.net']       {&:before {content: '\f1cc';}}
+      &[href*='last.fm']            {&:before {content: '\f202';}}
+      &[href*='microsoft.com']      {&:before {content: '\f17a';}}
+      &[href*='ok.ru']              {&:before {content: '\f263';}}
+      &[href*='pinterest.com']      {&:before {content: '\f231';}}
+      &[href*='plus.google.com']    {&:before {content: '\f0d5';}}
+      &[href*='soundcloud.com']     {&:before {content: '\f1be';}}
+      &[href*='stackoverflow.com']  {&:before {content: '\f16c';}}
+      &[href*='steampowered.com']   {&:before {content: '\f1b6';}}
+      &[href*='twitter.com']        {&:before {content: '\f099';}}
+      &[href*='vimeo.com']          {&:before {content: '\f27d';}}
+      &[href*='vk.com']             {&:before {content: '\f189';}}
+      &[href*='youtube.com']        {&:before {content: '\f167';}}
+    }
+  }
+}
+
+/**
+ * Module. OpenID
+ * -------------------------------------------------------------------------- */
+
+.openid-service-list {
+  display: block !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.openid-service-facebook,
+.openid-service-vkontakte,
+.openid-service-twitter,
+.openid-service-google,
+.openid-service-yandex,
+.openid-service-mailru,
+.openid-service-facebook-sm,
+.openid-service-vkontakte-sm,
+.openid-service-twitter-sm,
+.openid-service-google-sm,
+.openid-service-yandex-sm,
+.openid-service-mailru-sm {
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  &:before {
+    display: block;
+    color: #fff;
+    text-align: center;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    font-family: 'FontAwesome';
+    line-height: 1;
+  }
+}
+
+.openid-service-facebook,
+.openid-service-vkontakte,
+.openid-service-twitter,
+.openid-service-google,
+.openid-service-yandex,
+.openid-service-mailru {
+  &:before {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    font-size: 32px;
+    line-height: 64px;
+  }
+}
+
+.openid-service-facebook-sm,
+.openid-service-vkontakte-sm,
+.openid-service-twitter-sm,
+.openid-service-google-sm,
+.openid-service-yandex-sm,
+.openid-service-mailru-sm {
+  &:before {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 24px;
+    line-height: 48px;
+  }
+}
+
+.openid-service-facebook,
+.openid-service-facebook-sm {
+  &:before {
+    background-color: #3b5998 !important;
+    content: '\f09a';
+  }
+}
+
+.openid-service-vkontakte,
+.openid-service-vkontakte-sm {
+  &:before {
+    background-color: #587ea3 !important;
+    content: '\f189';
+  }
+}
+
+.openid-service-twitter,
+.openid-service-twitter-sm {
+  &:before {
+    background-color: #55acee !important;
+    content: '\f099';
+  }
+}
+
+.openid-service-google,
+.openid-service-google-sm {
+  &:before {
+    background-color: #dd4b39 !important;
+    content: '\f0d5';
+  }
+}
+
+.openid-service-yandex,
+.openid-service-yandex-sm {
+  &:before {
+    background-color: #000 !important;
+    content: '';
+  }
+}
+
+.openid-service-mailru,
+.openid-service-mailru-sm {
+  &:before {
+    background-color: #000 !important;
+    content: '';
+  }
+}
+

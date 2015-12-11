@@ -1,0 +1,381 @@
+/**
+ * Keyframes.
+ * -------------------------------------------------------------------------- */
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+/**
+ * Common.
+ * -------------------------------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 300px;
+  font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
+}
+.text {
+  font-size: 14px;
+}
+.count-new {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: #090;
+  color: #fff !important;
+}
+form.search {
+  margin-bottom: 40px;
+}
+.markItUpEditor {
+  font: 14px 'Trebuchet MS', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+/**
+ * Header.
+ * -------------------------------------------------------------------------- */
+#header .navbar {
+  margin-bottom: 0;
+}
+#header .navbar span.site-name {
+  font-weight: bold;
+}
+#header .navbar .nav-userbar-username li.item-stat {
+  overflow: hidden;
+  padding: 9px 10px 0;
+  color: #fff;
+}
+#header .navbar .nav-userbar-username li.item-stat .strength,
+#header .navbar .nav-userbar-username li.item-stat .rating {
+  display: block;
+  padding: 0 4px;
+  border-radius: 4px;
+  color: #fff;
+}
+#header .navbar .nav-userbar-username li.item-stat .strength {
+  float: left;
+  background-color: #0074d9;
+}
+#header .navbar .nav-userbar-username li.item-stat .rating {
+  float: right;
+  background-color: #090;
+}
+#header .navbar .nav-userbar-username li.item-stat .rating.negative {
+  background-color: #f00;
+}
+#header .navbar .nav-userbar-username li a i.fa {
+  margin-right: 10px;
+  padding: 5px 0;
+  width: 2em;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  opacity: .6;
+}
+#header .navbar .nav-userbar-username li a:hover i.fa {
+  opacity: 1;
+}
+#header .navbar .nav-userbar-username li .messages-count {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: #090;
+  color: #fff;
+}
+/**
+ * Footer.
+ * -------------------------------------------------------------------------- */
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 300px;
+}
+#footer.footer-dark .footer-center {
+  background-color: #222;
+}
+#footer.footer-dark .footer-center a {
+  color: #adadad;
+}
+#footer.footer-dark .footer-center .project-info {
+  color: #adadad;
+}
+#footer.footer-dark .footer-center .project-info h5 {
+  border-bottom: 1px dotted #222;
+  color: #fff;
+}
+#footer.footer-dark .footer-center .footer-list-header {
+  border-bottom: 1px dotted #222;
+  color: #fff;
+}
+#footer.footer-dark .footer-bottom {
+  border-top: 1px dotted #111;
+  background-color: #222;
+  color: #adadad;
+}
+#footer.footer-dark .footer-bottom a {
+  color: #adadad;
+}
+#footer.footer-dark .footer-bottom .social-icons a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+#footer .projects {
+  margin-top: 10px;
+}
+#footer .projects a.active {
+  color: #fff;
+}
+/**
+ * Block.
+ * -------------------------------------------------------------------------- */
+.block .block-header {
+  overflow: hidden;
+}
+.block .block-update {
+  float: right;
+  cursor: pointer;
+}
+.block .block-update.active i.fa {
+  animation: fa-spin 2s infinite linear;
+}
+.block.block-type-profile .profile-photo-wrapper {
+  text-align: center;
+}
+/**
+ * Topic.
+ * -------------------------------------------------------------------------- */
+.topic .thumbnail {
+  border: none;
+}
+/**
+ * Comment.
+ * -------------------------------------------------------------------------- */
+.comment .comment-actions {
+  text-align: right;
+}
+/**
+ * Modal.
+ * -------------------------------------------------------------------------- */
+.modal.modal-write .write-list li .write-item-image {
+  border-radius: 4px;
+  background: #dde6ed;
+}
+.modal.modal-write .write-list li .write-item-image .fa {
+  color: #fff;
+  line-height: 100px;
+}
+/**
+ * URL.
+ * -------------------------------------------------------------------------- */
+article .topic-content a[href*='amazon.com']:before,
+article .topic-content a[href*='codepen.io']:before,
+article .topic-content a[href*='deviantart.com']:before,
+article .topic-content a[href*='dropbox.com']:before,
+article .topic-content a[href*='facebook.com']:before,
+article .topic-content a[href*='github.com']:before,
+article .topic-content a[href*='google.com']:before,
+article .topic-content a[href*='google.ru']:before,
+article .topic-content a[href*='instagram.com']:before,
+article .topic-content a[href*='jsfiddle.net']:before,
+article .topic-content a[href*='last.fm']:before,
+article .topic-content a[href*='microsoft.com']:before,
+article .topic-content a[href*='ok.ru']:before,
+article .topic-content a[href*='pinterest.com']:before,
+article .topic-content a[href*='plus.google.com']:before,
+article .topic-content a[href*='soundcloud.com']:before,
+article .topic-content a[href*='stackoverflow.com']:before,
+article .topic-content a[href*='steampowered.com']:before,
+article .topic-content a[href*='twitter.com']:before,
+article .topic-content a[href*='vimeo.com']:before,
+article .topic-content a[href*='vk.com']:before,
+article .topic-content a[href*='youtube.com']:before {
+  display: inline-block;
+  margin-right: 2px;
+  padding: 2px 0;
+  width: 1.5em;
+  border-radius: 2px;
+  background: #337ab7;
+  color: #fff;
+  content: '';
+  vertical-align: middle;
+  text-align: center;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 85%;
+  font-family: 'FontAwesome';
+  line-height: 1;
+}
+article .topic-content a[href*='amazon.com']:before {
+  content: '\f270';
+}
+article .topic-content a[href*='codepen.io']:before {
+  content: '\f1cb';
+}
+article .topic-content a[href*='deviantart.com']:before {
+  content: '\f1bd';
+}
+article .topic-content a[href*='dropbox.com']:before {
+  content: '\f16b';
+}
+article .topic-content a[href*='facebook.com']:before {
+  content: '\f09a';
+}
+article .topic-content a[href*='github.com']:before {
+  content: '\f113';
+}
+article .topic-content a[href*='google.com']:before {
+  content: '\f1a0';
+}
+article .topic-content a[href*='google.ru']:before {
+  content: '\f1a0';
+}
+article .topic-content a[href*='instagram.com']:before {
+  content: '\f16d';
+}
+article .topic-content a[href*='jsfiddle.net']:before {
+  content: '\f1cc';
+}
+article .topic-content a[href*='last.fm']:before {
+  content: '\f202';
+}
+article .topic-content a[href*='microsoft.com']:before {
+  content: '\f17a';
+}
+article .topic-content a[href*='ok.ru']:before {
+  content: '\f263';
+}
+article .topic-content a[href*='pinterest.com']:before {
+  content: '\f231';
+}
+article .topic-content a[href*='plus.google.com']:before {
+  content: '\f0d5';
+}
+article .topic-content a[href*='soundcloud.com']:before {
+  content: '\f1be';
+}
+article .topic-content a[href*='stackoverflow.com']:before {
+  content: '\f16c';
+}
+article .topic-content a[href*='steampowered.com']:before {
+  content: '\f1b6';
+}
+article .topic-content a[href*='twitter.com']:before {
+  content: '\f099';
+}
+article .topic-content a[href*='vimeo.com']:before {
+  content: '\f27d';
+}
+article .topic-content a[href*='vk.com']:before {
+  content: '\f189';
+}
+article .topic-content a[href*='youtube.com']:before {
+  content: '\f167';
+}
+/**
+ * Module. OpenID
+ * -------------------------------------------------------------------------- */
+.openid-service-list {
+  display: block !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+.openid-service-facebook,
+.openid-service-vkontakte,
+.openid-service-twitter,
+.openid-service-google,
+.openid-service-yandex,
+.openid-service-mailru,
+.openid-service-facebook-sm,
+.openid-service-vkontakte-sm,
+.openid-service-twitter-sm,
+.openid-service-google-sm,
+.openid-service-yandex-sm,
+.openid-service-mailru-sm {
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+}
+.openid-service-facebook:before,
+.openid-service-vkontakte:before,
+.openid-service-twitter:before,
+.openid-service-google:before,
+.openid-service-yandex:before,
+.openid-service-mailru:before,
+.openid-service-facebook-sm:before,
+.openid-service-vkontakte-sm:before,
+.openid-service-twitter-sm:before,
+.openid-service-google-sm:before,
+.openid-service-yandex-sm:before,
+.openid-service-mailru-sm:before {
+  display: block;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px;
+  font-family: 'FontAwesome';
+  line-height: 1;
+}
+.openid-service-facebook:before,
+.openid-service-vkontakte:before,
+.openid-service-twitter:before,
+.openid-service-google:before,
+.openid-service-yandex:before,
+.openid-service-mailru:before {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  font-size: 32px;
+  line-height: 64px;
+}
+.openid-service-facebook-sm:before,
+.openid-service-vkontakte-sm:before,
+.openid-service-twitter-sm:before,
+.openid-service-google-sm:before,
+.openid-service-yandex-sm:before,
+.openid-service-mailru-sm:before {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 24px;
+  line-height: 48px;
+}
+.openid-service-facebook:before,
+.openid-service-facebook-sm:before {
+  background-color: #3b5998 !important;
+  content: '\f09a';
+}
+.openid-service-vkontakte:before,
+.openid-service-vkontakte-sm:before {
+  background-color: #587ea3 !important;
+  content: '\f189';
+}
+.openid-service-twitter:before,
+.openid-service-twitter-sm:before {
+  background-color: #55acee !important;
+  content: '\f099';
+}
+.openid-service-google:before,
+.openid-service-google-sm:before {
+  background-color: #dd4b39 !important;
+  content: '\f0d5';
+}
+.openid-service-yandex:before,
+.openid-service-yandex-sm:before {
+  background-color: #000 !important;
+  content: '';
+}
+.openid-service-mailru:before,
+.openid-service-mailru-sm:before {
+  background-color: #000 !important;
+  content: '';
+}
