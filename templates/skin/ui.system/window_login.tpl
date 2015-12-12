@@ -41,13 +41,17 @@
               {hook run='form_login_popup_begin'}
 
               <div class="form-group">
-                <label for="popup-login">{$aLang.user_login}</label>
-                <input type="text" name="login" id="popup-login" class="form-control">
+                <div class="input-group">
+                  <label class="input-group-addon" for="popup-login"><i class="fa fa-user fa-fw"></i></label>
+                  <input type="text" name="login" id="popup-login" class="form-control" placeholder="{$aLang.user_login}" />
+                </div>
               </div>
 
               <div class="form-group">
-                <label for="popup-password">{$aLang.user_password}</label>
-                <input type="password" name="password" id="popup-password" class="form-control">
+                <div class="input-group">
+                  <label class="input-group-addon" for="popup-password"><i class="fa fa-lock fa-fw"></i></label>
+                  <input type="password" name="password" id="popup-password" class="form-control" placeholder="{$aLang.user_password}" />
+                </div>
                 <p class="help-block"><small class="text-danger validate-error-hide validate-error-login"></small></p>
               </div>
 
@@ -59,7 +63,7 @@
 
               {hook run='form_login_popup_end'}
 
-              <input type="hidden" name="return-path" value="{$PATH_WEB_CURRENT|escape:'html'}">
+              <input type="hidden" name="return-path" value="{$PATH_WEB_CURRENT|escape:'html'}" />
               <button type="submit" name="submit_login" class="btn btn-success" id="popup-login-form-submit" disabled="disabled">{$aLang.user_login_submit}</button>
 
             </form>
@@ -98,50 +102,61 @@
                 {hook run='form_registration_begin' isPopup=true}
 
                 <div class="form-group">
-                  <label for="popup-registration-login">{$aLang.registration_login}</label>
-                  <span class="glyphicon glyphicon-question-sign text-muted js-tip-help" title="{$aLang.registration_login_notice}"></span>
-                  <span class="glyphicon glyphicon-ok text-success validate-ok-field-login" style="display: none"></span>
-                  <input type="text" name="login" id="popup-registration-login" value="{$_aRequest.login}" class="form-control js-ajax-validate" />
+                  <div class="input-group">
+                    <label class="input-group-addon" for="popup-registration-login"><i class="fa fa-user fa-fw"></i></label>
+                    <input type="text" name="login" id="popup-registration-login" value="{$_aRequest.login}" class="form-control js-ajax-validate" placeholder="{$aLang.registration_login}" />
+                    <span class="glyphicon glyphicon-ok text-success form-control-feedback validate-ok validate-ok-field-login" style="display: none"></span>
+                    <span class="glyphicon glyphicon-question-sign text-muted form-control-feedback js-tip-help" title="{$aLang.registration_login_notice}"></span>
+                  </div>
                   <p class="help-block"><small class="text-danger validate-error-hide validate-error-field-login"></small></p>
                 </div>
 
                 <div class="form-group">
-                  <label for="popup-registration-mail">{$aLang.registration_mail}</label>
-                  <span class="glyphicon glyphicon-question-sign text-muted js-tip-help" title="{$aLang.registration_mail_notice}"></span>
-                  <span class="glyphicon glyphicon-ok text-success validate-ok-field-mail" style="display: none"></span>
-                  <input type="text" name="mail" id="popup-registration-mail" value="{$_aRequest.mail}" class="form-control js-ajax-validate" />
+                  <div class="input-group">
+                    <label class="input-group-addon" for="popup-registration-mail"><i class="fa fa-envelope fa-fw"></i></label>
+                    <input type="text" name="mail" id="popup-registration-mail" value="{$_aRequest.mail}" class="form-control js-ajax-validate" placeholder="{$aLang.registration_mail}" />
+                    <span class="glyphicon glyphicon-ok text-success form-control-feedback validate-ok validate-ok-field-mail" style="display: none"></span>
+                    <span class="glyphicon glyphicon-question-sign text-muted form-control-feedback js-tip-help" title="{$aLang.registration_mail_notice}"></span>
+                  </div>
                   <p class="help-block"><small class="text-danger validate-error-hide validate-error-field-mail"></small></p>
                 </div>
 
                 <div class="form-group">
-                  <label for="popup-registration-user-password">{$aLang.registration_password}</label>
-                  <span class="glyphicon glyphicon-question-sign text-muted js-tip-help" title="{$aLang.registration_password_notice}"></span>
-                  <span class="glyphicon glyphicon-ok text-success validate-ok-field-password" style="display: none"></span>
-                  <input type="password" name="password" id="popup-registration-user-password" value="" class="form-control js-ajax-validate" />
+                  <div class="input-group">
+                    <label class="input-group-addon" for="popup-registration-user-password"><i class="fa fa-lock fa-fw"></i></label>
+                    <input type="password" name="password" id="popup-registration-user-password" value="" class="form-control js-ajax-validate" placeholder="{$aLang.registration_password}" />
+                    <span class="glyphicon glyphicon-ok text-success form-control-feedback validate-ok validate-ok-field-password" style="display: none"></span>
+                    <span class="glyphicon glyphicon-question-sign text-muted form-control-feedback js-tip-help" title="{$aLang.registration_password_notice}"></span>
+                  </div>
                   <p class="help-block"><small class="text-danger validate-error-hide validate-error-field-password"></small></p>
                 </div>
 
                 <div class="form-group">
-                  <label for="popup-registration-user-password-confirm">{$aLang.registration_password_retry}</label>
-                  <span class="glyphicon glyphicon-ok text-success validate-ok-field-password_confirm" style="display: none"></span>
-                  <input type="password" value="" id="popup-registration-user-password-confirm" name="password_confirm" class="form-control js-ajax-validate" />
+                  <div class="input-group">
+                    <label class="input-group-addon" for="popup-registration-user-password-confirm"><i class="fa fa-lock fa-fw"></i></label>
+                    <input type="password" value="" id="popup-registration-user-password-confirm" name="password_confirm" class="form-control js-ajax-validate" placeholder="{$aLang.registration_password_retry}" />
+                    <span class="glyphicon glyphicon-ok text-success form-control-feedback validate-ok validate-ok-field-password_confirm" style="display: none"></span>
+                  </div>
                   <p class="help-block"><small class="text-danger validate-error-hide validate-error-field-password_confirm"></small></p>
                 </div>
 
                 {hookb run="popup_registration_captcha"}
                   <div class="form-group">
-                    <label for="popup-registration-captcha" class="captcha">{$aLang.registration_captcha}</label>
-                    <img src="{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}"
-                      onclick="this.src='{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}&n='+Math.random();"
-                      class="captcha-image" />
-                    <input type="text" name="captcha" id="popup-registration-captcha" value="" maxlength="3" class="form-control captcha-input js-ajax-validate" />
+                    <div class="input-group">
+                      <label class="input-group-addon" for="popup-registration-captcha" class="captcha">
+                        <img src="{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}"
+                             onclick="this.src='{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}&n='+Math.random();"
+                             class="captcha-image" />
+                      </label>
+                      <input type="text" name="captcha" id="popup-registration-captcha" value="" maxlength="3" class="form-control captcha-input js-ajax-validate" placeholder="{$aLang.registration_captcha}" />
+                    </div>
                     <p class="help-block"><small class="text-danger validate-error-hide validate-error-field-captcha"></small></p>
                   </div>
                 {/hookb}
 
                 {hook run='form_registration_end' isPopup=true}
 
-                <input type="hidden" name="return-path" value="{$PATH_WEB_CURRENT|escape:'html'}">
+                <input type="hidden" name="return-path" value="{$PATH_WEB_CURRENT|escape:'html'}" />
                 <button type="submit" name="submit_register" class="btn btn-success" id="popup-registration-form-submit" disabled="disabled">{$aLang.registration_submit}</button>
 
               </form>
@@ -164,8 +179,10 @@
             <form action="{router page='login'}reminder/" method="POST" id="popup-reminder-form">
 
               <div class="form-group">
-                <label for="popup-reminder-mail">{$aLang.password_reminder_email}</label>
-                <input type="text" name="mail" id="popup-reminder-mail" class="form-control" />
+                <div class="input-group">
+                  <label class="input-group-addon" for="popup-reminder-mail"><i class="fa fa-envelope fa-fw"></i></label>
+                  <input type="text" name="mail" id="popup-reminder-mail" class="form-control" placeholder="{$aLang.password_reminder_email}" />
+                </div>
                 <p class="help-block"><small class="text-danger validate-error-hide validate-error-reminder"></small></p>
               </div>
 

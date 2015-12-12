@@ -1,5 +1,1 @@
-@media (max-width: 992px) {
-  .navbar-nav:first-child i.fa {
-    display: none;
-  }
-}
+@media (max-width:992px){.navbar-nav:first-child i.fa{display:none}}@media (max-width:768px){.navbar-nav:first-child i.fa{display:inline-block}}

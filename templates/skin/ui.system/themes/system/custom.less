@@ -19,12 +19,10 @@
 
 html {
   position: relative;
-  min-height: 100%;
 }
 
 body {
-  margin-bottom: 300px;
-  font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Helvetica', 'Arial', sans-serif;
 }
 
 .text {
@@ -44,8 +42,45 @@ form.search {
 }
 
 .markItUpEditor {
-  font: 14px 'Trebuchet MS', Helvetica, Arial, sans-serif;
+  font: 14px 'Trebuchet MS', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.5;
+}
+
+.modal {
+  &.modal-login {
+    .input-group {
+      .form-control {
+        &.js-ajax-validate {
+          padding-right: 60px;
+        }
+      }
+      .form-control-feedback {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        z-index: 4;
+        &.validate-ok {
+          right: 30px;
+        }
+        &.js-tip-help {
+          cursor: pointer;
+          pointer-events: auto;
+        }
+      }
+      .captcha-image {
+        margin: 0;
+        cursor: pointer;
+      }
+      .captcha-input {
+        height: 74px;
+        line-height: 54px;
+        max-width: none;
+      }
+    }
+  }
 }
 
 /**
@@ -116,10 +151,6 @@ form.search {
  * -------------------------------------------------------------------------- */
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 300px;
   &.footer-dark {
     .footer-center {
       background-color: #222;
