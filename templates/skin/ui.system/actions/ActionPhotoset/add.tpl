@@ -19,7 +19,7 @@
   });
 </script>
 
-
+<!--
 <div class="modal fade in modal-login" id="window_login_form">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -47,6 +47,30 @@
     </div>
   </div>
 </div>
+-->
+
+<form id="photoset-upload-form" method="POST" enctype="multipart/form-data" onsubmit="return false;" class="wrapper-content">
+  <h4>{$aLang.topic_photoset_upload_title}</h4>
+  <div id="topic-photo-upload-input" class="topic-photo-upload-input modal-body">
+    <div class="form-group">
+      <label for="photoset-upload-file">{$aLang.topic_photoset_choose_image}</label>
+      <input type="file" id="photoset-upload-file" name="Filedata" class="form-control" />
+    </div>
+
+    <div class="small text-muted topic-photo-upload-rules">
+      {$aLang.topic_photoset_upload_rules|ls_lang:"SIZE%%`$oConfig->get('module.topic.photoset.photo_max_size')`":"COUNT%%`$oConfig->get('module.topic.photoset.count_photos_max')`"}
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success" onclick="ls.photoset.upload();">{$aLang.topic_photoset_upload_choose}</button>
+
+    <input type="hidden" name="is_iframe" value="true" />
+    <input type="hidden" name="topic_id" value="{$_aRequest.topic_id}" />
+  </div>
+</form>
+
+<br />
 
 {hook run='add_topic_photoset_begin'}
 
@@ -89,12 +113,13 @@
   </div>
 
   <div class="topic-photo-upload">
+<!--
     <h4>{$aLang.topic_photoset_upload_title}</h4>
 
     <div class="small text-muted topic-photo-upload-rules">
       {$aLang.topic_photoset_upload_rules|ls_lang:"SIZE%%`$oConfig->get('module.topic.photoset.photo_max_size')`":"COUNT%%`$oConfig->get('module.topic.photoset.count_photos_max')`"}
     </div>
-
+-->
     <input type="hidden" name="topic_main_photo" id="topic_main_photo" value="{$_aRequest.topic_main_photo}" />
 
     <ul id="swfu_images" class="small list-unstyled">
@@ -123,7 +148,8 @@
       {/if}
     </ul>
 
-    <a href="javascript:ls.photoset.showForm()" id="photoset-start-upload">{$aLang.topic_photoset_upload_choose}</a>
+    <!-- <a href="javascript:ls.photoset.showForm()" id="photoset-start-upload">{$aLang.topic_photoset_upload_choose}</a> -->
+
   </div>
 
   <div class="form-group">
