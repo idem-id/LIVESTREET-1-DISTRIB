@@ -199,7 +199,7 @@ $config['head']['default']['css'] = array(
   "___path.static.skin___/themes/___view.theme___/style.css",
 
   /* Custom Theme */
-  "//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" => array('merge'=>false),
+  "//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" => array('merge'=>false),
   "___path.static.skin___/themes/___view.theme___/theme.css" => array('merge'=>false),
 );
 
