@@ -32,7 +32,10 @@ jQuery(document).ready(function($){
   $('#foto-resize').jqm({modal: true});
   $('#avatar-resize').jqm({modal: true});
   $('#userfield_form').jqm({toTop: true});
-  $('#photoset-upload-form').jqm({trigger: '#photoset-start-upload'});
+  $('#modal-photoset-upload').jqm({trigger: '#photoset-start-upload'});
+  ls.photoset.closeForm = function() {
+    $('#modal-photoset-upload').jqmHide();
+  }
 
   $('.js-registration-form-show').click(function(){
     if (ls.blocks.switchTab('registration','popup-login')) {
@@ -53,9 +56,9 @@ jQuery(document).ready(function($){
   });
 
   // Datepicker
-   /**
-    * TODO: навесить языки на datepicker
-    */
+  /**
+   * TODO: навесить языки на datepicker
+   */
   $('.date-picker').datepicker({
     dateFormat: 'dd.mm.yy',
     dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -79,6 +82,7 @@ jQuery(document).ready(function($){
 
 
   // Скролл
+  //$(window)._scrollable();
   $(window).scrollTo(0,0);  // kitsune.fix
 
 
@@ -179,7 +183,7 @@ jQuery(document).ready(function($){
    * TALK
    */
 
-  // Добавляем или удаляем друга из списка получателей
+    // Добавляем или удаляем друга из списка получателей
   $('#friends input:checkbox').change(function(){
     ls.talk.toggleRecipient($('#'+$(this).attr('id')+'_label').text(), $(this).attr('checked'));
   });
@@ -250,7 +254,7 @@ jQuery(document).ready(function($){
   // Bootstrap
   if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     var msViewportStyle = document.createElement("style")
-      msViewportStyle.appendChild(
+    msViewportStyle.appendChild(
       document.createTextNode(
         "@-ms-viewport{width:auto!important}"
       )

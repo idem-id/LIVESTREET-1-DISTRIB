@@ -1,7 +1,7 @@
 ------------------------------------------------------
 
 LIVESTREET TEMPLATE "DEVELOPER-KIT"
-version 1.6.5
+version 1.6.6
 
 Copyright © 2013 Kulesh Uladzimir
 
@@ -54,13 +54,13 @@ $config['preview_minimal_size_height']  = 500;  // Минимальная выс
  * Обычно задается другим плагином или шаблоном
  */
 $config['size_images_preview']=array(
-	
+
 	array(
 		'w' => 750,
 		'h' => 500,
 		'crop' => true,
 	)
-	
+
 );
 
 Пример настройки плагина для ленты masonry_7:
@@ -73,25 +73,25 @@ $config['preview_minimal_size_height']  = 500;  // Минимальная выс
  * Обычно задается другим плагином или шаблоном
  */
 $config['size_images_preview']=array(
-	
+
 	array(
 		'w' => 750,
 		'h' => 500,
 		'crop' => true,
 	),
-	
+
 	array(
 		'w' => 751,
 		'h' => 751,
 		'crop' => true,
 	),
-	
+
 	array(
 		'w' => 64,
 		'h' => 64,
 		'crop' => true,
 	)
-	
+
 );
 
 

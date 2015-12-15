@@ -19,8 +19,8 @@
   });
 </script>
 
-<!--
-<div class="modal fade in modal-login" id="window_login_form">
+
+<div class="modal fade in modal-photoset" id="modal-photoset-upload">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -47,30 +47,6 @@
     </div>
   </div>
 </div>
--->
-
-<form id="photoset-upload-form" method="POST" enctype="multipart/form-data" onsubmit="return false;" class="wrapper-content">
-  <h4>{$aLang.topic_photoset_upload_title}</h4>
-  <div id="topic-photo-upload-input" class="topic-photo-upload-input modal-body">
-    <div class="form-group">
-      <label for="photoset-upload-file">{$aLang.topic_photoset_choose_image}</label>
-      <input type="file" id="photoset-upload-file" name="Filedata" class="form-control" />
-    </div>
-
-    <div class="small text-muted topic-photo-upload-rules">
-      {$aLang.topic_photoset_upload_rules|ls_lang:"SIZE%%`$oConfig->get('module.topic.photoset.photo_max_size')`":"COUNT%%`$oConfig->get('module.topic.photoset.count_photos_max')`"}
-    </div>
-
-    <br />
-
-    <button type="submit" class="btn btn-success" onclick="ls.photoset.upload();">{$aLang.topic_photoset_upload_choose}</button>
-
-    <input type="hidden" name="is_iframe" value="true" />
-    <input type="hidden" name="topic_id" value="{$_aRequest.topic_id}" />
-  </div>
-</form>
-
-<br />
 
 {hook run='add_topic_photoset_begin'}
 
@@ -88,7 +64,7 @@
         <option value="{$oBlog->getId()}" {if $_aRequest.blog_id==$oBlog->getId()}selected{/if}>{$oBlog->getTitle()|escape:'html'}</option>
       {/foreach}
     </select>
-    <p class="small help-block">{$aLang.topic_create_blog_notice}</p>
+    <p class="help-block"><small>{$aLang.topic_create_blog_notice}</small></p>
   </div>
 
 
@@ -101,7 +77,7 @@
   <div class="form-group">
     <label for="topic_title">{$aLang.topic_create_title}</label>
     <input type="text" id="topic_title" name="topic_title" value="{$_aRequest.topic_title}" class="form-control" />
-    <p class="small help-block">{$aLang.topic_create_title_notice}</p>
+    <p class="help-block"><small>{$aLang.topic_create_title_notice}</small></p>
   </div>
 
   <div class="form-group">
@@ -113,13 +89,12 @@
   </div>
 
   <div class="topic-photo-upload">
-<!--
     <h4>{$aLang.topic_photoset_upload_title}</h4>
 
     <div class="small text-muted topic-photo-upload-rules">
       {$aLang.topic_photoset_upload_rules|ls_lang:"SIZE%%`$oConfig->get('module.topic.photoset.photo_max_size')`":"COUNT%%`$oConfig->get('module.topic.photoset.count_photos_max')`"}
     </div>
--->
+
     <input type="hidden" name="topic_main_photo" id="topic_main_photo" value="{$_aRequest.topic_main_photo}" />
 
     <ul id="swfu_images" class="small list-unstyled">
@@ -130,17 +105,17 @@
           {/if}
 
           <li id="photo_{$oPhoto->getId()}" {if $bIsMainPhoto}class="marked-as-preview"{/if}>
-            <img src="{$oPhoto->getWebPath('100crop')}" alt="{$oPhoto->getDescription()|escape:'html'}" />
+            <img src="{$oPhoto->getWebPath('100crop')}" alt="image" />
             <textarea onBlur="ls.photoset.setPreviewDescription({$oPhoto->getId()}, this.value)" class="form-control">{$oPhoto->getDescription()}</textarea>
             <br />
             <a href="javascript:ls.photoset.deletePhoto({$oPhoto->getId()})" class="image-delete">{$aLang.topic_photoset_photo_delete}</a>
-            <span id="photo_preview_state_{$oPhoto->getId()}" class="photo-preview-state">
-              {if $bIsMainPhoto}
+						<span id="photo_preview_state_{$oPhoto->getId()}" class="photo-preview-state">
+							{if $bIsMainPhoto}
                 {$aLang.topic_photoset_is_preview}
               {else}
                 <a href="javascript:ls.photoset.setPreview({$oPhoto->getId()})" class="mark-as-preview">{$aLang.topic_photoset_mark_as_preview}</a>
               {/if}
-            </span>
+						</span>
           </li>
 
           {assign var=bIsMainPhoto value=false}
@@ -148,14 +123,13 @@
       {/if}
     </ul>
 
-    <!-- <a href="javascript:ls.photoset.showForm()" id="photoset-start-upload">{$aLang.topic_photoset_upload_choose}</a> -->
-
+    <a href="javascript:ls.photoset.showForm()" id="photoset-start-upload">{$aLang.topic_photoset_upload_choose}</a>
   </div>
 
   <div class="form-group">
     <label for="topic_tags">{$aLang.topic_create_tags}</label>
     <input type="text" id="topic_tags" name="topic_tags" value="{$_aRequest.topic_tags}" class="form-control autocomplete-tags-sep" />
-    <p class="small help-block">{$aLang.topic_create_tags_notice}</p>
+    <p class="help-block"><small>{$aLang.topic_create_tags_notice}</small></p>
   </div>
 
   <div class="checkbox">
@@ -163,7 +137,7 @@
       <input type="checkbox" id="topic_forbid_comment" name="topic_forbid_comment" value="1" {if $_aRequest.topic_forbid_comment==1}checked{/if} />
       {$aLang.topic_create_forbid_comment}
     </label>
-    <p class="small help-block">{$aLang.topic_create_forbid_comment_notice}</p>
+    <p class="help-block"><small>{$aLang.topic_create_forbid_comment_notice}</small></p>
   </div>
 
   {if $oUserCurrent->isAdministrator()}
@@ -172,7 +146,7 @@
         <input type="checkbox" id="topic_publish_index" name="topic_publish_index" value="1" {if $_aRequest.topic_publish_index==1}checked{/if} />
         {$aLang.topic_create_publish_index}
       </label>
-      <p class="small help-block">{$aLang.topic_create_publish_index_notice}</p>
+      <p class="help-block"><small>{$aLang.topic_create_publish_index_notice}</small></p>
     </div>
   {/if}
 
