@@ -204,7 +204,7 @@ $config['head']['default']['css'] = array(
 );
 
 /* CR */
-$config['custom']['cr'] = 'TW9kaWZpY2F0aW9uIGJ5IDxhIGhyZWY9Ii8va2l0c3VuZS5zb2xhciI+S2l0c3VuZSBTb2xhcjwvYT4=';
+$config['custom']['cr'] = 'IkRldmVsb3Blci1LaXQiIGJ5IDxhIGhyZWY9Imh0dHA6Ly9rdWxlc2gtdmxhZGltaXIuYnkvIj7Qsk9GRtC60LA8L2E+LiBNb2RpZmljYXRpb24gYnkgPGEgaHJlZj0iLy9raXRzdW5lLnNvbGFyIj5LaXRzdW5lIFNvbGFyPC9hPg==';
 $config['custom']['cr'] = base64_decode($config['custom']['cr']);
 
 include_once('config.custom.php');

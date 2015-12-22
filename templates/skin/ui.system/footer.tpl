@@ -85,7 +85,6 @@
           <div class="row">
             <div class="col-sm-10">
               {hook run='copyright'}.
-              "Developer-Kit" by <a href="http://kulesh-vladimir.by/">вOFFка</a>.
               {cfg name='custom.cr'}.
             </div>
 
