@@ -211,3 +211,4 @@ include_once('config.custom.php');
 
 
 return $config;
+?>

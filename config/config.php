@@ -82,7 +82,7 @@ $config['path']['smarty']['template'] = '___path.root.server___/templates/skin/_
 $config['path']['smarty']['compiled'] = '___path.root.server___/templates/compiled';
 $config['path']['smarty']['cache']    = '___path.root.server___/templates/cache';
 $config['path']['smarty']['plug']     = '___path.root.engine___/modules/viewer/plugs';
-$config['smarty']['compile_check']    = true; // Проверять или нет файлы шаблона на изменения перед компиляцией, false может значительно увеличить быстродействие, но потребует ручного удаления кеша при изменения шаблона
+$config['smarty']['compile_check']    = true;                                   // Проверять или нет файлы шаблона на изменения перед компиляцией, false может значительно увеличить быстродействие, но потребует ручного удаления кеша при изменения шаблона
 /**
  * Настройки плагинов
  */
@@ -222,7 +222,7 @@ $config['module']['comment']['nested_page_reverse']     = true; 	              /
 $config['module']['comment']['favourite_target_allow']  = array('topic');       // Список типов комментов, которые разрешено добавлять в избранное
 // Модуль Talk
 $config['module']['talk']['per_page']   = 30;                                   // Число приватных сообщений на одну страницу
-$config['module']['talk']['encrypt']    = 'idqPM5QtwE4eA1jF';   // Ключ XXTEA шифрования идентификаторов в ссылках
+$config['module']['talk']['encrypt']    = 'idqPM5QtwE4eA1jF';                   // Ключ XXTEA шифрования идентификаторов в ссылках
 $config['module']['talk']['max_users']  = 15;                                   // Максимальное число адресатов в одном личном сообщении
 // Модуль Lang
 $config['module']['lang']['delete_undefined'] = true;                           // Если установлена true, то модуль будет автоматически удалять из языковых конструкций переменные вида %%var%%, по которым не была произведена замена
@@ -379,31 +379,31 @@ $config['router']['uri'] = array(
   '~^(\d+)\.html~i' => "blog/\\1.html",
 );
 // Распределение action
-$config['router']['page']['error']              = 'ActionError';
-$config['router']['page']['registration']       = 'ActionRegistration';
-$config['router']['page']['profile']            = 'ActionProfile';
-$config['router']['page']['my']                 = 'ActionMy';
-$config['router']['page']['blog']               = 'ActionBlog';
-$config['router']['page']['personal_blog']      = 'ActionPersonalBlog';
-$config['router']['page']['index']              = 'ActionIndex';
-$config['router']['page']['topic']              = 'ActionTopic';
-$config['router']['page']['login']              = 'ActionLogin';
-$config['router']['page']['people']             = 'ActionPeople';
-$config['router']['page']['settings']           = 'ActionSettings';
-$config['router']['page']['tag']                = 'ActionTag';
-$config['router']['page']['talk']               = 'ActionTalk';
-$config['router']['page']['comments']           = 'ActionComments';
-$config['router']['page']['rss']                = 'ActionRss';
-$config['router']['page']['link']               = 'ActionLink';
-$config['router']['page']['question']           = 'ActionQuestion';
-$config['router']['page']['blogs']              = 'ActionBlogs';
-$config['router']['page']['search']             = 'ActionSearch';
-$config['router']['page']['admin']              = 'ActionAdmin';
-$config['router']['page']['ajax']               = 'ActionAjax';
-$config['router']['page']['feed']               = 'ActionUserfeed';
-$config['router']['page']['stream']             = 'ActionStream';
-$config['router']['page']['photoset']           = 'ActionPhotoset';
-$config['router']['page']['subscribe']          = 'ActionSubscribe';
+$config['router']['page']['error']          = 'ActionError';
+$config['router']['page']['registration']   = 'ActionRegistration';
+$config['router']['page']['profile']        = 'ActionProfile';
+$config['router']['page']['my']             = 'ActionMy';
+$config['router']['page']['blog']           = 'ActionBlog';
+$config['router']['page']['personal_blog']  = 'ActionPersonalBlog';
+$config['router']['page']['index']          = 'ActionIndex';
+$config['router']['page']['topic']          = 'ActionTopic';
+$config['router']['page']['login']          = 'ActionLogin';
+$config['router']['page']['people']         = 'ActionPeople';
+$config['router']['page']['settings']       = 'ActionSettings';
+$config['router']['page']['tag']            = 'ActionTag';
+$config['router']['page']['talk']           = 'ActionTalk';
+$config['router']['page']['comments']       = 'ActionComments';
+$config['router']['page']['rss']            = 'ActionRss';
+$config['router']['page']['link']           = 'ActionLink';
+$config['router']['page']['question']       = 'ActionQuestion';
+$config['router']['page']['blogs']          = 'ActionBlogs';
+$config['router']['page']['search']         = 'ActionSearch';
+$config['router']['page']['admin']          = 'ActionAdmin';
+$config['router']['page']['ajax']           = 'ActionAjax';
+$config['router']['page']['feed']           = 'ActionUserfeed';
+$config['router']['page']['stream']         = 'ActionStream';
+$config['router']['page']['photoset']       = 'ActionPhotoset';
+$config['router']['page']['subscribe']      = 'ActionSubscribe';
 // Глобальные настройки роутинга
 $config['router']['config']['action_default']   = 'index';
 $config['router']['config']['action_not_found'] = 'error';

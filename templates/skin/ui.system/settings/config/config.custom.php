@@ -77,3 +77,4 @@ $config['custom']['github']['url']              = '#';
 
 // Ссылка на страницу в социальной сети Steam
 $config['custom']['steam']['url']               = '#';
+?>
