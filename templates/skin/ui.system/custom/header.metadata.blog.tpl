@@ -13,15 +13,6 @@
 <meta name="keywords" content="{$sHtmlKeywords}" />
 <meta name="author" content="{$blogAuthor}" />
 <meta name="copyright" content="{$cfgSiteName}" />
-<!-- Schema.org for Google Plus -->
-<!-- <meta itemprop="name" content="{$blogTitle}" /> -->
-<!-- <meta itemprop="description" content="{$sHtmlDescription}" /> -->
-<!-- <meta itemprop="author" content="{$blogAuthor}" /> -->
-<!-- <meta itemprop="datePublished" content="{$blogDateAdd}" /> -->
-<!-- <meta itemprop="dateModified" content="{$blogDateEdit}" /> -->
-<!-- <meta itemprop="headline" content="{$blogTitle}" /> -->
-<!-- <meta itemprop="image" content="{$blogImg}" /> -->
-<!-- / Schema.org for Google Plus -->
 <!-- Twitter Card -->
 <meta name="twitter:card" content="{$cfgTwCardType}" />
 <meta name="twitter:domain" content="{$cfgSiteUrl}" />

@@ -22,11 +22,6 @@
 <meta name="keywords" content="{$sHtmlKeywords}" />
 <meta name="author" content="{$userLogin}" />
 <meta name="copyright" content="{$cfgSiteName}" />
-<!-- Schema.org for Google Plus -->
-<!-- <meta itemprop="name" content="{$userLogin}" /> -->
-<!-- <meta itemprop="description" content="{$userAbout}" /> -->
-<!-- <meta itemprop="image" content="{$userImg}" /> -->
-<!-- / Schema.org for Google Plus -->
 <!-- Twitter Card -->
 <meta name="twitter:card" content="{$cfgTwCardType}" />
 <meta name="twitter:domain" content="{$cfgSiteUrl}" />

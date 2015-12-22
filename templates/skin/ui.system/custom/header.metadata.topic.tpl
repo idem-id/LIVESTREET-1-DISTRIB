@@ -13,15 +13,6 @@
 <meta name="keywords" content="{$sHtmlKeywords}" />
 <meta name="author" content="{$topicAuthor}" />
 <meta name="copyright" content="{$cfgSiteName}" />
-<!-- Schema.org for Google Plus -->
-<!-- <meta itemprop="name" content="{$topicTitle}" /> -->
-<!-- <meta itemprop="description" content="{$sHtmlDescription}" /> -->
-<!-- <meta itemprop="author" content="{$topicAuthor}" /> -->
-<!-- <meta itemprop="datePublished" content="{$topicDateAdd}" /> -->
-<!-- <meta itemprop="dateModified" content="{$topicDateEdit}" /> -->
-<!-- <meta itemprop="headline" content="{$topicTitle}" /> -->
-<!-- <meta itemprop="image" content="{$topicImg}" /> -->
-<!-- / Schema.org for Google Plus -->
 <!-- Twitter Card -->
 <meta name="twitter:card" content="{$cfgTwCardType}" />
 <meta name="twitter:domain" content="{$cfgSiteUrl}" />
