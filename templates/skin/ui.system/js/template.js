@@ -1,6 +1,6 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
   // Хук начала инициализации javascript-составляющих шаблона
-  ls.hook.run('ls_template_init_start',[],window);
+  ls.hook.run('ls_template_init_start', [], window);
 
   $('html').removeClass('no-js');
 
@@ -33,24 +33,24 @@ jQuery(document).ready(function($){
   $('#avatar-resize').jqm({modal: true});
   $('#userfield_form').jqm({toTop: true});
   $('#modal-photoset-upload').jqm({trigger: '#photoset-start-upload'});
-  ls.photoset.closeForm = function() {
+  ls.photoset.closeForm = function () {
     $('#modal-photoset-upload').jqmHide();
   }
 
-  $('.js-registration-form-show').click(function(){
-    if (ls.blocks.switchTab('registration','popup-login')) {
+  $('.js-registration-form-show').click(function () {
+    if (ls.blocks.switchTab('registration', 'popup-login')) {
       $('#window_login_form').jqmShow();
     } else {
-      window.location=aRouter.registration;
+      window.location = aRouter.registration;
     }
     return false;
   });
 
-  $('.js-login-form-show').click(function(){
-    if (ls.blocks.switchTab('login','popup-login')) {
+  $('.js-login-form-show').click(function () {
+    if (ls.blocks.switchTab('login', 'popup-login')) {
       $('#window_login_form').jqmShow();
     } else {
-      window.location=aRouter.login;
+      window.location = aRouter.login;
     }
     return false;
   });
@@ -68,22 +68,21 @@ jQuery(document).ready(function($){
 
 
   // Поиск по тегам
-  $('.js-tag-search-form').submit(function(){
-    window.location = aRouter['tag']+encodeURIComponent($(this).find('.js-tag-search').val())+'/';
+  $('.js-tag-search-form').submit(function () {
+    window.location = aRouter['tag'] + encodeURIComponent($(this).find('.js-tag-search').val()) + '/';
     return false;
   });
 
 
   // Автокомплит
-  ls.autocomplete.add($(".autocomplete-tags-sep"), aRouter['ajax']+'autocompleter/tag/', true);
-  ls.autocomplete.add($(".autocomplete-tags"), aRouter['ajax']+'autocompleter/tag/', false);
-  ls.autocomplete.add($(".autocomplete-users-sep"), aRouter['ajax']+'autocompleter/user/', true);
-  ls.autocomplete.add($(".autocomplete-users"), aRouter['ajax']+'autocompleter/user/', false);
+  ls.autocomplete.add($(".autocomplete-tags-sep"), aRouter['ajax'] + 'autocompleter/tag/', true);
+  ls.autocomplete.add($(".autocomplete-tags"), aRouter['ajax'] + 'autocompleter/tag/', false);
+  ls.autocomplete.add($(".autocomplete-users-sep"), aRouter['ajax'] + 'autocompleter/user/', true);
+  ls.autocomplete.add($(".autocomplete-users"), aRouter['ajax'] + 'autocompleter/user/', false);
 
 
   // Скролл
-  //$(window)._scrollable();
-  $(window).scrollTo(0,0);  // kitsune.fix
+  $(window).scrollTo(0, 0);  // kitsune.fix
 
 
   // Тул-бар топиков
@@ -106,9 +105,9 @@ jQuery(document).ready(function($){
   }
 
   $('.js-infobox-vote-topic').poshytip({
-    content: function() {
-      var id = $(this).attr('id').replace('vote_total_topic_','vote-info-topic-');
-      return $('#'+id).html();
+    content: function () {
+      var id = $(this).attr('id').replace('vote_area_topic_', 'vote-info-topic-');
+      return $('#' + id).html();
     },
     className: 'infobox-standart',
     alignTo: 'target',
@@ -136,7 +135,9 @@ jQuery(document).ready(function($){
   });
 
   // подсветка кода
-  $('pre code.hljs').each(function(i, block) { hljs.highlightBlock(block); });
+  $('pre code.hljs').each(function (i, block) {
+    hljs.highlightBlock(block);
+  });
 
   // эмуляция border-sizing в IE
   var inputs = $('input.input-text, textarea');
@@ -146,7 +147,7 @@ jQuery(document).ready(function($){
   inputs.placeholder();
 
   // инизиализация блоков
-  ls.blocks.init('stream',{group_items: true, group_min: 3});
+  ls.blocks.init('stream', {group_items: true, group_min: 3});
   ls.blocks.init('blogs');
   ls.blocks.initSwitch('tags');
   ls.blocks.initSwitch('upload-img');
@@ -158,20 +159,20 @@ jQuery(document).ready(function($){
   ls.comments.init();
 
   // избранное
-  ls.hook.add('ls_favourite_toggle_after',function(idTarget,objFavourite,type,params,result){
-    $('#fav_count_'+type+'_'+idTarget).text((result.iCount>0) ? result.iCount : '');
+  ls.hook.add('ls_favourite_toggle_after', function (idTarget, objFavourite, type, params, result) {
+    $('#fav_count_' + type + '_' + idTarget).text((result.iCount > 0) ? result.iCount : '');
   });
 
   // лента активности
-  ls.hook.add('ls_stream_append_user_after',function(length,data){
-    if (length==0) {
-      $('#strm_u_'+data.uid).parent().find('a').before('<a href="'+data.user_web_path+'"><img src="'+data.user_avatar_48+'" alt="avatar" class="avatar" /></a> ');
+  ls.hook.add('ls_stream_append_user_after', function (length, data) {
+    if (length == 0) {
+      $('#strm_u_' + data.uid).parent().find('a').before('<a href="' + data.user_web_path + '"><img src="' + data.user_avatar_48 + '" alt="avatar" class="avatar" /></a> ');
     }
   });
 
   // опрос
-  ls.hook.add('ls_pool_add_answer_after',function(removeAnchor){
-    var removeAnchor = $('<a href="#" class="glyphicon glyphicon-trash" />').attr('title', ls.lang.get('delete')).click(function(e){
+  ls.hook.add('ls_pool_add_answer_after', function (removeAnchor) {
+    var removeAnchor = $('<a href="#" class="glyphicon glyphicon-trash" />').attr('title', ls.lang.get('delete')).click(function (e) {
       e.preventDefault();
       return this.removeAnswer(e.target);
     }.bind(ls.poll));
@@ -184,52 +185,52 @@ jQuery(document).ready(function($){
    */
 
     // Добавляем или удаляем друга из списка получателей
-  $('#friends input:checkbox').change(function(){
-    ls.talk.toggleRecipient($('#'+$(this).attr('id')+'_label').text(), $(this).attr('checked'));
+  $('#friends input:checkbox').change(function () {
+    ls.talk.toggleRecipient($('#' + $(this).attr('id') + '_label').text(), $(this).attr('checked'));
   });
 
   // Добавляем всех друзей в список получателей
-  $('#friend_check_all').click(function(){
-    $('#friends input:checkbox').each(function(index, item){
-      ls.talk.toggleRecipient($('#'+$(item).attr('id')+'_label').text(), true);
+  $('#friend_check_all').click(function () {
+    $('#friends input:checkbox').each(function (index, item) {
+      ls.talk.toggleRecipient($('#' + $(item).attr('id') + '_label').text(), true);
       $(item).attr('checked', true);
     });
     return false;
   });
 
   // Удаляем всех друзей из списка получателей
-  $('#friend_uncheck_all').click(function(){
-    $('#friends input:checkbox').each(function(index, item){
-      ls.talk.toggleRecipient($('#'+$(item).attr('id')+'_label').text(), false);
+  $('#friend_uncheck_all').click(function () {
+    $('#friends input:checkbox').each(function (index, item) {
+      ls.talk.toggleRecipient($('#' + $(item).attr('id') + '_label').text(), false);
       $(item).attr('checked', false);
     });
     return false;
   });
 
   // Удаляем пользователя из черного списка
-  $("#black_list_block").delegate("a.delete", "click", function(){
+  $("#black_list_block").delegate("a.delete", "click", function () {
     ls.talk.removeFromBlackList(this);
     return false;
   });
 
   // Удаляем пользователя из переписки
-  $("#speaker_list_block").delegate("a.delete", "click", function(){
+  $("#speaker_list_block").delegate("a.delete", "click", function () {
     ls.talk.removeFromTalk(this, $('#talk_id').val());
     return false;
   });
 
 
   // Help-tags link
-  $('.js-tags-help-link').click(function(){
-    var target=ls.registry.get('tags-help-target-id');
-    if (!target || !$('#'+target).length) {
+  $('.js-tags-help-link').click(function () {
+    var target = ls.registry.get('tags-help-target-id');
+    if (!target || !$('#' + target).length) {
       return false;
     }
-    target=$('#'+target);
+    target = $('#' + target);
     if ($(this).data('insert')) {
-      var s=$(this).data('insert');
+      var s = $(this).data('insert');
     } else {
-      var s=$(this).text();
+      var s = $(this).text();
     }
     $.markItUp({target: target, replaceWith: s});
     return false;
@@ -237,16 +238,16 @@ jQuery(document).ready(function($){
 
 
   // Фикс бага с z-index у встроенных видео
-  $("iframe").each(function(){
+  $("iframe").each(function () {
     var ifr_source = $(this).attr('src');
 
-    if(ifr_source) {
+    if (ifr_source) {
       var wmode = "wmode=opaque";
 
       if (ifr_source.indexOf('?') != -1)
-        $(this).attr('src',ifr_source+'&'+wmode);
+        $(this).attr('src', ifr_source + '&' + wmode);
       else
-        $(this).attr('src',ifr_source+'?'+wmode);
+        $(this).attr('src', ifr_source + '?' + wmode);
     }
   });
 
@@ -264,5 +265,5 @@ jQuery(document).ready(function($){
 
 
   // Хук конца инициализации javascript-составляющих шаблона
-  ls.hook.run('ls_template_init_end',[],window);
+  ls.hook.run('ls_template_init_end', [], window);
 });
