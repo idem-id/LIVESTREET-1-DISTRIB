@@ -30,7 +30,7 @@
 <meta property="og:site_name" content="{$cfgSiteName}" />
 <meta property="og:see_also" content="{$cfgSiteUrl}" />
 <meta property="article:published_time" content="{$topicDateAdd}" />
-<!-- <meta property="article:modified_time" content="{$topicDateEdit}" /> -->
+<meta property="article:modified_time" content="{$topicDateEdit}" />
 <meta property="article:tag" content="{$sHtmlKeywords}" />
 <meta property="fb:admins" content="{$cfgFbAdmins}" />
 <!-- / Open Graph -->
