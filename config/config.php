@@ -108,7 +108,7 @@ $config['sys']['mail']['type'] = 'mail';                                        
 $config['sys']['mail']['from_email'] = 'admin@admin.adm';                       // Мыло с которого отправляются все уведомления
 $config['sys']['mail']['from_name'] = 'Почтовик Your Site';                     // Имя с которого отправляются все уведомления
 $config['sys']['mail']['charset'] = 'UTF-8';                                    // Какую кодировку использовать в письмах
-$config['sys']['mail']['smtp']['host'] = 'localhost';                           // Настройки SMTP - хост
+$config['sys']['mail']['smtp']['host'] = '127.0.0.1';                           // Настройки SMTP - хост
 $config['sys']['mail']['smtp']['port'] = 25;                                    // Настройки SMTP - порт
 $config['sys']['mail']['smtp']['user'] = '';                                    // Настройки SMTP - пользователь
 $config['sys']['mail']['smtp']['password'] = '';                                // Настройки SMTP - пароль
@@ -365,7 +365,7 @@ $config['db']['tables']['engine'] = 'InnoDB';                                   
 /**
  * Настройка memcache
  */
-$config['memcache']['servers'][0]['host'] = 'localhost';
+$config['memcache']['servers'][0]['host'] = '127.0.0.1';
 $config['memcache']['servers'][0]['port'] = '11211';
 $config['memcache']['servers'][0]['persistent'] = true;
 $config['memcache']['compression'] = true;
