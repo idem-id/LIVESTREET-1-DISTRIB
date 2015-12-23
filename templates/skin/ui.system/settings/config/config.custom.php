@@ -61,23 +61,23 @@ $config['custom']['comment']['vote'] = true;
 # ------------------------------------------------------------------------------
 
 // Ссылка на страницу в социальной сети ВКонтакте
-$config['custom']['vk']['url'] = '#';
+$config['custom']['vk']['url'] = '';
 
 // Ссылка на страницу в социальной сети Facebook
-$config['custom']['facebook']['url'] = '#';
+$config['custom']['facebook']['url'] = '';
 
 // Ссылка на страницу в социальной сети Twitter
-$config['custom']['twitter']['url'] = '#';
+$config['custom']['twitter']['url'] = '';
 
 // Ссылка на страницу в социальной сети YouTube
-$config['custom']['youtube']['url'] = '#';
+$config['custom']['youtube']['url'] = '';
 
 // Ссылка на страницу в социальной сети Vimeo
-$config['custom']['vimeo']['url'] = '#';
+$config['custom']['vimeo']['url'] = '';
 
 // Ссылка на страницу в социальной сети GitHub
-$config['custom']['github']['url'] = '#';
+$config['custom']['github']['url'] = '';
 
 // Ссылка на страницу в социальной сети Steam
-$config['custom']['steam']['url'] = '#';
+$config['custom']['steam']['url'] = '';
 ?>

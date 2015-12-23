@@ -143,10 +143,10 @@
                 {hookb run="popup_registration_captcha"}
                   <div class="form-group">
                     <div class="input-group">
-                      <label class="input-group-addon" for="popup-registration-captcha" class="captcha">
+                      <label class="input-group-addon" for="popup-registration-captcha">
                         <img src="{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}"
-                             onclick="this.src='{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}&n='+Math.random();"
-                             class="captcha-image" />
+                             onclick="this.src='{cfg name='path.root.engine_lib'}/external/kcaptcha/index.php?{$_sPhpSessionName}={$_sPhpSessionId}&amp;n='+Math.random();"
+                             class="captcha-image" alt="captcha" />
                       </label>
                       <input type="text" name="captcha" id="popup-registration-captcha" value="" maxlength="3" class="form-control captcha-input js-ajax-validate" placeholder="{$aLang.registration_captcha}" />
                     </div>

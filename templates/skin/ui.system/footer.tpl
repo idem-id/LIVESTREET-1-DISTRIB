@@ -89,13 +89,27 @@
             </div>
 
             <div class="col-sm-2 text-right social-icons">
-              <a title="{$aLang.vk}" href="{cfg name='custom.vk.url'}" rel="nofollow"><i class="fa fa-vk fa-fw"></i></a>
-              <a title="{$aLang.facebook}" href="{cfg name='custom.facebook.url'}" rel="nofollow"><i class="fa fa-facebook fa-fw"></i></a>
-              <a title="{$aLang.twitter}" href="{cfg name='custom.twitter.url'}" rel="nofollow"><i class="fa fa-twitter fa-fw"></i></a>
-              <a title="{$aLang.youtube}" href="{cfg name='custom.youtube.url'}" rel="nofollow"><i class="fa fa-youtube fa-fw"></i></a>
-              <a title="{$aLang.vimeo}" href="{cfg name='custom.vimeo.url'}" rel="nofollow"><i class="fa fa-vimeo-square fa-fw"></i></a>
-              <a title="{$aLang.github}" href="{cfg name='custom.github.url'}" rel="nofollow"><i class="fa fa-github-alt fa-fw"></i></a>
-              <a title="{$aLang.steam}" href="{cfg name='custom.steam.url'}" rel="nofollow"><i class="fa fa-steam fa-fw"></i></a>
+              {if {cfg name='custom.vk.url'}}
+                <a title="{$aLang.vk}" href="{cfg name='custom.vk.url'}" rel="nofollow"><i class="fa fa-vk fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.facebook.url'}}
+                <a title="{$aLang.facebook}" href="{cfg name='custom.facebook.url'}" rel="nofollow"><i class="fa fa-facebook fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.twitter.url'}}
+                <a title="{$aLang.twitter}" href="{cfg name='custom.twitter.url'}" rel="nofollow"><i class="fa fa-twitter fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.youtube.url'}}
+                <a title="{$aLang.youtube}" href="{cfg name='custom.youtube.url'}" rel="nofollow"><i class="fa fa-youtube fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.vimeo.url'}}
+                <a title="{$aLang.vimeo}" href="{cfg name='custom.vimeo.url'}" rel="nofollow"><i class="fa fa-vimeo-square fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.github.url'}}
+                <a title="{$aLang.github}" href="{cfg name='custom.github.url'}" rel="nofollow"><i class="fa fa-github-alt fa-fw"></i></a>
+              {/if}
+              {if {cfg name='custom.steam.url'}}
+                <a title="{$aLang.steam}" href="{cfg name='custom.steam.url'}" rel="nofollow"><i class="fa fa-steam fa-fw"></i></a>
+              {/if}
             </div>
           </div>
         </div>
