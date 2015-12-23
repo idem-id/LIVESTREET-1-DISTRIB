@@ -3,7 +3,7 @@
  * English language file for plug-in
  */
 return array(
-    'name' => 'text',
+  'name' => 'text',
 );
 
 ?>

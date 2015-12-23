@@ -23,30 +23,30 @@ require_once($sDirRoot."/config/loader.php");
 require_once($sDirRoot."/engine/classes/Cron.class.php");
 
 class NotifyCron extends Cron {
-	/**
-	 * Выбираем пул заданий и рассылаем по ним e-mail
-	 */
-	public function Client() {
-		$aNotifyTasks = $this->Notify_GetTasksDelayed(Config::Get('module.notify.per_process'));
-		
-		if(empty($aNotifyTasks)) {
-			$this->Log("No tasks are found.");
-			return;
-		}
-		/**
-		 * Последовательно загружаем задания на публикацию
-		 */
-		$aArrayId=array();
-		foreach ($aNotifyTasks as $oTask) {
-			$this->Notify_SendTask($oTask);
-			$aArrayId[]=$oTask->getTaskId();
-		}
-		$this->Log("Send notify: ".count($aArrayId));
-		/**
-		 * Удаляем отработанные задания
-		 */
-		$this->Notify_DeleteTaskByArrayId($aArrayId);
-	}
+  /**
+   * Выбираем пул заданий и рассылаем по ним e-mail
+   */
+  public function Client() {
+    $aNotifyTasks = $this->Notify_GetTasksDelayed(Config::Get('module.notify.per_process'));
+    
+    if(empty($aNotifyTasks)) {
+      $this->Log("No tasks are found.");
+      return;
+    }
+    /**
+     * Последовательно загружаем задания на публикацию
+     */
+    $aArrayId=array();
+    foreach ($aNotifyTasks as $oTask) {
+      $this->Notify_SendTask($oTask);
+      $aArrayId[]=$oTask->getTaskId();
+    }
+    $this->Log("Send notify: ".count($aArrayId));
+    /**
+     * Удаляем отработанные задания
+     */
+    $this->Notify_DeleteTaskByArrayId($aArrayId);
+  }
 }
 
 $sLockFilePath=Config::Get('sys.cache.dir').'notify.lock';

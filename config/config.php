@@ -18,35 +18,35 @@
 /**
  * Настройки HTML вида
  */
-$config['view']['skin']        			= 'ui.system';             	                // шаблон(скин)
-$config['view']['name']        			= 'Your Site';             	                // название сайта
-$config['view']['description'] 			= 'Description your site'; 	                // seo description
-$config['view']['keywords']    			= 'site, google, internet';	                // seo keywords
-$config['view']['tinymce']         	= false;  									                // использовать или нет визуальный редактор TinyMCE
-$config['view']['noindex']          = true;   									                // "прятать" или нет ссылки от поисковиков, оборачивая их в тег <noindex> и добавляя rel="nofollow"
-$config['view']['img_resize_width'] = 570;    									                // до какого размера в пикселях ужимать картинку по щирине при загрузки её в топики и комменты
-$config['view']['img_max_width'] 		= 5000;    									                // максимальная ширина загружаемых изображений в пикселях
-$config['view']['img_max_height'] 	= 5000;    									                // максимальная высота загружаемых изображений в пикселях
-$config['view']['img_max_size_url'] = 500;    									                // максимальный размер картинки в kB для загрузки по URL
+$config['view']['skin']              = 'ui.system';                               // шаблон(скин)
+$config['view']['name']              = 'Your Site';                               // название сайта
+$config['view']['description']       = 'Description your site';                   // seo description
+$config['view']['keywords']          = 'site, google, internet';                  // seo keywords
+$config['view']['tinymce']           = false;                                    // использовать или нет визуальный редактор TinyMCE
+$config['view']['noindex']          = true;                                     // "прятать" или нет ссылки от поисковиков, оборачивая их в тег <noindex> и добавляя rel="nofollow"
+$config['view']['img_resize_width'] = 570;                                      // до какого размера в пикселях ужимать картинку по щирине при загрузки её в топики и комменты
+$config['view']['img_max_width']     = 5000;                                      // максимальная ширина загружаемых изображений в пикселях
+$config['view']['img_max_height']   = 5000;                                      // максимальная высота загружаемых изображений в пикселях
+$config['view']['img_max_size_url'] = 500;                                      // максимальный размер картинки в kB для загрузки по URL
 
 /**
  * Настройки СЕО для вывода топиков
  */
-$config['seo']['description_words_count'] = 20;	                                // количество слов из топика для вывода в метатег description
+$config['seo']['description_words_count'] = 20;                                  // количество слов из топика для вывода в метатег description
 
 /**
  * Настройка основных блоков
  */
-$config['block']['stream']['row'] 							= 20;                           // сколько записей выводить в блоке "Прямой эфир"
-$config['block']['stream']['show_tip'] 					= true;                         // выводить или нет всплывающие сообщения в блоке "Прямой эфир"
-$config['block']['blogs']['row']  							= 10;                           // сколько записей выводить в блоке "Блоги"
-$config['block']['tags']['tags_count'] 					= 70;                           // сколько тегов выводить в блоке "теги"
+$config['block']['stream']['row']               = 20;                           // сколько записей выводить в блоке "Прямой эфир"
+$config['block']['stream']['show_tip']           = true;                         // выводить или нет всплывающие сообщения в блоке "Прямой эфир"
+$config['block']['blogs']['row']                = 10;                           // сколько записей выводить в блоке "Блоги"
+$config['block']['tags']['tags_count']           = 70;                           // сколько тегов выводить в блоке "теги"
 $config['block']['tags']['personal_tags_count'] = 70;                           // сколько тегов пользователя выводить в блоке "теги"
 
 /**
  * Настройка пагинации
  */
-$config['pagination']['pages']['count'] = 4;	                                  // количество ссылок на другие страницы в пагинации
+$config['pagination']['pages']['count'] = 4;                                    // количество ссылок на другие страницы в пагинации
 
 
 /**
@@ -63,10 +63,10 @@ if (isset($_SERVER['HTTP_HOST'])) {
     // for CLI scripts. or you can append "HTTP_HOST=http://yoursite.url" before script run command
     $config['path']['root']['web'] = null;
 }
-$config['path']['root']['server'] = dirname(dirname(__FILE__));	                // полный путь до сайта в файловой системе
+$config['path']['root']['server'] = dirname(dirname(__FILE__));                  // полный путь до сайта в файловой системе
 /**
  * Для CLI режима использовать
- * $config['path']['root']['server']  = dirname(dirname(__FILE__));	// полный путь до сайта в файловой системе
+ * $config['path']['root']['server']  = dirname(dirname(__FILE__));  // полный путь до сайта в файловой системе
  */
 $config['path']['root']['engine']     = '___path.root.server___/engine';        // полный путь до сайта в файловой системе;
 $config['path']['root']['engine_lib'] = '___path.root.web___/engine/lib';       // полный путь до сайта в файловой системе
@@ -100,7 +100,7 @@ $config['sys']['session']['standart'] = true;                                   
 $config['sys']['session']['name']     = 'PHPSESSID';                            // название сессии
 $config['sys']['session']['timeout']  = null;                                   // Тайм-аут сессии в секундах
 $config['sys']['session']['host']     = '___sys.cookie.host___';                // хост сессии в куках
-$config['sys']['session']['path']     = '___sys.cookie.path___'; 	              // путь сессии в куках
+$config['sys']['session']['path']     = '___sys.cookie.path___';                 // путь сессии в куках
 /**
  * Настройки почтовых уведомлений
  */
@@ -135,11 +135,11 @@ $config['sys']['logs']['sql_query']       = false;                              
 $config['sys']['logs']['sql_query_file']  = 'sql_query.log';                    // файл лога SQL запросов
 $config['sys']['logs']['sql_error']       = true;                               // логировать или нет ошибки SQl
 $config['sys']['logs']['sql_error_file']  = 'sql_error.log';                    // файл лога ошибок SQL
-$config['sys']['logs']['cron']     		    = true;    	                          // логировать или нет cron скрипты
+$config['sys']['logs']['cron']             = true;                                // логировать или нет cron скрипты
 $config['sys']['logs']['cron_file']       = 'cron.log';                         // файл лога запуска крон-процессов
 $config['sys']['logs']['profiler']        = false;                              // логировать или нет профилирование процессов
 $config['sys']['logs']['profiler_file']   = 'profiler.log';                     // файл лога профилирования процессов
-$config['sys']['logs']['hacker_console']  = false;  		                        // позволяет удобно выводить логи дебага через функцию dump(), использя "хакерскую" консоль Дмитрия Котерова
+$config['sys']['logs']['hacker_console']  = false;                              // позволяет удобно выводить логи дебага через функцию dump(), использя "хакерскую" консоль Дмитрия Котерова
 /**
  * Общие настройки
  */
@@ -163,7 +163,7 @@ $config['acl']['create']['comment']['limit_time']             =  10;            
 $config['acl']['create']['comment']['limit_time_rating']      = -1;             // рейтинг, выше которого перестаёт действовать ограничение по времени на постинг комментов. Не имеет смысла при $config['acl']['create']['comment']['limit_time']=0
 $config['acl']['create']['topic']['limit_time']               =  240;           // время в секундах между созданием записей, если 0 то ограничение по времени не будет работать
 $config['acl']['create']['topic']['limit_time_rating']        =  5;             // рейтинг, выше которого перестаёт действовать ограничение по времени на создание записей
-$config['acl']['create']['topic']['limit_rating']   	        =  -20;           // порог рейтинга при котором юзер может создавать топики (учитываются любые блоги, включая персональные), как дополнительная защита от спама/троллинга
+$config['acl']['create']['topic']['limit_rating']             =  -20;           // порог рейтинга при котором юзер может создавать топики (учитываются любые блоги, включая персональные), как дополнительная защита от спама/троллинга
 $config['acl']['create']['talk']['limit_time']                =  300;           // время в секундах между отправкой инбоксов, если 0 то ограничение по времени не будет работать
 $config['acl']['create']['talk']['limit_time_rating']         =  1;             // рейтинг, выше которого перестаёт действовать ограничение по времени на отправку инбоксов
 $config['acl']['create']['talk_comment']['limit_time']        =  10;            // время в секундах между отправкой инбоксов, если 0 то ограничение по времени не будет работать
@@ -204,21 +204,21 @@ $config['module']['user']['avatar_size']              = array(100,64,48,24,0);  
 $config['module']['user']['login']['min_size']        = 3;                      // Минимальное количество символов в логине
 $config['module']['user']['login']['max_size']        = 30;                     // Максимальное количество символов в логине
 $config['module']['user']['login']['charset']         = '0-9a-z_\-';            // Допустимые в имени пользователя символы
-$config['module']['user']['time_active']              = 60*60*24*7; 	          // Число секунд с момента последнего посещения пользователем сайта, в течение которых он считается активным
-$config['module']['user']['usernote_text_max']        = 250; 	                  // Максимальный размер заметки о пользователе
-$config['module']['user']['usernote_per_page']        = 20; 	                  // Число заметок на одну страницу
-$config['module']['user']['userfield_max_identical']  = 2; 	                    // Максимальное число контактов одного типа
-$config['module']['user']['profile_photo_width']      = 250; 	                  // ширина квадрата фотографии в профиле, px
-$config['module']['user']['name_max']                 = 30; 			              // максимальная длинна имени в профиле пользователя
+$config['module']['user']['time_active']              = 60*60*24*7;             // Число секунд с момента последнего посещения пользователем сайта, в течение которых он считается активным
+$config['module']['user']['usernote_text_max']        = 250;                     // Максимальный размер заметки о пользователе
+$config['module']['user']['usernote_per_page']        = 20;                     // Число заметок на одну страницу
+$config['module']['user']['userfield_max_identical']  = 2;                       // Максимальное число контактов одного типа
+$config['module']['user']['profile_photo_width']      = 250;                     // ширина квадрата фотографии в профиле, px
+$config['module']['user']['name_max']                 = 30;                     // максимальная длинна имени в профиле пользователя
 $config['module']['user']['captcha_use_registration'] = true;                   // проверять поле капчи при регистрации пользователя
 
 // Модуль Comment
 $config['module']['comment']['per_page']                = 20;                   // Число комментариев на одну страницу(это касается только полного списка комментариев прямого эфира)
 $config['module']['comment']['bad']                     = -5;                   // Рейтинг комментария, начиная с которого он будет скрыт
 $config['module']['comment']['max_tree']                = 7;                    // Максимальная вложенность комментов при отображении
-$config['module']['comment']['use_nested']              = false; 	              // Использовать или нет nested set при выборке комментов, увеличивает производительность при большом числе комментариев + позволяет делать постраничное разбиение комментов
-$config['module']['comment']['nested_per_page']         = 0; 	                  // Число комментов на одну страницу в топике, актуально только при use_nested = true
-$config['module']['comment']['nested_page_reverse']     = true; 	              // Определяет порядок вывода страниц. true - последние комментарии на первой странице, false - последние комментарии на последней странице
+$config['module']['comment']['use_nested']              = false;                 // Использовать или нет nested set при выборке комментов, увеличивает производительность при большом числе комментариев + позволяет делать постраничное разбиение комментов
+$config['module']['comment']['nested_per_page']         = 0;                     // Число комментов на одну страницу в топике, актуально только при use_nested = true
+$config['module']['comment']['nested_page_reverse']     = true;                 // Определяет порядок вывода страниц. true - последние комментарии на первой странице, false - последние комментарии на последней странице
 $config['module']['comment']['favourite_target_allow']  = array('topic');       // Список типов комментов, которые разрешено добавлять в избранное
 // Модуль Talk
 $config['module']['talk']['per_page']   = 30;                                   // Число приватных сообщений на одну страницу
@@ -262,13 +262,13 @@ $config['module']['userfeed']['count_default']      = 10;                       
 $config['module']['stream']['count_default']        = 20;                       // Число топиков в ленте по умолчанию
 $config['module']['stream']['disable_vote_events']  = false;
 // Модуль Ls
-$config['module']['ls']['send_general'] = false;	                              // Отправка на сервер LS общей информации о сайте (домен, версия LS и плагинов)
-$config['module']['ls']['use_counter']  = false;	                              // Использование счетчика GA
+$config['module']['ls']['send_general'] = false;                                // Отправка на сервер LS общей информации о сайте (домен, версия LS и плагинов)
+$config['module']['ls']['use_counter']  = false;                                // Использование счетчика GA
 // Модуль Wall - стена
-$config['module']['wall']['count_last_reply'] = 3;	                            // Число последних ответов на сообщени на стене для отображения в ленте
-$config['module']['wall']['per_page']         = 10;			                        // Число сообщений на стене на одну страницу
-$config['module']['wall']['text_max']         = 250;		                        // Ограничение на максимальное количество символов в одном сообщении на стене
-$config['module']['wall']['text_min']         = 1;		                          // Ограничение на минимальное количество символов в одном сообщении на стене
+$config['module']['wall']['count_last_reply'] = 3;                              // Число последних ответов на сообщени на стене для отображения в ленте
+$config['module']['wall']['per_page']         = 10;                              // Число сообщений на стене на одну страницу
+$config['module']['wall']['text_max']         = 250;                            // Ограничение на максимальное количество символов в одном сообщении на стене
+$config['module']['wall']['text_min']         = 1;                              // Ограничение на минимальное количество символов в одном сообщении на стене
 
 
 /**

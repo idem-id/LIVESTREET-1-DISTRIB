@@ -109,13 +109,13 @@
             <textarea onBlur="ls.photoset.setPreviewDescription({$oPhoto->getId()}, this.value)" class="form-control">{$oPhoto->getDescription()}</textarea>
             <br />
             <a href="javascript:ls.photoset.deletePhoto({$oPhoto->getId()})" class="image-delete">{$aLang.topic_photoset_photo_delete}</a>
-						<span id="photo_preview_state_{$oPhoto->getId()}" class="photo-preview-state">
-							{if $bIsMainPhoto}
+            <span id="photo_preview_state_{$oPhoto->getId()}" class="photo-preview-state">
+              {if $bIsMainPhoto}
                 {$aLang.topic_photoset_is_preview}
               {else}
                 <a href="javascript:ls.photoset.setPreview({$oPhoto->getId()})" class="mark-as-preview">{$aLang.topic_photoset_mark_as_preview}</a>
               {/if}
-						</span>
+            </span>
           </li>
 
           {assign var=bIsMainPhoto value=false}

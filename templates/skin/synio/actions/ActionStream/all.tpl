@@ -4,9 +4,9 @@
 <h2 class="page-header">{$aLang.stream_menu}</h2>
 
 {if count($aStreamEvents)}
-	<ul class="stream-list" id="stream-list">
-		{include file='actions/ActionStream/events.tpl'}
-	</ul>
+  <ul class="stream-list" id="stream-list">
+    {include file='actions/ActionStream/events.tpl'}
+  </ul>
 
     {if !$bDisableGetMoreButton}
         <input type="hidden" id="stream_last_id" value="{$iStreamLastId}" />

@@ -5,9 +5,9 @@
 {$aLang.infobox_blog_limit_rating} &mdash; {$oBlog->getLimitRatingTopic()}<br/>
 
 {if $oTopicLast}
-	<br/>
-	{$aLang.infobox_blog_topic_last}:<br/>
-	<a href="{$oTopicLast->getUrl()}">{$oTopicLast->getTitle()|escape:'html'}</a>
+  <br/>
+  {$aLang.infobox_blog_topic_last}:<br/>
+  <a href="{$oTopicLast->getUrl()}">{$oTopicLast->getTitle()|escape:'html'}</a>
 {/if}
 
 <br/>

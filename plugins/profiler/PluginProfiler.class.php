@@ -19,23 +19,23 @@
  * Запрещаем напрямую через браузер обращение к этому файлу.
  */
 if (!class_exists('Plugin')) {
-	die('Hacking attemp!');
+  die('Hacking attemp!');
 }
 
 class PluginProfiler extends Plugin {
-	/**
-	 * Активация плагина Профайлер.
-	 * Создание таблицы в базе данных при ее отсутствии.
-	 */
-	public function Activate() {
-		$this->ExportSQL(dirname(__FILE__).'/sql.sql');
-		return true;
-	}
+  /**
+   * Активация плагина Профайлер.
+   * Создание таблицы в базе данных при ее отсутствии.
+   */
+  public function Activate() {
+    $this->ExportSQL(dirname(__FILE__).'/sql.sql');
+    return true;
+  }
 
-	/**
-	 * Инициализация плагина Profiler
-	 */
-	public function Init() {
-	}
+  /**
+   * Инициализация плагина Profiler
+   */
+  public function Init() {
+  }
 }
 ?>

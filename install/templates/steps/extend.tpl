@@ -14,7 +14,7 @@
 
 <p><label for="install_view_skin">___LANG_VIEW_PARAMS_SKIN___:</label>
 <select name="install_view_skin" id="install_view_skin" value="___INSTALL_VIEW_SKIN___" class="input-width-200">
-	___INSTALL_VIEW_SKIN_OPTIONS___
+  ___INSTALL_VIEW_SKIN_OPTIONS___
 </select>
 </p>
 <br />
@@ -43,12 +43,12 @@
 
 <p><label for="install_lang_current">___LANG_LANGUAGE_PARAMS_CURRENT___:</label>
 <select name="install_lang_current" id="install_lang_current" value="___INSTALL_LANG_CURRENT___" class="input-width-200">
-	___INSTALL_LANG_OPTIONS___
+  ___INSTALL_LANG_OPTIONS___
 </select>
 </p>
 
 <p><label for="install_lang_default">___LANG_LANGUAGE_PARAMS_DEFAULT___:</label>
 <select name="install_lang_default" id="install_lang_default" value="___INSTALL_LANG_DEFAULT___" class="input-width-200">
-	___INSTALL_LANG_DEFAULT_OPTIONS___
+  ___INSTALL_LANG_DEFAULT_OPTIONS___
 </select>
 </p>

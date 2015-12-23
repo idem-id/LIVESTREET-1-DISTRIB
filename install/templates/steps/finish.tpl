@@ -1,3 +1,3 @@
 <p>
-	___LANG_FINISH_PARAGRAPH___
+  ___LANG_FINISH_PARAGRAPH___
 </p>
