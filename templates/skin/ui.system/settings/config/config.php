@@ -191,7 +191,7 @@ $config['head']['default']['css'] = array(
   "___path.root.engine_lib___/external/jquery/markitup/skins/synio/style.css",
   "___path.root.engine_lib___/external/jquery/markitup/sets/synio/style.css",
   "___path.root.engine_lib___/external/jquery/jcrop/jquery.Jcrop.css",
-  "___path.root.engine_lib___/external/prettify/prettify.css",
+  "___path.root.engine_lib___/external/highlight.js/styles/monokai-sublime.css",
   "___path.static.skin___/css/smoothness/jquery-ui.css",
   "___path.static.skin___/css/responsive.css",
 

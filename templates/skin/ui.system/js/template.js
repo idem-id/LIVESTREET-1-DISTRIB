@@ -136,7 +136,7 @@ jQuery(document).ready(function($){
   });
 
   // подсветка кода
-  prettyPrint();
+  $('pre code.hljs').each(function(i, block) { hljs.highlightBlock(block); });
 
   // эмуляция border-sizing в IE
   var inputs = $('input.input-text, textarea');

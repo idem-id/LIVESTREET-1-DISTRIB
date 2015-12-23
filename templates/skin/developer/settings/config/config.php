@@ -6,7 +6,7 @@ $config['view']['theme'] = 'default';
 
 
 /* Grid type:
- * 
+ *
  * fluid - резина
  * fixed - фиксированная ширина
  */
@@ -30,7 +30,7 @@ $config['head']['default']['css'] = array(
 	"___path.root.engine_lib___/external/jquery/markitup/skins/simple/style.css",
 	"___path.root.engine_lib___/external/jquery/markitup/sets/default/style.css",
 	"___path.root.engine_lib___/external/jquery/jcrop/jquery.Jcrop.css",
-	"___path.root.engine_lib___/external/prettify/prettify.css",
+	"___path.root.engine_lib___/external/highlight.js/styles/monokai-sublime.css",
 	"___path.static.skin___/css/grid.css",
 	"___path.static.skin___/css/common.css",
 	"___path.static.skin___/css/text.css",
