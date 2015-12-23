@@ -55,7 +55,7 @@ return array(
   'install_title' => 'LiveStreet Installation',
   'step' => 'Step',
 
-  'start_paragraph' => '<p>Welcome to LiveStreet &copy; 1.0.3 installation. </p><p><b>Notice:</b> You have to rename file - /config/config.local.php.dist to /config/config.local.php and apply read-write (rw) permision to it.</p><p><b>Notice:</b> Make sure that the following directories have rw permissions: /tmp, /logs, /uploads, /templates/compiled, /templates/cache</p>',
+  'start_paragraph' => '<p>Welcome to LiveStreet &copy; 1.0.3 installation. </p><p><strong>Notice:</strong> You have to rename file - /config/config.local.php.dist to /config/config.local.php and apply read-write (rw) permission to it.</p><p><strong>Notice:</strong> Make sure that the following directories have rw permissions: /tmp, /logs, /uploads, /templates/compiled, /templates/cache</p>',
 
   'php_params' => 'General PHP Configuration',
   'php_params_version' => 'PHP ver. 5.2.0 or higher',

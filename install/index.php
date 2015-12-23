@@ -330,7 +330,7 @@ class Install
       $aMessages = array();
       foreach ($this->aMessages as &$sMessage) {
         if (array_key_exists('type', $sMessage) and array_key_exists('text', $sMessage)) {
-          $aMessages[$sMessage['type']][md5(serialize($sMessage))] = "<b>" . ucfirst($sMessage['type']) . "</b>: " . $sMessage['text'];
+          $aMessages[$sMessage['type']][md5(serialize($sMessage))] = "<strong>" . ucfirst($sMessage['type']) . "</strong>: " . $sMessage['text'];
         }
         unset($sMessage);
       }

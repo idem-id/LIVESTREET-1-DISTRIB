@@ -21,7 +21,7 @@
  */
 return array(
   "config_file_not_exists" => "Файл %%path%% не существует.",
-  "config_file_not_writable" => "Файл %%path%% недосупен для записи.",
+  "config_file_not_writable" => "Файл %%path%% недоступен для записи.",
 
   'error_db_invalid' => 'Невозможно выбрать или создать базу данных',
   'error_db_connection_invalid' => 'Не удалось подключиться к базе данных. Проверьте корректность введенных вами настроек.',
@@ -55,7 +55,7 @@ return array(
   'install_title' => 'Установка LiveStreet',
   'step' => 'Шаг',
 
-  'start_paragraph' => '<p>Добро пожаловать в инсталлятор LiveStreet &copy; 1.0.3. Ознакомьтесь с результатами и следуйте подсказкам.</p><p><b>Внимание.</b> Для успешной иснталяции вы должны переименовать файл /config/config.local.php.dist на /config/config.local.php и дать этому файлу права на запись.</p><p><b>Внимание.</b> Директории /tmp, /logs, /uploads, /templates/compiled, /templates/cache должны иметь права на запись.</p>',
+  'start_paragraph' => '<p>Добро пожаловать в систему установки LiveStreet &copy; 1.0.3 (модификация от <a href="https://kitsune.solar/">Kitsune Solar</a>). Ознакомьтесь с результатами и следуйте подсказкам.</p><p><strong>Внимание.</strong> Для успешной инсталляции вы должны переименовать файл /config/config.local.php.dist на /config/config.local.php и дать этому файлу права на запись.</p><p><strong>Внимание.</strong> Директории /tmp, /logs, /uploads, /templates/compiled, /templates/cache должны иметь права на запись.</p>',
 
   'php_params' => 'Основные настройки PHP',
   'php_params_version' => 'PHP версии не ниже 5.2.0',
