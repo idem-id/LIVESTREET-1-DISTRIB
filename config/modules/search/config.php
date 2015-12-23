@@ -18,8 +18,8 @@
 /**
  * Конфиг модуля "search"
  */
-$config['entity_prefix']  = '';
-$config['sphinx']['host'] = 'localhost';
+$config['entity_prefix'] = '';
+$config['sphinx']['host'] = '127.0.0.1';
 $config['sphinx']['port'] = '3312';
 
 return $config;

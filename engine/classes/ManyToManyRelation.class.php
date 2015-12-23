@@ -29,7 +29,8 @@
  * @package engine.orm
  * @since 1.0
  */
-class LS_ManyToManyRelation extends LsObject {
+class LS_ManyToManyRelation extends LsObject
+{
   /**
    * Список объектов связи
    *
@@ -48,24 +49,29 @@ class LS_ManyToManyRelation extends LsObject {
    *
    * @param $aCollection  Список объектов связи
    */
-  public function __construct($aCollection) {
+  public function __construct($aCollection)
+  {
     $this->_aCollection = $aCollection;
   }
+
   /**
    * Добавление объекта в список
    *
    * @param Entity $oEntity
    */
-  public function add($oEntity) {
+  public function add($oEntity)
+  {
     $this->bUpdated = true;
     $this->_aCollection[$oEntity->_getPrimaryKeyValue()] = $oEntity;
   }
+
   /**
    * Удаление объекта из списка по его id или массиву id
    *
    * @param int|array $iId
    */
-  public function delete($iId) {
+  public function delete($iId)
+  {
     $this->bUpdated = true;
     if (is_array($iId)) {
       foreach ($iId as $id) {
@@ -77,27 +83,33 @@ class LS_ManyToManyRelation extends LsObject {
       unset($this->_aCollection[$iId]);
     }
   }
+
   /**
    * Удаляет все объекты
    */
-  public function clear() {
+  public function clear()
+  {
     $this->bUpdated = true;
-    $this->_aCollection=array();
+    $this->_aCollection = array();
   }
+
   /**
    * Возвращает список объектов связи
    *
    * @return array
    */
-  public function getCollection() {
+  public function getCollection()
+  {
     return $this->_aCollection;
   }
+
   /**
    * Проверка списка на обновление
    *
    * @return bool
    */
-  public function isUpdated() {
+  public function isUpdated()
+  {
     return $this->bUpdated;
   }
 }

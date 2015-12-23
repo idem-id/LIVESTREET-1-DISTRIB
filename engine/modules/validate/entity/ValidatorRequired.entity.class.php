@@ -29,7 +29,8 @@
  * @package engine.modules.validate
  * @since 1.0
  */
-class ModuleValidate_EntityValidatorRequired extends ModuleValidate_EntityValidator {
+class ModuleValidate_EntityValidatorRequired extends ModuleValidate_EntityValidator
+{
   /**
    * Требуемое значение для точного совпадения
    *
@@ -41,24 +42,26 @@ class ModuleValidate_EntityValidatorRequired extends ModuleValidate_EntityValida
    *
    * @var bool
    */
-  public $strict=false;
+  public $strict = false;
 
   /**
    * Запуск валидации
    *
-   * @param mixed $sValue  Данные для валидации
+   * @param mixed $sValue Данные для валидации
    *
    * @return bool|string
    */
-  public function validate($sValue) {
-    if($this->requiredValue!==null) {
-      if(!$this->strict && $sValue!=$this->requiredValue || $this->strict && $sValue!==$this->requiredValue) {
-        return $this->getMessage($this->Lang_Get('validate_required_must_be',null,false),'msg',array('value'=>$this->requiredValue));
+  public function validate($sValue)
+  {
+    if ($this->requiredValue !== null) {
+      if (!$this->strict && $sValue != $this->requiredValue || $this->strict && $sValue !== $this->requiredValue) {
+        return $this->getMessage($this->Lang_Get('validate_required_must_be', null, false), 'msg', array('value' => $this->requiredValue));
       }
-    } else if($this->isEmpty($sValue,true)) {
-      return $this->getMessage($this->Lang_Get('validate_required_cannot_blank',null,false),'msg');
+    } else if ($this->isEmpty($sValue, true)) {
+      return $this->getMessage($this->Lang_Get('validate_required_cannot_blank', null, false), 'msg');
     }
     return true;
   }
 }
+
 ?>

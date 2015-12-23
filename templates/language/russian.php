@@ -1168,7 +1168,7 @@ return array(
   'today' => 'Сегодня',
   'more' => 'еще',
 
-  'timezone_list'=> array(
+  'timezone_list' => array(
     '-12' => '[UTC − 12] Меридиан смены дат (запад)',
     '-11' => '[UTC − 11] о. Мидуэй, Самоа',
     '-10' => '[UTC − 10] Гавайи',

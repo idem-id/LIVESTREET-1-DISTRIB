@@ -26,18 +26,18 @@ function smarty_function_lang_load($params, &$smarty)
 {
 
   if (!array_key_exists('name', $params)) {
-    trigger_error("lang_load: missing 'name' parameter",E_USER_WARNING);
+    trigger_error("lang_load: missing 'name' parameter", E_USER_WARNING);
     return;
   }
 
-  $aLangName=explode(',',$params['name']);
+  $aLangName = explode(',', $params['name']);
 
-  $aLangMsg=array();
+  $aLangMsg = array();
   foreach ($aLangName as $sName) {
-    $aLangMsg[$sName]=Engine::getInstance()->Lang_Get(trim($sName),array(),false);
+    $aLangMsg[$sName] = Engine::getInstance()->Lang_Get(trim($sName), array(), false);
   }
 
-  if (!isset($params['json']) or $params['json']!==false) {
+  if (!isset($params['json']) or $params['json'] !== false) {
     $aLangMsg = json_encode($aLangMsg);
   }
 

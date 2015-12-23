@@ -21,11 +21,13 @@
  * @package blocks
  * @since 1.0
  */
-class BlockUserfeedBlogs extends Block {
+class BlockUserfeedBlogs extends Block
+{
   /**
    * Запуск обработки
    */
-  public function Exec() {
+  public function Exec()
+  {
     /**
      * Пользователь авторизован?
      */
@@ -34,14 +36,14 @@ class BlockUserfeedBlogs extends Block {
       /**
        * Получаем список ID блогов, в которых состоит пользователь
        */
-      $aBlogsId = $this->Blog_GetBlogUsersByUserId($oUserCurrent->getId(), array(ModuleBlog::BLOG_USER_ROLE_USER,ModuleBlog::BLOG_USER_ROLE_MODERATOR,ModuleBlog::BLOG_USER_ROLE_ADMINISTRATOR),true);
+      $aBlogsId = $this->Blog_GetBlogUsersByUserId($oUserCurrent->getId(), array(ModuleBlog::BLOG_USER_ROLE_USER, ModuleBlog::BLOG_USER_ROLE_MODERATOR, ModuleBlog::BLOG_USER_ROLE_ADMINISTRATOR), true);
       /**
        * Получаем список ID блогов, которые создал пользователь
        */
-      $aBlogsOwnerId=$this->Blog_GetBlogsByOwnerId($oUserCurrent->getId(),true);
-      $aBlogsId=array_merge($aBlogsId,$aBlogsOwnerId);
+      $aBlogsOwnerId = $this->Blog_GetBlogsByOwnerId($oUserCurrent->getId(), true);
+      $aBlogsId = array_merge($aBlogsId, $aBlogsOwnerId);
 
-      $aBlogs=$this->Blog_GetBlogsAdditionalData($aBlogsId,array('owner'=>array()),array('blog_title'=>'asc'));
+      $aBlogs = $this->Blog_GetBlogsAdditionalData($aBlogsId, array('owner' => array()), array('blog_title' => 'asc'));
       /**
        * Выводим в шаблон
        */

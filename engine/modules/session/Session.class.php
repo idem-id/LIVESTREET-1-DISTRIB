@@ -22,26 +22,27 @@
  * @package engine.modules
  * @since 1.0
  */
-class ModuleSession extends Module {
+class ModuleSession extends Module
+{
   /**
    * ID  сессии
    *
    * @var null|string
    */
-  protected $sId=null;
+  protected $sId = null;
   /**
    * Данные сессии
    *
    * @var array
    */
-  protected $aData=array();
+  protected $aData = array();
   /**
    * Список user-agent'ов для флеш плеера
    * Используется для передачи ID сессии при обращениии к сайту через flash, например, загрузка файлов через flash
    *
    * @var array
    */
-  protected $aFlashUserAgent=array(
+  protected $aFlashUserAgent = array(
     'Shockwave Flash'
   );
   /**
@@ -50,24 +51,27 @@ class ModuleSession extends Module {
    *
    * @var bool
    */
-  protected $bUseStandartSession=true;
+  protected $bUseStandartSession = true;
 
   /**
    * Инициализация модуля
    *
    */
-  public function Init() {
+  public function Init()
+  {
     $this->bUseStandartSession = Config::Get('sys.session.standart');
     /**
      * Стартуем сессию
      */
     $this->Start();
   }
+
   /**
    * Старт сессии
    *
    */
-  protected function Start() {
+  protected function Start()
+  {
     if ($this->bUseStandartSession) {
       session_name(Config::Get('sys.session.name'));
       session_set_cookie_params(
@@ -75,26 +79,26 @@ class ModuleSession extends Module {
         Config::Get('sys.session.path'),
         Config::Get('sys.session.host')
       );
-      if(!session_id()) {
+      if (!session_id()) {
         /**
          * Попытка подменить идентификатор имени сессии через куку
          */
-        if (isset($_COOKIE[Config::Get ('sys.session.name')]) and !is_string($_COOKIE[Config::Get ('sys.session.name')])) {
-          unset($_COOKIE[Config::Get ('sys.session.name')]);
-          setcookie(Config::Get ('sys.session.name').'[]','',1,Config::Get('sys.cookie.path'),Config::Get('sys.cookie.host'));
+        if (isset($_COOKIE[Config::Get('sys.session.name')]) and !is_string($_COOKIE[Config::Get('sys.session.name')])) {
+          unset($_COOKIE[Config::Get('sys.session.name')]);
+          setcookie(Config::Get('sys.session.name') . '[]', '', 1, Config::Get('sys.cookie.path'), Config::Get('sys.cookie.host'));
         }
         /**
          * Попытка подменить идентификатор имени сессии в реквесте
          */
-        $aRequest=array_merge($_GET,$_POST); // Исключаем попадаение $_COOKIE в реквест
-        if (@ini_get ('session.use_only_cookies') === "0" and isset($aRequest[Config::Get ('sys.session.name')]) and !is_string($aRequest[Config::Get ('sys.session.name')])) {
+        $aRequest = array_merge($_GET, $_POST); // Исключаем попадаение $_COOKIE в реквест
+        if (@ini_get('session.use_only_cookies') === "0" and isset($aRequest[Config::Get('sys.session.name')]) and !is_string($aRequest[Config::Get('sys.session.name')])) {
           session_name($this->GenerateId());
         }
         /**
          * Даем возможность флешу задавать id сессии
          */
-        $sUserAgent=isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
-        if ($sUserAgent and (in_array($sUserAgent,$this->aFlashUserAgent) or strpos($sUserAgent,"Adobe Flash Player")===0) and is_string(getRequest('SSID')) and preg_match("/^[\w\d]{5,40}$/",getRequest('SSID'))) {
+        $sUserAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null;
+        if ($sUserAgent and (in_array($sUserAgent, $this->aFlashUserAgent) or strpos($sUserAgent, "Adobe Flash Player") === 0) and is_string(getRequest('SSID')) and preg_match("/^[\w\d]{5,40}$/", getRequest('SSID'))) {
           session_id(getRequest('SSID'));
         } else {
           session_regenerate_id();
@@ -106,95 +110,111 @@ class ModuleSession extends Module {
       $this->ReadData();
     }
   }
+
   /**
    * Устанавливает уникальный идентификатор сессии
    *
    */
-  protected function SetId() {
+  protected function SetId()
+  {
     /**
      * Если идентификатор есть в куках то берем его
      */
     if (isset($_COOKIE[Config::Get('sys.session.name')])) {
-      $this->sId=$_COOKIE[Config::Get('sys.session.name')];
+      $this->sId = $_COOKIE[Config::Get('sys.session.name')];
     } else {
       /**
        * Иначе создаём новый и записываем его в куку
        */
-      $this->sId=$this->GenerateId();
+      $this->sId = $this->GenerateId();
       setcookie(
         Config::Get('sys.session.name'),
-        $this->sId,time()+Config::Get('sys.session.timeout'),
+        $this->sId, time() + Config::Get('sys.session.timeout'),
         Config::Get('sys.session.path'),
         Config::Get('sys.session.host')
       );
     }
   }
+
   /**
    * Получает идентификатор текущей сессии
    *
    */
-  public function GetId() {
+  public function GetId()
+  {
     if ($this->bUseStandartSession) {
       return session_id();
     } else {
       return $this->sId;
     }
   }
+
   /**
    * Гинерирует уникальный идентификатор
    *
    * @return string
    */
-  protected function GenerateId() {
-    return md5(func_generator().time());
+  protected function GenerateId()
+  {
+    return md5(func_generator() . time());
   }
+
   /**
    * Читает данные сессии в aData
    *
    */
-  protected function ReadData() {
-    $this->aData=$this->Cache_Get($this->sId);
+  protected function ReadData()
+  {
+    $this->aData = $this->Cache_Get($this->sId);
   }
+
   /**
    * Сохраняет данные сессии
    *
    */
-  protected function Save() {
-    $this->Cache_Set($this->aData,$this->sId,array(),Config::Get('sys.session.timeout'));
+  protected function Save()
+  {
+    $this->Cache_Set($this->aData, $this->sId, array(), Config::Get('sys.session.timeout'));
   }
+
   /**
    * Получает значение из сессии
    *
-   * @param string $sName  Имя параметра
+   * @param string $sName Имя параметра
    * @return mixed|null
    */
-  public function Get($sName) {
+  public function Get($sName)
+  {
     if ($this->bUseStandartSession) {
       return isset($_SESSION[$sName]) ? $_SESSION[$sName] : null;
     } else {
       return isset($this->aData[$sName]) ? $this->aData[$sName] : null;
     }
   }
+
   /**
    * Записывает значение в сессию
    *
-   * @param string $sName  Имя параметра
-   * @param mixed $data  Данные
+   * @param string $sName Имя параметра
+   * @param mixed $data Данные
    */
-  public function Set($sName,$data) {
+  public function Set($sName, $data)
+  {
     if ($this->bUseStandartSession) {
-      $_SESSION[$sName]=$data;
+      $_SESSION[$sName] = $data;
     } else {
-      $this->aData[$sName]=$data;
+      $this->aData[$sName] = $data;
       $this->Save();
     }
   }
+
   /**
    * Удаляет значение из сессии
    *
-   * @param string $sName  Имя параметра
+   * @param string $sName Имя параметра
    */
-  public function Drop($sName) {
+  public function Drop($sName)
+  {
     if ($this->bUseStandartSession) {
       unset($_SESSION[$sName]);
     } else {
@@ -202,23 +222,27 @@ class ModuleSession extends Module {
       $this->Save();
     }
   }
+
   /**
    * Получает разом все данные сессии
    *
    * @return array
    */
-  public function GetData() {
+  public function GetData()
+  {
     if ($this->bUseStandartSession) {
       return $_SESSION;
     } else {
       return $this->aData;
     }
   }
+
   /**
    * Завершает сессию, дропая все данные
    *
    */
-  public function DropSession() {
+  public function DropSession()
+  {
     if ($this->bUseStandartSession) {
       unset($_SESSION);
       session_destroy();
@@ -227,11 +251,12 @@ class ModuleSession extends Module {
       unset($this->aData);
       setcookie(
         Config::Get('sys.session.name'),
-        '',1,
+        '', 1,
         Config::Get('sys.session.path'),
         Config::Get('sys.session.host')
       );
     }
   }
 }
+
 ?>

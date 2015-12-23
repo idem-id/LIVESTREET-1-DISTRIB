@@ -1,12 +1,13 @@
 <?php
 
-class PluginExample_HookExample extends Hook {
+class PluginExample_HookExample extends Hook
+{
 
   /*
    * Регистрация событий на хуки
    */
-  public function RegisterHook() {
-
+  public function RegisterHook()
+  {
 
 
     /*
@@ -50,4 +51,5 @@ class PluginExample_HookExample extends Hook {
      */
   }
 }
+
 ?>

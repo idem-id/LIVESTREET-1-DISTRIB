@@ -15,7 +15,7 @@
 ---------------------------------------------------------
 */
 
-require_once(Config::Get('path.root.engine').'/lib/external/phpMailer/class.phpmailer.php');
+require_once(Config::Get('path.root.engine') . '/lib/external/phpMailer/class.phpmailer.php');
 
 /**
  * Модуль для отправки почты(e-mail) через phpMailer
@@ -30,7 +30,8 @@ require_once(Config::Get('path.root.engine').'/lib/external/phpMailer/class.phpm
  * @package engine.modules
  * @since 1.0
  */
-class ModuleMail extends Module {
+class ModuleMail extends Module
+{
   /**
    * Основной объект рассылбщика
    *
@@ -94,7 +95,7 @@ class ModuleMail extends Module {
    *
    * @var int
    */
-  protected $iWordWrap=0;
+  protected $iWordWrap = 0;
 
   /**
    * Мыло от кого отправляется вся почта
@@ -113,30 +114,31 @@ class ModuleMail extends Module {
    *
    * @var string
    */
-  protected $sSubject='';
+  protected $sSubject = '';
   /**
    * Текст письма
    *
    * @var string
    */
-  protected $sBody='';
+  protected $sBody = '';
   /**
    * Строка последней ошибки
-   * 
+   *
    * @var string
    */
   protected $sError;
-  
+
   /**
    * Инициализация модуля
    *
    */
-  public function Init() {
+  public function Init()
+  {
     /**
      * Настройки SMTP сервера для отправки писем
      */
-    $this->sHost     = Config::Get('sys.mail.smtp.host');
-    $this->iPort     = Config::Get('sys.mail.smtp.port');
+    $this->sHost = Config::Get('sys.mail.smtp.host');
+    $this->iPort = Config::Get('sys.mail.smtp.port');
     $this->sUsername = Config::Get('sys.mail.smtp.user');
     $this->sPassword = Config::Get('sys.mail.smtp.password');
     $this->bSmtpAuth = Config::Get('sys.mail.smtp.auth');
@@ -144,118 +146,136 @@ class ModuleMail extends Module {
     /**
      * Метод отправки почты
      */
-    $this->sMailerType=Config::Get('sys.mail.type');
+    $this->sMailerType = Config::Get('sys.mail.type');
     /**
      * Кодировка писем
      */
-    $this->sCharSet=Config::Get('sys.mail.charset');
+    $this->sCharSet = Config::Get('sys.mail.charset');
     /**
      * Мыло от кого отправляется вся почта
      */
-    $this->sFrom=Config::Get('sys.mail.from_email');
+    $this->sFrom = Config::Get('sys.mail.from_email');
     /**
      * Имя от кого отправляется вся почта
      */
-    $this->sFromName=Config::Get('sys.mail.from_name');
+    $this->sFromName = Config::Get('sys.mail.from_name');
 
     /**
      * Создаём объект phpMailer и устанвливаем ему необходимые настройки
      */
     $this->oMailer = new phpmailer();
-    $this->oMailer->Host=$this->sHost;
-    $this->oMailer->Port=$this->iPort;
-    $this->oMailer->Username=$this->sUsername;
-    $this->oMailer->Password=$this->sPassword;
-    $this->oMailer->SMTPAuth=$this->bSmtpAuth;
-    $this->oMailer->SMTPSecure=$this->sSmtpSecure;
-    $this->oMailer->Mailer=$this->sMailerType;
-    $this->oMailer->WordWrap=$this->iWordWrap;
-    $this->oMailer->CharSet=$this->sCharSet;
+    $this->oMailer->Host = $this->sHost;
+    $this->oMailer->Port = $this->iPort;
+    $this->oMailer->Username = $this->sUsername;
+    $this->oMailer->Password = $this->sPassword;
+    $this->oMailer->SMTPAuth = $this->bSmtpAuth;
+    $this->oMailer->SMTPSecure = $this->sSmtpSecure;
+    $this->oMailer->Mailer = $this->sMailerType;
+    $this->oMailer->WordWrap = $this->iWordWrap;
+    $this->oMailer->CharSet = $this->sCharSet;
 
-    $this->oMailer->From=$this->sFrom;
-    $this->oMailer->FromName=$this->sFromName;
+    $this->oMailer->From = $this->sFrom;
+    $this->oMailer->FromName = $this->sFromName;
   }
+
   /**
    * Устанавливает тему сообщения
    *
-   * @param string $sText  Тема сообщения
+   * @param string $sText Тема сообщения
    */
-  public function SetSubject($sText) {
-    $this->sSubject=$sText;
+  public function SetSubject($sText)
+  {
+    $this->sSubject = $sText;
   }
+
   /**
    * Устанавливает текст сообщения
    *
-   * @param string $sText  Текст сообщения
+   * @param string $sText Текст сообщения
    */
-  public function SetBody($sText) {
-    $this->sBody=$sText;
+  public function SetBody($sText)
+  {
+    $this->sBody = $sText;
   }
+
   /**
    * Добавляем новый адрес получателя
    *
-   * @param string $sMail  Емайл
-   * @param string $sName  Имя
+   * @param string $sMail Емайл
+   * @param string $sName Имя
    */
-  public function AddAdress($sMail,$sName=null) {
+  public function AddAdress($sMail, $sName = null)
+  {
     ob_start();
-    $this->oMailer->AddAddress($sMail,$sName);
+    $this->oMailer->AddAddress($sMail, $sName);
     $this->sError = ob_get_clean();
   }
+
   /**
    * Отправляет сообщение(мыло)
    *
    * @return bool
    */
-  public function Send() {
-    $this->oMailer->Subject=$this->sSubject;
-    $this->oMailer->Body=$this->sBody;
+  public function Send()
+  {
+    $this->oMailer->Subject = $this->sSubject;
+    $this->oMailer->Body = $this->sBody;
     ob_start();
     $bResult = $this->oMailer->Send();
     $this->sError = ob_get_clean();
     return $bResult;
   }
+
   /**
    * Очищает все адреса получателей
    *
    */
-  public function ClearAddresses() {
+  public function ClearAddresses()
+  {
     $this->oMailer->ClearAddresses();
   }
+
   /**
    * Устанавливает единственный адрес получателя
    *
-   * @param string $sMail  Емайл
-   * @param string $sName  Имя
+   * @param string $sMail Емайл
+   * @param string $sName Имя
    */
-  public function SetAdress($sMail,$sName=null) {
+  public function SetAdress($sMail, $sName = null)
+  {
     $this->ClearAddresses();
     ob_start();
-    $this->oMailer->AddAddress($sMail,$sName);
+    $this->oMailer->AddAddress($sMail, $sName);
     $this->sError = ob_get_clean();
   }
+
   /**
    * Устанавливает режим отправки письма как HTML
    *
    */
-  public function setHTML() {
+  public function setHTML()
+  {
     $this->oMailer->IsHTML(true);
   }
+
   /**
    * Устанавливает режим отправки письма как Text(Plain)
    *
    */
-  public function setPlain() {
+  public function setPlain()
+  {
     $this->oMailer->IsHTML(false);
   }
-  
+
   /**
    * Возвращает строку последней ошибки
-   * 
+   *
    * @return string
    */
-  public function GetError(){
+  public function GetError()
+  {
     return $this->sError;
   }
 }
+
 ?>

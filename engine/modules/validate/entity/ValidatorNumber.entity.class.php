@@ -29,19 +29,20 @@
  * @package engine.modules.validate
  * @since 1.0
  */
-class ModuleValidate_EntityValidatorNumber extends ModuleValidate_EntityValidator {
+class ModuleValidate_EntityValidatorNumber extends ModuleValidate_EntityValidator
+{
   /**
    * Допускать только целое число
    *
    * @var bool
    */
-  public $integerOnly=false;
+  public $integerOnly = false;
   /**
    * Допускать или нет пустое значение
    *
    * @var bool
    */
-  public $allowEmpty=true;
+  public $allowEmpty = true;
   /**
    * Максимально допустимое значение
    *
@@ -71,44 +72,46 @@ class ModuleValidate_EntityValidatorNumber extends ModuleValidate_EntityValidato
    *
    * @var string
    */
-  public $integerPattern='/^\s*[+-]?\d+\s*$/';
+  public $integerPattern = '/^\s*[+-]?\d+\s*$/';
   /**
    * Регулярное выражение для числа, допускается дробное
    *
    * @var string
    */
-  public $numberPattern='/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/';
+  public $numberPattern = '/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/';
 
   /**
    * Запуск валидации
    *
-   * @param mixed $sValue  Данные для валидации
+   * @param mixed $sValue Данные для валидации
    *
    * @return bool|string
    */
-  public function validate($sValue) {
+  public function validate($sValue)
+  {
     if (is_array($sValue)) {
-      return $this->getMessage($this->Lang_Get('validate_number_must_number',null,false),'msg');
+      return $this->getMessage($this->Lang_Get('validate_number_must_number', null, false), 'msg');
     }
-    if($this->allowEmpty && $this->isEmpty($sValue)) {
+    if ($this->allowEmpty && $this->isEmpty($sValue)) {
       return true;
     }
-    if($this->integerOnly) {
-      if(!preg_match($this->integerPattern,"$sValue")) {
-        return $this->getMessage($this->Lang_Get('validate_number_must_integer',null,false),'msg');
+    if ($this->integerOnly) {
+      if (!preg_match($this->integerPattern, "$sValue")) {
+        return $this->getMessage($this->Lang_Get('validate_number_must_integer', null, false), 'msg');
       }
     } else {
-      if(!preg_match($this->numberPattern,"$sValue")) {
-        return $this->getMessage($this->Lang_Get('validate_number_must_number',null,false),'msg');
+      if (!preg_match($this->numberPattern, "$sValue")) {
+        return $this->getMessage($this->Lang_Get('validate_number_must_number', null, false), 'msg');
       }
     }
-    if($this->min!==null && $sValue<$this->min) {
-      return $this->getMessage($this->Lang_Get('validate_number_too_small',null,false),'msgTooSmall',array('min'=>$this->min));
+    if ($this->min !== null && $sValue < $this->min) {
+      return $this->getMessage($this->Lang_Get('validate_number_too_small', null, false), 'msgTooSmall', array('min' => $this->min));
     }
-    if($this->max!==null && $sValue>$this->max) {
-      return $this->getMessage($this->Lang_Get('validate_number_too_big',null,false),'msgTooBig',array('max'=>$this->max));
+    if ($this->max !== null && $sValue > $this->max) {
+      return $this->getMessage($this->Lang_Get('validate_number_too_big', null, false), 'msgTooBig', array('max' => $this->max));
     }
     return true;
   }
 }
+
 ?>

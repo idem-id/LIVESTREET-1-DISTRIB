@@ -21,36 +21,40 @@
  * @package modules.geo
  * @since 1.0
  */
-class ModuleGeo_EntityGeo extends Entity {
+class ModuleGeo_EntityGeo extends Entity
+{
 
   /**
    * Возвращает имя гео-объекта в зависимости от языка
    *
    * @return string
    */
-  public function getName() {
-    $sName='';
-    $sLangDef=Config::get('lang.default');
-    if ($sLangDef=='russian') {
-      $sName=$this->getNameRu();
-    } elseif ($sLangDef=='english') {
-      $sName=$this->getNameEn();
+  public function getName()
+  {
+    $sName = '';
+    $sLangDef = Config::get('lang.default');
+    if ($sLangDef == 'russian') {
+      $sName = $this->getNameRu();
+    } elseif ($sLangDef == 'english') {
+      $sName = $this->getNameEn();
     }
 
-    $sLang=Config::get('lang.current');
-    if ($sLang=='russian' and $this->getNameRu()) {
-      $sName=$this->getNameRu();
-    } elseif ($sLang=='english' and $this->getNameEn()) {
-      $sName=$this->getNameEn();
+    $sLang = Config::get('lang.current');
+    if ($sLang == 'russian' and $this->getNameRu()) {
+      $sName = $this->getNameRu();
+    } elseif ($sLang == 'english' and $this->getNameEn()) {
+      $sName = $this->getNameEn();
     }
     return $sName;
   }
+
   /**
    * Возвращает тип гео-объекта
    *
    * @return null|string
    */
-  public function getType() {
+  public function getType()
+  {
     if ($this instanceof ModuleGeo_EntityCity) {
       return 'city';
     } elseif ($this instanceof ModuleGeo_EntityRegion) {
@@ -60,59 +64,66 @@ class ModuleGeo_EntityGeo extends Entity {
     }
     return null;
   }
+
   /**
    * Возвращает гео-объект страны
    *
    * @return ModuleGeo_EntityGeo|null
    */
-  public function getCountry() {
-    if ($this->getType()=='country') {
+  public function getCountry()
+  {
+    if ($this->getType() == 'country') {
       return $this;
     }
-    if ($oCountry=$this->_getDataOne('country')) {
+    if ($oCountry = $this->_getDataOne('country')) {
       return $oCountry;
     }
     if ($this->getCountryId()) {
-      $oCountry=$this->Geo_GetCountryById($this->getCountryId());
-      return $this->_aData['country']=$oCountry;
+      $oCountry = $this->Geo_GetCountryById($this->getCountryId());
+      return $this->_aData['country'] = $oCountry;
     }
     return null;
   }
+
   /**
    * Возвращает гео-объект региона
    *
    * @return ModuleGeo_EntityGeo|null
    */
-  public function getRegion() {
-    if ($this->getType()=='region') {
+  public function getRegion()
+  {
+    if ($this->getType() == 'region') {
       return $this;
     }
-    if ($oRegion=$this->_getDataOne('region')) {
+    if ($oRegion = $this->_getDataOne('region')) {
       return $oRegion;
     }
     if ($this->getRegionId()) {
-      $oRegion=$this->Geo_GetRegionById($this->getRegionId());
-      return $this->_aData['region']=$oRegion;
+      $oRegion = $this->Geo_GetRegionById($this->getRegionId());
+      return $this->_aData['region'] = $oRegion;
     }
     return null;
   }
+
   /**
    * Возвращает гео-объект города
    *
    * @return ModuleGeo_EntityGeo|null
    */
-  public function getCity() {
-    if ($this->getType()=='city') {
+  public function getCity()
+  {
+    if ($this->getType() == 'city') {
       return $this;
     }
-    if ($oCity=$this->_getDataOne('city')) {
+    if ($oCity = $this->_getDataOne('city')) {
       return $oCity;
     }
     if ($this->getCityId()) {
-      $oCity=$this->Geo_GetCityById($this->getCityId());
-      return $this->_aData['city']=$oCity;
+      $oCity = $this->Geo_GetCityById($this->getCityId());
+      return $this->_aData['city'] = $oCity;
     }
     return null;
   }
 }
+
 ?>

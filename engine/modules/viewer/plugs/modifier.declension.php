@@ -14,7 +14,7 @@
  */
 function smarty_modifier_declension_english($forms, $count)
 {
-  if ($count==1)
+  if ($count == 1)
     return $forms[0];
   else
     return $forms[1];
@@ -30,7 +30,7 @@ function smarty_modifier_declension_english($forms, $count)
 function smarty_modifier_declension_russian($forms, $count)
 {
   $mod100 = $count % 100;
-  switch ($count%10) {
+  switch ($count % 10) {
     case 1:
       if ($mod100 == 11)
         return $forms[2];
@@ -62,8 +62,8 @@ function smarty_modifier_declension_russian($forms, $count)
  * @param string $language
  * @return string
  */
-function smarty_modifier_declension($count, $forms, $language='')
-{  
+function smarty_modifier_declension($count, $forms, $language = '')
+{
   if (!$language)
     $language = Engine::getInstance()->Lang_GetLang();
 
@@ -72,9 +72,8 @@ function smarty_modifier_declension($count, $forms, $language='')
   // Выделяем отдельные словоформы
   $forms = explode(';', $forms);
 
-  $fn = 'smarty_modifier_declension_'.$language;
-  if (function_exists($fn))
-  {
+  $fn = 'smarty_modifier_declension_' . $language;
+  if (function_exists($fn)) {
     // Есть персональная функция для текущего языка
     return $fn($forms, $count);
   } else {
@@ -82,4 +81,5 @@ function smarty_modifier_declension($count, $forms, $language='')
     return smarty_modifier_declension_english($forms, $count);
   }
 }
+
 ?>

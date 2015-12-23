@@ -21,15 +21,17 @@
  * @package blocks
  * @since 1.0
  */
-class BlockTagsCity extends Block {
+class BlockTagsCity extends Block
+{
   /**
    * Запуск обработки
    */
-  public function Exec() {
+  public function Exec()
+  {
     /**
      * Получаем города
      */
-    $aCities=$this->Geo_GetGroupCitiesByTargetType('user',20);
+    $aCities = $this->Geo_GetGroupCitiesByTargetType('user', 20);
     /**
      * Формируем облако тегов
      */
@@ -37,7 +39,8 @@ class BlockTagsCity extends Block {
     /**
      * Выводим в шаблон
      */
-    $this->Viewer_Assign("aCityList",$aCities);
+    $this->Viewer_Assign("aCityList", $aCities);
   }
 }
+
 ?>

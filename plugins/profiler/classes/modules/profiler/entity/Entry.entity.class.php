@@ -1,4 +1,5 @@
 <?php
+
 /*-------------------------------------------------------
 *
 *   LiveStreet Engine Social Networking
@@ -17,24 +18,30 @@
 
 class PluginProfiler_ModuleProfiler_EntityEntry extends Entity
 {
-  public function getRequestId() {
+  public function getRequestId()
+  {
     return $this->_getDataOne('request_id');
   }
-  public function getDate() {
+
+  public function getDate()
+  {
     return $this->_getDataOne('request_date');
   }
-  public function getTimeFull() {
-    return str_replace(',','.',$this->_getDataOne('time_full'));
+
+  public function getTimeFull()
+  {
+    return str_replace(',', '.', $this->_getDataOne('time_full'));
   }
 
-  public function getTimeStart($mode=null) {
+  public function getTimeStart($mode = null)
+  {
     switch ($mode) {
       case 'seconds':
-        list($iSeconds,)=explode(' ',$this->_getDataOne('time_start'),2);
+        list($iSeconds,) = explode(' ', $this->_getDataOne('time_start'), 2);
         return $iSeconds;
 
       case 'time':
-        list(,$iTime)=explode(' ',$this->_getDataOne('time_start'),2);
+        list(, $iTime) = explode(' ', $this->_getDataOne('time_start'), 2);
         return $iTime;
 
       case null:
@@ -43,14 +50,16 @@ class PluginProfiler_ModuleProfiler_EntityEntry extends Entity
 
     }
   }
-  public function getTimeStop($mode=null) {
+
+  public function getTimeStop($mode = null)
+  {
     switch ($mode) {
       case 'seconds':
-        list($iSeconds,)=explode(' ',$this->_getDataOne('time_stop'),2);
+        list($iSeconds,) = explode(' ', $this->_getDataOne('time_stop'), 2);
         return $iSeconds;
 
       case 'time':
-        list(,$iTime)=explode(' ',$this->_getDataOne('time_stop'),2);
+        list(, $iTime) = explode(' ', $this->_getDataOne('time_stop'), 2);
         return $iTime;
 
       case null:
@@ -60,62 +69,95 @@ class PluginProfiler_ModuleProfiler_EntityEntry extends Entity
     }
   }
 
-  public function getId() {
+  public function getId()
+  {
     return $this->_getDataOne('time_id');
   }
-  public function getPid() {
-    return $this->_getDataOne('time_pid') ? $this->_getDataOne('time_pid'): 0;
+
+  public function getPid()
+  {
+    return $this->_getDataOne('time_pid') ? $this->_getDataOne('time_pid') : 0;
   }
-  public function getName() {
+
+  public function getName()
+  {
     return $this->_getDataOne('time_name');
   }
-  public function getComment() {
+
+  public function getComment()
+  {
     return $this->_getDataOne('time_comment');
   }
 
-  public function getLevel() {
+  public function getLevel()
+  {
     return $this->_getDataOne('level');
   }
-  public function getChildCount() {
+
+  public function getChildCount()
+  {
     return $this->_getDataOne('child_count');
   }
-  public function getParentTimeFull() {
+
+  public function getParentTimeFull()
+  {
     return $this->_getDataOne('parent_time_full');
   }
 
-  public function setRequestId($data) {
-    $this->_aData['request_id']=$data;
-  }
-  public function setDate($data) {
-    $this->_aData['request_date']=$data;
-  }
-  public function setTimeFull($data) {
-    $this->_aData['time_full']=$data;
-  }
-  public function setTimeStart($data) {
-    $this->_aData['time_start']=$data;
-  }
-  public function setTimeStop($data) {
-    $this->_aData['time_stop']=$data;
-  }
-  public function setId($data) {
-    $this->_aData['time_id']=$data;
-  }
-  public function setPid($data) {
-    $this->_aData['time_pid']=$data;
-  }
-  public function setName($data) {
-    $this->_aData['time_name']=$data;
-  }
-  public function setComment($data) {
-    $this->_aData['time_comment']=$data;
+  public function setRequestId($data)
+  {
+    $this->_aData['request_id'] = $data;
   }
 
-  public function setLevel($data) {
-    $this->_aData['level']=$data;
+  public function setDate($data)
+  {
+    $this->_aData['request_date'] = $data;
   }
-  public function setParentTimeFull($data) {
-    $this->_aData['parent_time_full']=$data;
+
+  public function setTimeFull($data)
+  {
+    $this->_aData['time_full'] = $data;
+  }
+
+  public function setTimeStart($data)
+  {
+    $this->_aData['time_start'] = $data;
+  }
+
+  public function setTimeStop($data)
+  {
+    $this->_aData['time_stop'] = $data;
+  }
+
+  public function setId($data)
+  {
+    $this->_aData['time_id'] = $data;
+  }
+
+  public function setPid($data)
+  {
+    $this->_aData['time_pid'] = $data;
+  }
+
+  public function setName($data)
+  {
+    $this->_aData['time_name'] = $data;
+  }
+
+  public function setComment($data)
+  {
+    $this->_aData['time_comment'] = $data;
+  }
+
+  public function setLevel($data)
+  {
+    $this->_aData['level'] = $data;
+  }
+
+  public function setParentTimeFull($data)
+  {
+    $this->_aData['parent_time_full'] = $data;
   }
 }
+
 ?>

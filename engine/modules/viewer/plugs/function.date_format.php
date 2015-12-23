@@ -36,22 +36,23 @@
  * @param   Smarty $oSmarty
  * @return  string
  */
-function smarty_function_date_format($aParams,&$oSmarty) {
-  require_once(Config::Get('path.root.engine').'/classes/Engine.class.php');
+function smarty_function_date_format($aParams, &$oSmarty)
+{
+  require_once(Config::Get('path.root.engine') . '/classes/Engine.class.php');
   $oEngine = Engine::getInstance();
-  $oUserCurrent=$oEngine->User_GetUserCurrent();
+  $oUserCurrent = $oEngine->User_GetUserCurrent();
 
   $sFormatDefault = "d F Y, H:i";  //  формат даты по умолчанию
-  $iDeclinationDefault  = 1;       //  индекс склонения по умолчанию
+  $iDeclinationDefault = 1;       //  индекс склонения по умолчанию
   /**
    * Текущая дата и сдвиг времени для пользователя
    */
   if ($oUserCurrent and $oUserCurrent->getSettingsTimezone()) {
-    $iDiff=(date('I') + $oUserCurrent->getSettingsTimezone() - (strtotime(date("Y-m-d H:i:s"))-strtotime(gmdate("Y-m-d H:i:s")))/3600)*3600;
+    $iDiff = (date('I') + $oUserCurrent->getSettingsTimezone() - (strtotime(date("Y-m-d H:i:s")) - strtotime(gmdate("Y-m-d H:i:s"))) / 3600) * 3600;
   } else {
-    $iDiff=0; // пользователю показываем время от зоны из основного конфига
+    $iDiff = 0; // пользователю показываем время от зоны из основного конфига
   }
-  $iNow=time()+$iDiff;
+  $iNow = time() + $iDiff;
   /**
    * Определяем дату
    */
@@ -61,33 +62,33 @@ function smarty_function_date_format($aParams,&$oSmarty) {
   /**
    * Если указан другой язык, подгружаем его
    */
-  if(isset($aParams['lang']) and $aParams['lang']!=$oEngine->Lang_GetLang()) {
+  if (isset($aParams['lang']) and $aParams['lang'] != $oEngine->Lang_GetLang()) {
     $oEngine->Lang_SetLang($aParams['lang']);
   }
 
   $aMonth = $oEngine->Lang_Get('month_array');
-  $iDate= (preg_match("/^\d+$/",$sDate)) ?  $sDate : strtotime($sDate);
-  $iDate+=$iDiff;
+  $iDate = (preg_match("/^\d+$/", $sDate)) ? $sDate : strtotime($sDate);
+  $iDate += $iDiff;
 
   /**
    * Если указана необходимость выполнять проверку на NOW
    */
-  if(isset($aParams['now'])) {
-    if($iDate+$aParams['now']>$iNow) return $oEngine->Lang_Get('date_now');
+  if (isset($aParams['now'])) {
+    if ($iDate + $aParams['now'] > $iNow) return $oEngine->Lang_Get('date_now');
   }
 
   /**
    * Если указана необходимость на проверку minutes back
    */
-  if(isset($aParams['minutes_back'])) {
+  if (isset($aParams['minutes_back'])) {
     require_once('modifier.declension.php');
 
-    $iTimeDelta = round(($iNow- $iDate)/60);
-    if($iTimeDelta<$aParams['minutes_back']) {
-      return ($iTimeDelta!=0)
+    $iTimeDelta = round(($iNow - $iDate) / 60);
+    if ($iTimeDelta < $aParams['minutes_back']) {
+      return ($iTimeDelta != 0)
         ? smarty_modifier_declension(
           $iTimeDelta,
-          $oEngine->Lang_Get('date_minutes_back',array('minutes'=>$iTimeDelta)),
+          $oEngine->Lang_Get('date_minutes_back', array('minutes' => $iTimeDelta)),
           $oEngine->Lang_GetLang()
         )
         : $oEngine->Lang_Get('date_minutes_back_less');
@@ -97,15 +98,15 @@ function smarty_function_date_format($aParams,&$oSmarty) {
   /**
    * Если указана необходимость на проверку minutes back
    */
-  if(isset($aParams['hours_back'])) {
+  if (isset($aParams['hours_back'])) {
     require_once('modifier.declension.php');
 
-    $iTimeDelta = round(($iNow- $iDate)/(60*60));
-    if($iTimeDelta<$aParams['hours_back']) {
-      return ($iTimeDelta!=0)
+    $iTimeDelta = round(($iNow - $iDate) / (60 * 60));
+    if ($iTimeDelta < $aParams['hours_back']) {
+      return ($iTimeDelta != 0)
         ? smarty_modifier_declension(
           $iTimeDelta,
-          $oEngine->Lang_Get('date_hours_back',array('hours'=>$iTimeDelta)),
+          $oEngine->Lang_Get('date_hours_back', array('hours' => $iTimeDelta)),
           $oEngine->Lang_GetLang()
         )
         : $oEngine->Lang_Get('date_hours_back_less');
@@ -115,40 +116,40 @@ function smarty_function_date_format($aParams,&$oSmarty) {
   /**
    * Если указана необходимость автоподстановки "Сегодня", "Вчера", "Завтра".
    */
-  if(isset($aParams['day']) and $aParams['day']) {
-    switch(date('Y-m-d',$iDate)) {
+  if (isset($aParams['day']) and $aParams['day']) {
+    switch (date('Y-m-d', $iDate)) {
       /**
        * Если дата совпадает с сегодняшней
        */
       case date('Y-m-d'):
-        $sDay=$oEngine->Lang_Get('date_today');
+        $sDay = $oEngine->Lang_Get('date_today');
         break;
       /**
        * Если дата совпадает со вчерашней
        */
-      case date('Y-m-d', mktime(0, 0, 0, date("m")  , date("d")-1, date("Y")) ):
-        $sDay=$oEngine->Lang_Get('date_yesterday');
+      case date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") - 1, date("Y"))):
+        $sDay = $oEngine->Lang_Get('date_yesterday');
         break;
       /**
        * Если дата совпадает с завтрашней
        */
-      case date('Y-m-d', mktime(0, 0, 0, date("m")  , date("d")+1, date("Y")) ):
-        $sDay=$oEngine->Lang_Get('date_tomorrow');
+      case date('Y-m-d', mktime(0, 0, 0, date("m"), date("d") + 1, date("Y"))):
+        $sDay = $oEngine->Lang_Get('date_tomorrow');
         break;
 
       default:
-        $sDay=null;
+        $sDay = null;
     }
-    if( $sDay ) {
-      $sFormat=str_replace("day",preg_replace("#(\w{1})#",'\\\${1}',$sDay),$aParams['day']);
-      return date($sFormat,$iDate);
+    if ($sDay) {
+      $sFormat = str_replace("day", preg_replace("#(\w{1})#", '\\\${1}', $sDay), $aParams['day']);
+      return date($sFormat, $iDate);
     }
   }
 
   /**
    * Определяем нужное текстовое значение названия месяца
    */
-  $iMonth = date("n",$iDate);
+  $iMonth = date("n", $iDate);
   $sMonth = isset($aMonth[$iMonth])
     ? $aMonth[$iMonth]
     : "";
@@ -157,14 +158,15 @@ function smarty_function_date_format($aParams,&$oSmarty) {
    * Если не найден индекс склонения, берем склонене по умолчанию.
    * Если индекс по умолчанию также не определен, берем первое значение в массиве.
    */
-  if(is_array($sMonth)) {
+  if (is_array($sMonth)) {
     $sMonth = isset($sMonth[$iDeclination])
       ? $sMonth[$iDeclination]
       : $sMonth[$iDeclinationDefault];
   }
 
-  $sFormat=preg_replace("~(?<!\\\\)F~U",preg_replace('~(\w{1})~u','\\\${1}',$sMonth),$sFormat);
+  $sFormat = preg_replace("~(?<!\\\\)F~U", preg_replace('~(\w{1})~u', '\\\${1}', $sMonth), $sFormat);
 
-  return date($sFormat,$iDate);
+  return date($sFormat, $iDate);
 }
+
 ?>

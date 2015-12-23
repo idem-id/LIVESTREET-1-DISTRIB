@@ -21,7 +21,9 @@
  * @package modules.user
  * @since 1.0
  */
-class ModuleUser_EntityChangemail extends Entity {
+class ModuleUser_EntityChangemail extends Entity
+{
 
 }
+
 ?>

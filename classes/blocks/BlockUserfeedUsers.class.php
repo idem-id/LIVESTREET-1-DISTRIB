@@ -21,11 +21,13 @@
  * @package blocks
  * @since 1.0
  */
-class BlockUserfeedUsers extends Block {
+class BlockUserfeedUsers extends Block
+{
   /**
    * Запуск обработки
    */
-  public function Exec() {
+  public function Exec()
+  {
     /**
      * Пользователь авторизован?
      */

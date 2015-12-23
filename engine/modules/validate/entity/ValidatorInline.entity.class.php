@@ -22,7 +22,8 @@
  * @package engine.modules.validate
  * @since 1.0
  */
-class ModuleValidate_EntityValidatorInline extends ModuleValidate_EntityValidator {
+class ModuleValidate_EntityValidatorInline extends ModuleValidate_EntityValidator
+{
   /**
    * Метод объекта для валидации, в него передаются параметры: $sValue и $aParam
    *
@@ -45,12 +46,14 @@ class ModuleValidate_EntityValidatorInline extends ModuleValidate_EntityValidato
   /**
    * Запуск валидации
    *
-   * @param mixed $sValue  Данные для валидации
+   * @param mixed $sValue Данные для валидации
    * @return bool|string
    */
-  public function validate($sValue) {
-    $sMethod=$this->method;
-    return $this->object->$sMethod($sValue,$this->params);
+  public function validate($sValue)
+  {
+    $sMethod = $this->method;
+    return $this->object->$sMethod($sValue, $this->params);
   }
 }
+
 ?>

@@ -21,15 +21,17 @@
  * @package blocks
  * @since 1.0
  */
-class BlockTags extends Block {
+class BlockTags extends Block
+{
   /**
    * Запуск обработки
    */
-  public function Exec() {
+  public function Exec()
+  {
     /**
      * Получаем список тегов
      */
-    $aTags=$this->oEngine->Topic_GetOpenTopicTags(Config::Get('block.tags.tags_count'));
+    $aTags = $this->oEngine->Topic_GetOpenTopicTags(Config::Get('block.tags.tags_count'));
     /**
      * Расчитываем логарифмическое облако тегов
      */
@@ -38,13 +40,13 @@ class BlockTags extends Block {
       /**
        * Устанавливаем шаблон вывода
        */
-      $this->Viewer_Assign("aTags",$aTags);
+      $this->Viewer_Assign("aTags", $aTags);
     }
     /**
      * Теги пользователя
      */
-    if ($oUserCurrent=$this->User_getUserCurrent()) {
-      $aTags=$this->oEngine->Topic_GetOpenTopicTags(Config::Get('block.tags.personal_tags_count'), $oUserCurrent->getId());
+    if ($oUserCurrent = $this->User_getUserCurrent()) {
+      $aTags = $this->oEngine->Topic_GetOpenTopicTags(Config::Get('block.tags.personal_tags_count'), $oUserCurrent->getId());
       /**
        * Расчитываем логарифмическое облако тегов
        */
@@ -53,9 +55,10 @@ class BlockTags extends Block {
         /**
          * Устанавливаем шаблон вывода
          */
-        $this->Viewer_Assign("aTagsUser",$aTags);
+        $this->Viewer_Assign("aTagsUser", $aTags);
       }
     }
   }
 }
+
 ?>

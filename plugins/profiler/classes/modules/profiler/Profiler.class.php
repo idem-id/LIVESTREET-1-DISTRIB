@@ -19,7 +19,8 @@
  * Модуль статических страниц
  *
  */
-class PluginProfiler_ModuleProfiler extends Module {
+class PluginProfiler_ModuleProfiler extends Module
+{
   /**
    * Меппер для сохранения логов в базу данных и формирования выборок по данным из базы
    *
@@ -42,9 +43,10 @@ class PluginProfiler_ModuleProfiler extends Module {
   /**
    * Инициализация модуля
    */
-  public function Init() {
-    $this->oMapper=Engine::GetMapper(__CLASS__);
-    $this->hLog = @fopen(Config::Get('path.root.server').'/logs/'.Config::Get('sys.logs.profiler_file'),'r+');
+  public function Init()
+  {
+    $this->oMapper = Engine::GetMapper(__CLASS__);
+    $this->hLog = @fopen(Config::Get('path.root.server') . '/logs/' . Config::Get('sys.logs.profiler_file'), 'r+');
   }
 
   /**
@@ -53,7 +55,8 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  PluginProfiler_ModuleProfiler_EntityEntry $oEntry
    * @return bool
    */
-  public function AddEntry(PluginProfiler_ModuleProfiler_EntityEntry $oEntry) {
+  public function AddEntry(PluginProfiler_ModuleProfiler_EntityEntry $oEntry)
+  {
     return $this->oMapper->AddEntry($oEntry);
   }
 
@@ -63,25 +66,26 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  string $sPath
    * @return PluginProfiler_ModuleProfiler_EntityEntry
    */
-  public function ReadEntry() {
+  public function ReadEntry()
+  {
     /**
      * Если хендлер не определен, или лог закончен, вовращаем null
      */
-    if(!$this->hLog or feof($this->hLog)) return null;
+    if (!$this->hLog or feof($this->hLog)) return null;
     /**
      * Читаем следующую строку и формируем объект Entry
      */
-    $sLine=fgets($this->hLog);
-    if(!$sLine) return null;
+    $sLine = fgets($this->hLog);
+    if (!$sLine) return null;
 
     $aTime = array();
     list(
-      $aTime['request_date'],$aTime['request_id'],$aTime['time_full'],
-      $aTime['time_start'],$aTime['time_stop'],$aTime['time_id'],
-      $aTime['time_pid'],$aTime['time_name'],$aTime['time_comment']
-      )=explode($this->sDataDelimiter,$sLine,9);
+      $aTime['request_date'], $aTime['request_id'], $aTime['time_full'],
+      $aTime['time_start'], $aTime['time_stop'], $aTime['time_id'],
+      $aTime['time_pid'], $aTime['time_name'], $aTime['time_comment']
+      ) = explode($this->sDataDelimiter, $sLine, 9);
 
-    return Engine::GetEntity('PluginProfiler_Profiler_Entry',$aTime);
+    return Engine::GetEntity('PluginProfiler_Profiler_Entry', $aTime);
   }
 
   /**
@@ -91,15 +95,16 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  string $sPath
    * @return bool|int
    */
-  public function UploadLog($sDateStart,$sPath=null) {
-    if($sPath) $this->hLog = @fopen($sPath,'r+');
-    if(!$this->hLog) return null;
+  public function UploadLog($sDateStart, $sPath = null)
+  {
+    if ($sPath) $this->hLog = @fopen($sPath, 'r+');
+    if (!$this->hLog) return null;
 
     rewind($this->hLog);
 
-    $iCount=0;
-    while($oEntry=$this->ReadEntry()) {
-      if(strtotime($oEntry->getDate())>strtotime($sDateStart)){
+    $iCount = 0;
+    while ($oEntry = $this->ReadEntry()) {
+      if (strtotime($oEntry->getDate()) > strtotime($sDateStart)) {
         $this->AddEntry($oEntry);
         $iCount++;
       }
@@ -113,7 +118,8 @@ class PluginProfiler_ModuleProfiler extends Module {
    *
    * @return string
    */
-  public function GetDatabaseStat() {
+  public function GetDatabaseStat()
+  {
     return $this->oMapper->GetDatabaseStat();
   }
 
@@ -122,7 +128,8 @@ class PluginProfiler_ModuleProfiler extends Module {
    *
    * @return bool
    */
-  public function EraseLog() {
+  public function EraseLog()
+  {
 
   }
 
@@ -131,14 +138,15 @@ class PluginProfiler_ModuleProfiler extends Module {
    * TODO: Реализовать кеширование данных
    *
    * @param  array $aFilter
-   * @param  int   $iPage
-   * @param  int   $iPerPage
+   * @param  int $iPage
+   * @param  int $iPerPage
    * @return array
    */
-  public function GetReportsByFilter($aFilter,$iPage,$iPerPage) {
-    $data=array(
-      'collection'=>$this->oMapper->GetReportsByFilter($aFilter,$iCount,$iPage,$iPerPage),
-      'count'=>$iCount
+  public function GetReportsByFilter($aFilter, $iPage, $iPerPage)
+  {
+    $data = array(
+      'collection' => $this->oMapper->GetReportsByFilter($aFilter, $iCount, $iPage, $iPerPage),
+      'count' => $iCount
     );
 
     return $data;
@@ -151,18 +159,19 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  int $sId
    * @return ProfileEntity_Report
    */
-  public function GetReportById($sId,$sPid=null) {
-    $aReportRows=$this->oMapper->GetReportById($sId,$sPid);
-    if(count($aReportRows)) {
+  public function GetReportById($sId, $sPid = null)
+  {
+    $aReportRows = $this->oMapper->GetReportById($sId, $sPid);
+    if (count($aReportRows)) {
       /**
        * Если запрошена часть записей, отдельно получаем статистику общей выборки
        */
       $aStat = !is_null($sPid)
         ? $this->GetReportStatById($sId)
         : array(
-          'count'     => 0,
-          'query'     => 0,
-          'modules'   => array(),
+          'count' => 0,
+          'query' => 0,
+          'modules' => array(),
           'time_full' => 0
         );
 
@@ -170,13 +179,13 @@ class PluginProfiler_ModuleProfiler extends Module {
       $aEntries = $this->BuildEntriesRecursive($aReportRows);
       foreach ($aEntries as $oEntry) {
         $oReport->addEntry($oEntry);
-        if(is_null($sPid)) {
+        if (is_null($sPid)) {
           /**
            * Заполняем статистику
            */
           $aStat['count']++;
-          $aStat['time_full']=max($aStat['time_full'],$oEntry->getTimeFull());
-          if($oEntry->getName()=='query') $aStat['query']++;
+          $aStat['time_full'] = max($aStat['time_full'], $oEntry->getTimeFull());
+          if ($oEntry->getName() == 'query') $aStat['query']++;
         }
       }
 
@@ -193,41 +202,43 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  string $sId
    * @return array
    */
-  public function GetReportStatById($sId) {
+  public function GetReportStatById($sId)
+  {
     $aStat = array(
-      'count'     => 0,
-      'query'     => 0,
-      'modules'   => array(),
+      'count' => 0,
+      'query' => 0,
+      'modules' => array(),
       'time_full' => 0
     );
 
-    $aReportRows=$this->oMapper->GetReportStatById($sId);
+    $aReportRows = $this->oMapper->GetReportStatById($sId);
     foreach ($aReportRows as $aEntry) {
       $aStat['count']++;
-      $aStat['time_full']=max($aStat['time_full'],$aEntry['time_full']);
+      $aStat['time_full'] = max($aStat['time_full'], $aEntry['time_full']);
       /**
        * Является ли запросом
        */
-      if($aEntry['time_name']=='query') $aStat['query']++;
+      if ($aEntry['time_name'] == 'query') $aStat['query']++;
     }
     return $aStat;
   }
 
-  protected function BuildEntriesRecursive($aEntries,$bBegin=true) {
+  protected function BuildEntriesRecursive($aEntries, $bBegin = true)
+  {
     static $aResultEntries;
     static $iLevel;
     if ($bBegin) {
-      $aResultEntries=array();
-      $iLevel=0;
+      $aResultEntries = array();
+      $iLevel = 0;
     }
     foreach ($aEntries as $aEntry) {
-      $aTemp=$aEntry;
-      $aTemp['level']=$iLevel;
+      $aTemp = $aEntry;
+      $aTemp['level'] = $iLevel;
       unset($aTemp['childNodes']);
-      $aResultEntries[]=Engine::GetEntity('PluginProfiler_Profiler_Entry',$aTemp);
-      if (isset($aEntry['childNodes']) and count($aEntry['childNodes'])>0) {
+      $aResultEntries[] = Engine::GetEntity('PluginProfiler_Profiler_Entry', $aTemp);
+      if (isset($aEntry['childNodes']) and count($aEntry['childNodes']) > 0) {
         $iLevel++;
-        $this->BuildEntriesRecursive($aEntry['childNodes'],false);
+        $this->BuildEntriesRecursive($aEntry['childNodes'], false);
       }
     }
     $iLevel--;
@@ -241,9 +252,11 @@ class PluginProfiler_ModuleProfiler extends Module {
    * @param  array|int $aIds
    * @return bool
    */
-  public function DeleteEntryByRequestId($aIds) {
-    if(!is_array($aIds)) $aIds = array($aIds);
+  public function DeleteEntryByRequestId($aIds)
+  {
+    if (!is_array($aIds)) $aIds = array($aIds);
     return $this->oMapper->DeleteEntryByRequestId($aIds);
   }
 }
+
 ?>

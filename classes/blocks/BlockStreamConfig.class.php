@@ -21,11 +21,13 @@
  * @package blocks
  * @since 1.0
  */
-class BlockStreamConfig extends Block {
+class BlockStreamConfig extends Block
+{
   /**
    * Запуск обработки
    */
-  public function Exec() {
+  public function Exec()
+  {
     /**
      * пользователь авторизован?
      */

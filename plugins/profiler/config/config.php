@@ -14,7 +14,7 @@
 *
 ---------------------------------------------------------
 */
-$config['per_page']   = 15;  // Число profiler-отчетов на одну страницу
+$config['per_page'] = 15;  // Число profiler-отчетов на одну страницу
 
 Config::Set('db.table.profiler', '___db.table.prefix___profiler');
 Config::Set('router.page.profiler', 'PluginProfiler_ActionProfiler');

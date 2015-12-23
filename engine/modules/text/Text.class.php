@@ -15,7 +15,7 @@
 ---------------------------------------------------------
 */
 
-require_once(Config::Get('path.root.engine').'/lib/external/Jevix/jevix.class.php');
+require_once(Config::Get('path.root.engine') . '/lib/external/Jevix/jevix.class.php');
 
 /**
  * Модуль обработки текста на основе типографа Jevix
@@ -28,7 +28,8 @@ require_once(Config::Get('path.root.engine').'/lib/external/Jevix/jevix.class.ph
  * @package engine.modules
  * @since 1.0
  */
-class ModuleText extends Module {
+class ModuleText extends Module
+{
   /**
    * Объект типографа
    *
@@ -40,41 +41,46 @@ class ModuleText extends Module {
    * Инициализация модуля
    *
    */
-  public function Init() {
+  public function Init()
+  {
     /**
      * Создаем объект типографа и запускаем его конфигурацию
      */
     $this->oJevix = new Jevix();
     $this->JevixConfig();
   }
+
   /**
    * Конфигурирует типограф
    *
    */
-  protected function JevixConfig() {
+  protected function JevixConfig()
+  {
     // загружаем конфиг
     $this->LoadJevixConfig();
   }
+
   /**
    * Загружает конфиг Jevix'а
    *
    * @param string $sType Тип конфига
-   * @param bool $bClear  Очищать предыдущий конфиг или нет
+   * @param bool $bClear Очищать предыдущий конфиг или нет
    */
-  public function LoadJevixConfig($sType='default',$bClear=true) {
+  public function LoadJevixConfig($sType = 'default', $bClear = true)
+  {
     if ($bClear) {
-      $this->oJevix->tagsRules=array();
+      $this->oJevix->tagsRules = array();
     }
-    $aConfig=Config::Get('jevix.'.$sType);
+    $aConfig = Config::Get('jevix.' . $sType);
     if (is_array($aConfig)) {
       foreach ($aConfig as $sMethod => $aExec) {
         foreach ($aExec as $aParams) {
-          if (in_array(strtolower($sMethod),array_map("strtolower",array('cfgSetTagCallbackFull','cfgSetTagCallback')))) {
-            if (isset($aParams[1][0]) and $aParams[1][0]=='_this_') {
-              $aParams[1][0]=$this;
+          if (in_array(strtolower($sMethod), array_map("strtolower", array('cfgSetTagCallbackFull', 'cfgSetTagCallback')))) {
+            if (isset($aParams[1][0]) and $aParams[1][0] == '_this_') {
+              $aParams[1][0] = $this;
             }
           }
-          call_user_func_array(array($this->oJevix,$sMethod), $aParams);
+          call_user_func_array(array($this->oJevix, $sMethod), $aParams);
         }
       }
       /**
@@ -82,48 +88,54 @@ class ModuleText extends Module {
        */
       unset($this->oJevix->entities1['&']); // разрешаем в параметрах символ &
       if (Config::Get('view.noindex') and isset($this->oJevix->tagsRules['a'])) {
-        $this->oJevix->cfgSetTagParamDefault('a','rel','nofollow',true);
+        $this->oJevix->cfgSetTagParamDefault('a', 'rel', 'nofollow', true);
       }
     }
   }
+
   /**
    * Возвращает объект Jevix
    *
    * @return Jevix
    */
-  public function GetJevix() {
+  public function GetJevix()
+  {
     return $this->oJevix;
   }
+
   /**
    * Парсинг текста с помощью Jevix
    *
-   * @param string $sText  Исходный текст
-   * @param array $aError  Возвращает список возникших ошибок
+   * @param string $sText Исходный текст
+   * @param array $aError Возвращает список возникших ошибок
    * @return string
    */
-  public function JevixParser($sText,&$aError=null) {
+  public function JevixParser($sText, &$aError = null)
+  {
     // Если конфиг пустой, то загружаем его
     if (!count($this->oJevix->tagsRules)) {
       $this->LoadJevixConfig();
     }
-    $sResult=$this->oJevix->parse($sText,$aError);
+    $sResult = $this->oJevix->parse($sText, $aError);
     return $sResult;
   }
+
   /**
    * Парсинг текста на предмет видео
    * Находит теги <pre><video></video></pre> и реобразовываетих в видео
    *
-   * @param string $sText  Исходный текст
+   * @param string $sText Исходный текст
    * @return string
    */
-  public function VideoParser($sText) {
+  public function VideoParser($sText)
+  {
     /**
      * youtube.com
      */
     $sText = preg_replace(
-        '/<video>(?:http(?:s|):|)(?:\/\/|)(?:www\.|)youtu(?:\.|)be(?:-nocookie|)(?:\.com|)\/(?:e(?:mbed|)\/|v\/|watch\?(?:.+&|)v=|)([a-zA-Z0-9_\-]+?)(&.+)?<\/video>/Ui',
-        '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe></div>',
-        $sText
+      '/<video>(?:http(?:s|):|)(?:\/\/|)(?:www\.|)youtu(?:\.|)be(?:-nocookie|)(?:\.com|)\/(?:e(?:mbed|)\/|v\/|watch\?(?:.+&|)v=|)([a-zA-Z0-9_\-]+?)(&.+)?<\/video>/Ui',
+      '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe></div>',
+      $sText
     );
     /**
      * vimeo.com
@@ -139,22 +151,25 @@ class ModuleText extends Module {
     $sText = preg_replace('/<video>http:\/\/video\.yandex\.ru\/users\/([a-zA-Z0-9_\-]+)\/view\/(\d+).*<\/video>/i', '<object width="467" height="345"><param name="video" value="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect"></param><param name="allowFullScreen" value="true"></param><param name="scale" value="noscale"></param><embed src="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect" type="application/x-shockwave-flash" width="467" height="345" allowFullScreen="true" scale="noscale" ></embed></object>', $sText);
     return $sText;
   }
+
   /**
    * Парсит текст, применя все парсеры
    *
    * @param string $sText Исходный текст
    * @return string
    */
-  public function Parser($sText) {
+  public function Parser($sText)
+  {
     if (!is_string($sText)) {
       return '';
     }
-    $sResult=$this->FlashParamParser($sText);
-    $sResult=$this->JevixParser($sResult);
-    $sResult=$this->VideoParser($sResult);
-    $sResult=$this->CodeSourceParser($sResult);
+    $sResult = $this->FlashParamParser($sText);
+    $sResult = $this->JevixParser($sResult);
+    $sResult = $this->VideoParser($sResult);
+    $sResult = $this->CodeSourceParser($sResult);
     return $sResult;
   }
+
   /**
    * Заменяет все вхождения короткого тега <param/> на длиную версию <param></param>
    * Заменяет все вхождения короткого тега <embed/> на длиную версию <embed></embed>
@@ -162,49 +177,53 @@ class ModuleText extends Module {
    * @param string $sText Исходный текст
    * @return string
    */
-  protected function FlashParamParser($sText) {
-    if (preg_match_all("@(<\s*param\s*name\s*=\s*(?:\"|').*(?:\"|')\s*value\s*=\s*(?:\"|').*(?:\"|'))\s*/?\s*>(?!</param>)@Ui",$sText,$aMatch)) {
+  protected function FlashParamParser($sText)
+  {
+    if (preg_match_all("@(<\s*param\s*name\s*=\s*(?:\"|').*(?:\"|')\s*value\s*=\s*(?:\"|').*(?:\"|'))\s*/?\s*>(?!</param>)@Ui", $sText, $aMatch)) {
       foreach ($aMatch[1] as $key => $str) {
-        $str_new=$str.'></param>';
-        $sText=str_replace($aMatch[0][$key],$str_new,$sText);
+        $str_new = $str . '></param>';
+        $sText = str_replace($aMatch[0][$key], $str_new, $sText);
       }
     }
-    if (preg_match_all("@(<\s*embed\s*.*)\s*/?\s*>(?!</embed>)@Ui",$sText,$aMatch)) {
+    if (preg_match_all("@(<\s*embed\s*.*)\s*/?\s*>(?!</embed>)@Ui", $sText, $aMatch)) {
       foreach ($aMatch[1] as $key => $str) {
-        $str_new=$str.'></embed>';
-        $sText=str_replace($aMatch[0][$key],$str_new,$sText);
+        $str_new = $str . '></embed>';
+        $sText = str_replace($aMatch[0][$key], $str_new, $sText);
       }
     }
     /**
      * Удаляем все <param name="wmode" value="*"></param>
      */
-    if (preg_match_all("@(<param\s.*name=(?:\"|')wmode(?:\"|').*>\s*</param>)@Ui",$sText,$aMatch)) {
+    if (preg_match_all("@(<param\s.*name=(?:\"|')wmode(?:\"|').*>\s*</param>)@Ui", $sText, $aMatch)) {
       foreach ($aMatch[1] as $key => $str) {
-        $sText=str_replace($aMatch[0][$key],'',$sText);
+        $sText = str_replace($aMatch[0][$key], '', $sText);
       }
     }
     /**
      * А теперь после <object> добавляем <param name="wmode" value="opaque"></param>
      * Решение не фантан, но главное работает :)
      */
-    if (preg_match_all("@(<object\s.*>)@Ui",$sText,$aMatch)) {
+    if (preg_match_all("@(<object\s.*>)@Ui", $sText, $aMatch)) {
       foreach ($aMatch[1] as $key => $str) {
-        $sText=str_replace($aMatch[0][$key],$aMatch[0][$key].'<param name="wmode" value="opaque"></param>',$sText);
+        $sText = str_replace($aMatch[0][$key], $aMatch[0][$key] . '<param name="wmode" value="opaque"></param>', $sText);
       }
     }
     return $sText;
   }
+
   /**
    * Подсветка исходного кода
    *
    * @param string $sText Исходный текст
    * @return mixed
    */
-  public function CodeSourceParser($sText) {
-    $sText=str_replace("<code>",'<pre class="source"><code class="hljs">',$sText);
-    $sText=str_replace("</code>",'</code></pre>',$sText);
+  public function CodeSourceParser($sText)
+  {
+    $sText = str_replace("<code>", '<pre class="source"><code class="hljs">', $sText);
+    $sText = str_replace("</code>", '</code></pre>', $sText);
     return $sText;
   }
+
   /**
    * Производить резрезание текста по тегу cut.
    * Возвращаем массив вида:
@@ -219,10 +238,11 @@ class ModuleText extends Module {
    * @param  string $sText Исходный текст
    * @return array
    */
-  public function Cut($sText) {
+  public function Cut($sText)
+  {
     $sTextShort = $sText;
-    $sTextNew   = $sText;
-    $sTextCut   = null;
+    $sTextNew = $sText;
+    $sTextCut = null;
 
     if (preg_match("#^(.*)<cut([^>]*+)>(.*)$#Usi", $sText, $aMatch)) {
       $sTextShort = $aMatch[1];
@@ -234,24 +254,27 @@ class ModuleText extends Module {
 
     return array($sTextShort, $sTextNew, $sTextCut ? htmlspecialchars($sTextCut) : null);
   }
+
   /**
    * Обработка тега ls в тексте
    * <pre>
    * <ls user="admin" />
    * </pre>
    *
-   * @param string $sTag  Тег на ктором сработал колбэк
+   * @param string $sTag Тег на ктором сработал колбэк
    * @param array $aParams Список параметров тега
    * @return string
    */
-  public function CallbackTagLs($sTag,$aParams) {
-    $sText='';
+  public function CallbackTagLs($sTag, $aParams)
+  {
+    $sText = '';
     if (isset($aParams['user'])) {
-      if ($oUser=$this->User_getUserByLogin($aParams['user'])) {
-        $sText.="<a href=\"{$oUser->getUserWebPath()}\" class=\"ls-user\">{$oUser->getLogin()}</a> ";
+      if ($oUser = $this->User_getUserByLogin($aParams['user'])) {
+        $sText .= "<a href=\"{$oUser->getUserWebPath()}\" class=\"ls-user\">{$oUser->getLogin()}</a> ";
       }
     }
     return $sText;
   }
 }
+
 ?>

@@ -1,7 +1,9 @@
 <?php
 
-class PluginExample_ModuleExample extends Module {
+class PluginExample_ModuleExample extends Module
+{
 
 
 }
+
 ?>

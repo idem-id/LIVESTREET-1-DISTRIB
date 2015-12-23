@@ -24,32 +24,33 @@
  * @package engine
  * @since 1.0
  */
-abstract class Action extends LsObject {
+abstract class Action extends LsObject
+{
   /**
    * Список зарегистрированных евентов
    *
    * @var array
    */
-  protected $aRegisterEvent=array();
+  protected $aRegisterEvent = array();
   /**
    * Список параметров из URL
    * <pre>/action/event/param0/param1/../paramN/</pre>
    *
    * @var array
    */
-  protected $aParams=array();
+  protected $aParams = array();
   /**
    * Список совпадений по регулярному выражению для евента
    *
    * @var array
    */
-  protected $aParamsEventMatch=array('event'=>array(),'params'=>array());
+  protected $aParamsEventMatch = array('event' => array(), 'params' => array());
   /**
    * Объект ядра
    *
    * @var Engine|null
    */
-  protected $oEngine=null;
+  protected $oEngine = null;
   /**
    * Шаблон экшена
    * @see SetTemplate
@@ -57,33 +58,33 @@ abstract class Action extends LsObject {
    *
    * @var string|null
    */
-  protected $sActionTemplate=null;
+  protected $sActionTemplate = null;
   /**
    * Дефолтный евент
    * @see SetDefaultEvent
    *
    * @var string|null
    */
-  protected $sDefaultEvent=null;
+  protected $sDefaultEvent = null;
   /**
    * Текущий евент
    *
    * @var string|null
    */
-  protected $sCurrentEvent=null;
+  protected $sCurrentEvent = null;
   /**
    * Имя текущий евента
    * Позволяет именовать экшены на основе регулярных выражений
    *
    * @var string|null
    */
-  protected $sCurrentEventName=null;
+  protected $sCurrentEventName = null;
   /**
    * Текущий экшен
    *
    * @var null|string
    */
-  protected $sCurrentAction=null;
+  protected $sCurrentAction = null;
 
   /**
    * Конструктор
@@ -91,11 +92,12 @@ abstract class Action extends LsObject {
    * @param Engine $oEngine Объект ядра
    * @param string $sAction Название экшена
    */
-  public function __construct(Engine $oEngine, $sAction) {
+  public function __construct(Engine $oEngine, $sAction)
+  {
     $this->RegisterEvent();
-    $this->oEngine=$oEngine;
-    $this->sCurrentAction=$sAction;
-    $this->aParams=Router::GetParams();
+    $this->oEngine = $oEngine;
+    $this->sCurrentAction = $sAction;
+    $this->aParams = Router::GetParams();
   }
 
   /**
@@ -106,40 +108,42 @@ abstract class Action extends LsObject {
    * @param string $sEventName Название евента
    * @param string $sEventFunction Какой метод ему соответствует
    */
-  protected function AddEvent($sEventName,$sEventFunction) {
-    $this->AddEventPreg("/^{$sEventName}$/i",$sEventFunction);
+  protected function AddEvent($sEventName, $sEventFunction)
+  {
+    $this->AddEventPreg("/^{$sEventName}$/i", $sEventFunction);
   }
 
   /**
    * Добавляет евент в экшен, используя регулярное выражение для евента и параметров
    *
    */
-  protected function AddEventPreg() {
-    $iCountArgs=func_num_args();
-    if ($iCountArgs<2) {
+  protected function AddEventPreg()
+  {
+    $iCountArgs = func_num_args();
+    if ($iCountArgs < 2) {
       throw new Exception("Incorrect number of arguments when adding events");
     }
-    $aEvent=array();
+    $aEvent = array();
     /**
      * Последний параметр может быть массивом - содержать имя метода и имя евента(именованный евент)
      * Если указан только метод, то имя будет равным названию метода
      */
-    $aNames=(array)func_get_arg($iCountArgs-1);
-    $aEvent['method']=$aNames[0];
+    $aNames = (array)func_get_arg($iCountArgs - 1);
+    $aEvent['method'] = $aNames[0];
     if (isset($aNames[1])) {
-      $aEvent['name']=$aNames[1];
+      $aEvent['name'] = $aNames[1];
     } else {
-      $aEvent['name']=$aEvent['method'];
+      $aEvent['name'] = $aEvent['method'];
     }
-    if (!method_exists($this,$aEvent['method'])) {
-      throw new Exception("Method of the event not found: ".$aEvent['method']);
+    if (!method_exists($this, $aEvent['method'])) {
+      throw new Exception("Method of the event not found: " . $aEvent['method']);
     }
-    $aEvent['preg']=func_get_arg(0);
-    $aEvent['params_preg']=array();
-    for ($i=1;$i<$iCountArgs-1;$i++) {
-      $aEvent['params_preg'][]=func_get_arg($i);
+    $aEvent['preg'] = func_get_arg(0);
+    $aEvent['params_preg'] = array();
+    for ($i = 1; $i < $iCountArgs - 1; $i++) {
+      $aEvent['params_preg'][] = func_get_arg($i);
     }
-    $this->aRegisterEvent[]=$aEvent;
+    $this->aRegisterEvent[] = $aEvent;
   }
 
   /**
@@ -148,27 +152,28 @@ abstract class Action extends LsObject {
    *
    * @return mixed
    */
-  public function ExecEvent() {
-    $this->sCurrentEvent=Router::GetActionEvent();
-    if ($this->sCurrentEvent==null) {
-      $this->sCurrentEvent=$this->GetDefaultEvent();
+  public function ExecEvent()
+  {
+    $this->sCurrentEvent = Router::GetActionEvent();
+    if ($this->sCurrentEvent == null) {
+      $this->sCurrentEvent = $this->GetDefaultEvent();
       Router::SetActionEvent($this->sCurrentEvent);
     }
     foreach ($this->aRegisterEvent as $aEvent) {
-      if (preg_match($aEvent['preg'],$this->sCurrentEvent,$aMatch)) {
-        $this->aParamsEventMatch['event']=$aMatch;
-        $this->aParamsEventMatch['params']=array();
+      if (preg_match($aEvent['preg'], $this->sCurrentEvent, $aMatch)) {
+        $this->aParamsEventMatch['event'] = $aMatch;
+        $this->aParamsEventMatch['params'] = array();
         foreach ($aEvent['params_preg'] as $iKey => $sParamPreg) {
-          if (preg_match($sParamPreg,$this->GetParam($iKey,''),$aMatch)) {
-            $this->aParamsEventMatch['params'][$iKey]=$aMatch;
+          if (preg_match($sParamPreg, $this->GetParam($iKey, ''), $aMatch)) {
+            $this->aParamsEventMatch['params'][$iKey] = $aMatch;
           } else {
             continue 2;
           }
         }
-        $this->sCurrentEventName=$aEvent['name'];
-        $this->Hook_Run("action_event_".strtolower($this->sCurrentAction)."_before",array('event'=>$this->sCurrentEvent,'params'=>$this->GetParams()));
-        $result=call_user_func_array(array($this,$aEvent['method']),array());
-        $this->Hook_Run("action_event_".strtolower($this->sCurrentAction)."_after",array('event'=>$this->sCurrentEvent,'params'=>$this->GetParams()));
+        $this->sCurrentEventName = $aEvent['name'];
+        $this->Hook_Run("action_event_" . strtolower($this->sCurrentAction) . "_before", array('event' => $this->sCurrentEvent, 'params' => $this->GetParams()));
+        $result = call_user_func_array(array($this, $aEvent['method']), array());
+        $this->Hook_Run("action_event_" . strtolower($this->sCurrentAction) . "_after", array('event' => $this->sCurrentEvent, 'params' => $this->GetParams()));
         return $result;
       }
     }
@@ -180,8 +185,9 @@ abstract class Action extends LsObject {
    *
    * @param string $sEvent Имя евента
    */
-  public function SetDefaultEvent($sEvent) {
-    $this->sDefaultEvent=$sEvent;
+  public function SetDefaultEvent($sEvent)
+  {
+    $this->sDefaultEvent = $sEvent;
   }
 
   /**
@@ -189,17 +195,19 @@ abstract class Action extends LsObject {
    *
    * @return string
    */
-  public function GetDefaultEvent() {
+  public function GetDefaultEvent()
+  {
     return $this->sDefaultEvent;
   }
 
   /**
    * Возвращает элементы совпадения по регулярному выражению для евента
    *
-   * @param int|null $iItem  Номер совпадения
+   * @param int|null $iItem Номер совпадения
    * @return string|null
    */
-  protected function GetEventMatch($iItem=null) {
+  protected function GetEventMatch($iItem = null)
+  {
     if ($iItem) {
       if (isset($this->aParamsEventMatch['event'][$iItem])) {
         return $this->aParamsEventMatch['event'][$iItem];
@@ -210,14 +218,16 @@ abstract class Action extends LsObject {
       return $this->aParamsEventMatch['event'];
     }
   }
+
   /**
    * Возвращает элементы совпадения по регулярному выражению для параметров евента
    *
-   * @param int $iParamNum  Номер параметра, начинается с нуля
-   * @param int|null $iItem  Номер совпадения, начинается с нуля
+   * @param int $iParamNum Номер параметра, начинается с нуля
+   * @param int|null $iItem Номер совпадения, начинается с нуля
    * @return string|null
    */
-  protected function GetParamEventMatch($iParamNum,$iItem=null) {
+  protected function GetParamEventMatch($iParamNum, $iItem = null)
+  {
     if (!is_null($iItem)) {
       if (isset($this->aParamsEventMatch['params'][$iParamNum][$iItem])) {
         return $this->aParamsEventMatch['params'][$iParamNum][$iItem];
@@ -236,11 +246,12 @@ abstract class Action extends LsObject {
   /**
    * Получает параметр из URL по его номеру, если его нет то null
    *
-   * @param int $iOffset  Номер параметра, начинается с нуля
+   * @param int $iOffset Номер параметра, начинается с нуля
    * @return mixed
    */
-  public function GetParam($iOffset,$default=null) {
-    $iOffset=(int)$iOffset;
+  public function GetParam($iOffset, $default = null)
+  {
+    $iOffset = (int)$iOffset;
     return isset($this->aParams[$iOffset]) ? $this->aParams[$iOffset] : $default;
   }
 
@@ -249,7 +260,8 @@ abstract class Action extends LsObject {
    *
    * @return array
    */
-  public function GetParams() {
+  public function GetParams()
+  {
     return $this->aParams;
   }
 
@@ -261,9 +273,10 @@ abstract class Action extends LsObject {
    * @param int $iOffset Номер параметра, но по идеи может быть не только числом
    * @param string $value
    */
-  public function SetParam($iOffset,$value) {
-    Router::SetParam($iOffset,$value);
-    $this->aParams=Router::GetParams();
+  public function SetParam($iOffset, $value)
+  {
+    Router::SetParam($iOffset, $value);
+    $this->aParams = Router::GetParams();
   }
 
   /**
@@ -271,8 +284,9 @@ abstract class Action extends LsObject {
    *
    * @param string $sTemplate Путь до шаблона относительно общего каталога шаблонов
    */
-  protected function SetTemplate($sTemplate) {
-    $this->sActionTemplate=$sTemplate;
+  protected function SetTemplate($sTemplate)
+  {
+    $this->sActionTemplate = $sTemplate;
   }
 
   /**
@@ -280,17 +294,18 @@ abstract class Action extends LsObject {
    *
    * @param string $sTemplate Путь до шаблона относительно каталога шаблонов экшена
    */
-  protected function SetTemplateAction($sTemplate) {
-    $aDelegates = $this->Plugin_GetDelegationChain('action',$this->GetActionClass());
-    $sActionTemplatePath = $sTemplate.'.tpl';
-    foreach($aDelegates as $sAction) {
-      if(preg_match('/^(Plugin([\w]+)_)?Action([\w]+)$/i',$sAction,$aMatches)) {
-        $sTemplatePath = $this->Plugin_GetDelegate('template','actions/Action'.ucfirst($aMatches[3]).'/'.$sTemplate.'.tpl');
-        if(empty($aMatches[1])) {
+  protected function SetTemplateAction($sTemplate)
+  {
+    $aDelegates = $this->Plugin_GetDelegationChain('action', $this->GetActionClass());
+    $sActionTemplatePath = $sTemplate . '.tpl';
+    foreach ($aDelegates as $sAction) {
+      if (preg_match('/^(Plugin([\w]+)_)?Action([\w]+)$/i', $sAction, $aMatches)) {
+        $sTemplatePath = $this->Plugin_GetDelegate('template', 'actions/Action' . ucfirst($aMatches[3]) . '/' . $sTemplate . '.tpl');
+        if (empty($aMatches[1])) {
           $sActionTemplatePath = $sTemplatePath;
         } else {
-          $sTemplatePath = Plugin::GetTemplatePath($sAction).$sTemplatePath;
-          if(is_file($sTemplatePath)) {
+          $sTemplatePath = Plugin::GetTemplatePath($sAction) . $sTemplatePath;
+          if (is_file($sTemplatePath)) {
             $sActionTemplatePath = $sTemplatePath;
             break;
           }
@@ -306,7 +321,8 @@ abstract class Action extends LsObject {
    *
    * @return string
    */
-  public function GetTemplate() {
+  public function GetTemplate()
+  {
     if (is_null($this->sActionTemplate)) {
       $this->SetTemplateAction($this->sCurrentEvent);
     }
@@ -319,7 +335,8 @@ abstract class Action extends LsObject {
    *
    * @return string
    */
-  public function GetActionClass() {
+  public function GetActionClass()
+  {
     return Router::GetActionClass();
   }
 
@@ -328,7 +345,8 @@ abstract class Action extends LsObject {
    *
    * @return null|string
    */
-  public function GetCurrentEventName() {
+  public function GetCurrentEventName()
+  {
     return $this->sCurrentEventName;
   }
 
@@ -339,15 +357,17 @@ abstract class Action extends LsObject {
    *
    * @return string
    */
-  protected function EventNotFound() {
-    return Router::Action('error','404');
+  protected function EventNotFound()
+  {
+    return Router::Action('error', '404');
   }
 
   /**
    * Выполняется при завершение экшена, после вызова основного евента
    *
    */
-  public function EventShutdown() {
+  public function EventShutdown()
+  {
 
   }
 
@@ -359,8 +379,9 @@ abstract class Action extends LsObject {
    * @param array $aArgs Аргументы
    * @return mixed
    */
-  public function __call($sName,$aArgs) {
-    return $this->oEngine->_CallModule($sName,$aArgs);
+  public function __call($sName, $aArgs)
+  {
+    return $this->oEngine->_CallModule($sName, $aArgs);
   }
 
   /**
@@ -377,4 +398,5 @@ abstract class Action extends LsObject {
   abstract protected function RegisterEvent();
 
 }
+
 ?>

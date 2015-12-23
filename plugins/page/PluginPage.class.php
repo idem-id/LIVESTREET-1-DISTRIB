@@ -22,7 +22,8 @@ if (!class_exists('Plugin')) {
   die('Hacking attempt!');
 }
 
-class PluginPage extends Plugin {
+class PluginPage extends Plugin
+{
 
   protected $aInherits = array(
     'module' => array(
@@ -35,12 +36,13 @@ class PluginPage extends Plugin {
    * Активация плагина "Статические страницы".
    * Создание таблицы в базе данных при ее отсутствии.
    */
-  public function Activate() {
+  public function Activate()
+  {
     if (!$this->isTableExists('prefix_page')) {
       /**
        * При активации выполняем SQL дамп
        */
-      $this->ExportSQL(dirname(__FILE__).'/dump.sql');
+      $this->ExportSQL(dirname(__FILE__) . '/dump.sql');
     }
     return true;
   }
@@ -48,8 +50,10 @@ class PluginPage extends Plugin {
   /**
    * Инициализация плагина
    */
-  public function Init() {
+  public function Init()
+  {
 
   }
 }
+
 ?>

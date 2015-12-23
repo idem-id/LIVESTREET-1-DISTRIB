@@ -15,7 +15,6 @@ $config['view']['layout'] = 'full-width'; // Вариант оформления
 /* Заменить фоновое изображение на свое можно в папке "images" выбранной темы. */
 
 
-
 /*---------- NAVBAR ----------*/
 $config['navbar']['view'] = 'inverse'; // Вид навигационной панели.
 /* Возможные значения: default, inverse.
@@ -32,18 +31,15 @@ $config['navbar']['position'] = 'static-top'; // Положение навига
 $config['navbar']['container']['fluid'] = false; // Растянуть содержимое панели на всю ширину окна?
 
 
-
 /*---------- SITE NAME ----------*/
 $config['view']['config_sitename'] = true; // Использовать имя сайта прописанное в конфиге сайта?
 /* Если выставлено "false", ниже можно задать свое имя. */
 $config['view']['own_sitename'] = 'Site Name'; // Свое имя сайта (удобно при необходимости вывода краткого имени).
 
 
-
 /*---------- JUMBOTRON ----------*/
 $config['view']['jumbotron'] = false; // Выводить большое изображение в шапке?
 /* Заменить изображение на свое можно в папке "images" выбранной темы. */
-
 
 
 /*---------- META ----------*/
@@ -117,7 +113,6 @@ $config['masonry_7']['centerbar'] = false; // Выводить централь�
  */
 
 
-
 /*----------- TOPIC VIEWS SETTINGS ----------*/
 /* lg-preview (используется в ленте list_lg-preview) */
 $config['topic']['lg_preview']['img_size'] = '750crop'; // Размер превью для топика с большим изобржением (в соответствии с настройкой плагина «Main Preview»).
@@ -169,10 +164,6 @@ $config['sidebar']['blog_pages'] = true; // Выводить сайдбар на
 /* Если выставлено "false", то сайдбар не выводится на страницах коллективных блогов. */
 
 
-
-
-
-
 /*-------------------------------------------------------------------------------------------------------------------*/
 
 $config['head']['default']['js'] = Config::Get('head.default.js');
@@ -199,12 +190,12 @@ $config['head']['default']['css'] = array(
   "___path.static.skin___/themes/___view.theme___/style.css",
 
   /* Custom Theme */
-  "___path.static.skin___/themes/___view.theme___/icons/css/font-awesome.min.css" => array('merge'=>false),
-  "___path.static.skin___/themes/___view.theme___/theme.css" => array('merge'=>false),
+  "___path.static.skin___/themes/___view.theme___/icons/css/font-awesome.min.css" => array('merge' => false),
+  "___path.static.skin___/themes/___view.theme___/theme.css" => array('merge' => false),
 );
 
 /* CR */
-$config['custom']['cr'] = 'IkRldmVsb3Blci1LaXQiIGJ5IDxhIGhyZWY9Imh0dHA6Ly9rdWxlc2gtdmxhZGltaXIuYnkvIj7Qsk9GRtC60LA8L2E+LiBNb2RpZmljYXRpb24gYnkgPGEgaHJlZj0iLy9raXRzdW5lLnNvbGFyIj5LaXRzdW5lIFNvbGFyPC9hPg==';
+$config['custom']['cr'] = 'IkRldmVsb3Blci1LaXQiIGJ5IDxhIGhyZWY9Imh0dHA6Ly9rdWxlc2gtdmxhZGltaXIuYnkvIj7Qsk9GRtC60LA8L2E+';
 $config['custom']['cr'] = base64_decode($config['custom']['cr']);
 
 include_once('config.custom.php');

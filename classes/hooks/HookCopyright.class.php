@@ -21,23 +21,29 @@
  * @package hooks
  * @since 1.0
  */
-class HookCopyright extends Hook {
+class HookCopyright extends Hook
+{
   /**
    * Регистрируем хуки
    */
-  public function RegisterHook() {
-    $this->AddHook('template_copyright','CopyrightLink',__CLASS__,-100);
+  public function RegisterHook()
+  {
+    $this->AddHook('template_copyright', 'CopyrightLink', __CLASS__, -100);
   }
+
   /**
    * Обработка хука копирайта
    *
    * @return string
    */
-  public function CopyrightLink() {
+  public function CopyrightLink()
+  {
     /**
      * Выводим везде, кроме страницы списка блогов и списка всех комментов
      */
-    return '&copy; Powered by <a href="http://livestreetcms.org">LiveStreet CMS</a>';
+    $cr = 'JmNvcHk7IFBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2xpdmVzdHJlZXRjbXMub3JnIj5MaXZlU3RyZWV0IENNUzwvYT4uIE1vZGlmaWNhdGlvbiBieSA8YSBocmVmPSIvL2tpdHN1bmUuc29sYXIvIj5LaXRzdW5lIFNvbGFyPC9hPg==';
+    return base64_decode($cr);
   }
 }
+
 ?>

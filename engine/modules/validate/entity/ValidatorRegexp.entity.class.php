@@ -29,7 +29,8 @@
  * @package engine.modules.validate
  * @since 1.0
  */
-class ModuleValidate_EntityValidatorRegexp extends ModuleValidate_EntityValidator {
+class ModuleValidate_EntityValidatorRegexp extends ModuleValidate_EntityValidator
+{
   /**
    * Проверяющее регулярное выражение
    *
@@ -41,36 +42,38 @@ class ModuleValidate_EntityValidatorRegexp extends ModuleValidate_EntityValidato
    *
    * @var bool
    **/
-  public $not=false;
+  public $not = false;
   /**
    * Допускать или нет пустое значение
    *
    * @var bool
    */
-  public $allowEmpty=true;
+  public $allowEmpty = true;
 
   /**
    * Запуск валидации
    *
-   * @param mixed $sValue  Данные для валидации
+   * @param mixed $sValue Данные для валидации
    *
    * @return bool|string
    */
-  public function validate($sValue) {
+  public function validate($sValue)
+  {
     if (is_array($sValue)) {
-      return $this->getMessage($this->Lang_Get('validate_regexp_invalid_pattern',null,false),'msg');
+      return $this->getMessage($this->Lang_Get('validate_regexp_invalid_pattern', null, false), 'msg');
     }
-    if($this->allowEmpty && $this->isEmpty($sValue)) {
+    if ($this->allowEmpty && $this->isEmpty($sValue)) {
       return true;
     }
 
-    if($this->pattern===null) {
-      return $this->getMessage($this->Lang_Get('validate_regexp_invalid_pattern',null,false),'msg');
+    if ($this->pattern === null) {
+      return $this->getMessage($this->Lang_Get('validate_regexp_invalid_pattern', null, false), 'msg');
     }
-    if((!$this->not && !preg_match($this->pattern,$sValue)) || ($this->not && preg_match($this->pattern,$sValue))) {
-      return $this->getMessage($this->Lang_Get('validate_regexp_not_valid',null,false),'msg');
+    if ((!$this->not && !preg_match($this->pattern, $sValue)) || ($this->not && preg_match($this->pattern, $sValue))) {
+      return $this->getMessage($this->Lang_Get('validate_regexp_not_valid', null, false), 'msg');
     }
     return true;
   }
 }
+
 ?>

@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Русский языковой файл.
-* Содержит текстовки шаблона.
-*/
+ * Русский языковой файл.
+ * Содержит текстовки шаблона.
+ */
 return array(
   'footer_menu_user_profile' => 'Мой профиль',
   'footer_menu_user_quest_title' => 'Вы можете',
@@ -18,7 +18,7 @@ return array(
   'blog_join' => 'Читать',
   'blog_expand_info' => 'О блоге',
   'blog_fold_info' => 'Свернуть',
-  
+
   'profile_about_empty' => 'Пока ничего не известно...',
   'profile_about_edit' => 'Редактировать',
 );

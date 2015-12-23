@@ -21,7 +21,8 @@
  * @package modules.userfeed
  * @since 1.0
  */
-class ModuleUserfeed extends Module {
+class ModuleUserfeed extends Module
+{
   /**
    * Подписки на топики по блогу
    */
@@ -40,9 +41,11 @@ class ModuleUserfeed extends Module {
   /**
    * Инициализация модуля
    */
-  public function Init() {
-    $this->oMapper=Engine::GetMapper(__CLASS__);
+  public function Init()
+  {
+    $this->oMapper = Engine::GetMapper(__CLASS__);
   }
+
   /**
    * Подписать пользователя
    *
@@ -51,9 +54,11 @@ class ModuleUserfeed extends Module {
    * @param int $iTargetId ID цели подписки
    * @return bool
    */
-  public function subscribeUser($iUserId, $iSubscribeType, $iTargetId) {
+  public function subscribeUser($iUserId, $iSubscribeType, $iTargetId)
+  {
     return $this->oMapper->subscribeUser($iUserId, $iSubscribeType, $iTargetId);
   }
+
   /**
    * Отписать пользователя
    *
@@ -62,9 +67,11 @@ class ModuleUserfeed extends Module {
    * @param int $iTargetId ID цели подписки
    * @return bool
    */
-  public function unsubscribeUser($iUserId, $iSubscribeType, $iTargetId) {
+  public function unsubscribeUser($iUserId, $iSubscribeType, $iTargetId)
+  {
     return $this->oMapper->unsubscribeUser($iUserId, $iSubscribeType, $iTargetId);
   }
+
   /**
    * Получить ленту топиков по подписке
    *
@@ -73,19 +80,22 @@ class ModuleUserfeed extends Module {
    * @param int $iFromId Получить записи, начиная с указанной
    * @return array
    */
-  public function read($iUserId, $iCount = null, $iFromId = null) {
+  public function read($iUserId, $iCount = null, $iFromId = null)
+  {
     if (!$iCount) $iCount = Config::Get('module.userfeed.count_default');
     $aUserSubscribes = $this->oMapper->getUserSubscribes($iUserId);
     $aTopicsIds = $this->oMapper->readFeed($aUserSubscribes, $iCount, $iFromId);
     return $this->Topic_getTopicsAdditionalData($aTopicsIds);
   }
+
   /**
    * Получить список подписок пользователя
    *
    * @param int $iUserId ID пользователя, для которого загружаются подписки
    * @return array
    */
-  public function getUserSubscribes($iUserId) {
+  public function getUserSubscribes($iUserId)
+  {
     $aUserSubscribes = $this->oMapper->getUserSubscribes($iUserId);
     $aResult = array('blogs' => array(), 'users' => array());
     if (count($aUserSubscribes['blogs'])) {

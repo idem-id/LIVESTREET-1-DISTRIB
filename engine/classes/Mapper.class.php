@@ -22,7 +22,8 @@
  * @package engine
  * @since 1.0
  */
-abstract class Mapper extends LsObject {
+abstract class Mapper extends LsObject
+{
   /**
    * Объект подключения к базе данных
    *
@@ -35,9 +36,11 @@ abstract class Mapper extends LsObject {
    *
    * @param DbSimple_Generic_Database $oDb
    */
-  public function __construct(DbSimple_Generic_Database $oDb) {
+  public function __construct(DbSimple_Generic_Database $oDb)
+  {
     $this->oDb = $oDb;
   }
 
 }
+
 ?>

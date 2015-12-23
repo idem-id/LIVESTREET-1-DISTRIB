@@ -21,25 +21,29 @@
  * @package actions
  * @since 1.0
  */
-class ActionTag extends Action {
+class ActionTag extends Action
+{
   /**
    * Главное меню
    *
    * @var string
    */
-  protected $sMenuHeadItemSelect='blog';
+  protected $sMenuHeadItemSelect = 'blog';
 
   /**
    * Инициализация
    *
    */
-  public function Init() {
+  public function Init()
+  {
   }
+
   /**
    * Регистрация евентов
    */
-  protected function RegisterEvent() {
-    $this->AddEventPreg('/^.+$/i','/^(page([1-9]\d{0,5}))?$/i','EventTags');
+  protected function RegisterEvent()
+  {
+    $this->AddEventPreg('/^.+$/i', '/^(page([1-9]\d{0,5}))?$/i', 'EventTags');
   }
 
 
@@ -52,51 +56,55 @@ class ActionTag extends Action {
    * Отображение топиков
    *
    */
-  protected function EventTags() {
+  protected function EventTags()
+  {
     /**
      * Получаем тег из УРЛа
      */
-    $sTag=$this->sCurrentEvent;
+    $sTag = $this->sCurrentEvent;
     /**
      * Передан ли номер страницы
      */
-    $iPage=$this->GetParamEventMatch(0,2) ? $this->GetParamEventMatch(0,2) : 1;
+    $iPage = $this->GetParamEventMatch(0, 2) ? $this->GetParamEventMatch(0, 2) : 1;
     /**
      * Получаем список топиков
      */
-    $aResult=$this->Topic_GetTopicsByTag($sTag,$iPage,Config::Get('module.topic.per_page'));
-    $aTopics=$aResult['collection'];
+    $aResult = $this->Topic_GetTopicsByTag($sTag, $iPage, Config::Get('module.topic.per_page'));
+    $aTopics = $aResult['collection'];
     /**
      * Вызов хуков
      */
-    $this->Hook_Run('topics_list_show',array('aTopics'=>$aTopics));
+    $this->Hook_Run('topics_list_show', array('aTopics' => $aTopics));
     /**
      * Формируем постраничность
      */
-    $aPaging=$this->Viewer_MakePaging($aResult['count'],$iPage,Config::Get('module.topic.per_page'),Config::Get('pagination.pages.count'),Router::GetPath('tag').htmlspecialchars($sTag));
+    $aPaging = $this->Viewer_MakePaging($aResult['count'], $iPage, Config::Get('module.topic.per_page'), Config::Get('pagination.pages.count'), Router::GetPath('tag') . htmlspecialchars($sTag));
     /**
      * Загружаем переменные в шаблон
      */
-    $this->Viewer_Assign('aPaging',$aPaging);
-    $this->Viewer_Assign('aTopics',$aTopics);
-    $this->Viewer_Assign('sTag',$sTag);
+    $this->Viewer_Assign('aPaging', $aPaging);
+    $this->Viewer_Assign('aTopics', $aTopics);
+    $this->Viewer_Assign('sTag', $sTag);
     $this->Viewer_AddHtmlTitle($this->Lang_Get('tag_title'));
     $this->Viewer_AddHtmlTitle($sTag);
-    $this->Viewer_SetHtmlRssAlternate(Router::GetPath('rss').'tag/'.$sTag.'/',$sTag);
+    $this->Viewer_SetHtmlRssAlternate(Router::GetPath('rss') . 'tag/' . $sTag . '/', $sTag);
     /**
      * Устанавливаем шаблон вывода
      */
     $this->SetTemplateAction('index');
   }
+
   /**
    * Выполняется при завершении работы экшена
    *
    */
-  public function EventShutdown() {
+  public function EventShutdown()
+  {
     /**
      * Загружаем в шаблон необходимые переменные
      */
-    $this->Viewer_Assign('sMenuHeadItemSelect',$this->sMenuHeadItemSelect);
+    $this->Viewer_Assign('sMenuHeadItemSelect', $this->sMenuHeadItemSelect);
   }
 }
+
 ?>

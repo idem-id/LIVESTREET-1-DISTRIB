@@ -1,4 +1,5 @@
 <?php
+
 /*-------------------------------------------------------
 *
 *   LiveStreet Engine Social Networking
@@ -17,97 +18,151 @@
 
 class PluginPage_ModulePage_EntityPage extends Entity
 {
-  public function getId() {
+  public function getId()
+  {
     return $this->_getDataOne('page_id');
   }
-  public function getPid() {
+
+  public function getPid()
+  {
     return $this->_getDataOne('page_pid');
   }
-  public function getUrl() {
+
+  public function getUrl()
+  {
     return $this->_getDataOne('page_url');
   }
-  public function getUrlFull() {
+
+  public function getUrlFull()
+  {
     return $this->_getDataOne('page_url_full');
   }
-  public function getTitle() {
+
+  public function getTitle()
+  {
     return $this->_getDataOne('page_title');
   }
-  public function getText() {
+
+  public function getText()
+  {
     return $this->_getDataOne('page_text');
   }
-  public function getDateAdd() {
+
+  public function getDateAdd()
+  {
     return $this->_getDataOne('page_date_add');
   }
-  public function getDateEdit() {
+
+  public function getDateEdit()
+  {
     return $this->_getDataOne('page_date_edit');
   }
-  public function getSeoKeywords() {
+
+  public function getSeoKeywords()
+  {
     return $this->_getDataOne('page_seo_keywords');
   }
-  public function getSeoDescription() {
+
+  public function getSeoDescription()
+  {
     return $this->_getDataOne('page_seo_description');
   }
-  public function getActive() {
+
+  public function getActive()
+  {
     return $this->_getDataOne('page_active');
   }
-  public function getMain() {
+
+  public function getMain()
+  {
     return $this->_getDataOne('page_main');
   }
-  public function getSort() {
+
+  public function getSort()
+  {
     return $this->_getDataOne('page_sort');
   }
-  public function getAutoBr() {
+
+  public function getAutoBr()
+  {
     return $this->_getDataOne('page_auto_br');
   }
 
-  public function getLevel() {
+  public function getLevel()
+  {
     return $this->_getDataOne('level');
   }
 
 
+  public function setId($data)
+  {
+    $this->_aData['page_id'] = $data;
+  }
 
+  public function setPid($data)
+  {
+    $this->_aData['page_pid'] = $data;
+  }
 
-  public function setId($data) {
-    $this->_aData['page_id']=$data;
+  public function setUrl($data)
+  {
+    $this->_aData['page_url'] = $data;
   }
-  public function setPid($data) {
-    $this->_aData['page_pid']=$data;
+
+  public function setUrlFull($data)
+  {
+    $this->_aData['page_url_full'] = $data;
   }
-  public function setUrl($data) {
-    $this->_aData['page_url']=$data;
+
+  public function setTitle($data)
+  {
+    $this->_aData['page_title'] = $data;
   }
-  public function setUrlFull($data) {
-    $this->_aData['page_url_full']=$data;
+
+  public function setText($data)
+  {
+    $this->_aData['page_text'] = $data;
   }
-  public function setTitle($data) {
-    $this->_aData['page_title']=$data;
+
+  public function setDateAdd($data)
+  {
+    $this->_aData['page_date_add'] = $data;
   }
-  public function setText($data) {
-    $this->_aData['page_text']=$data;
+
+  public function setDateEdit($data)
+  {
+    $this->_aData['page_date_edit'] = $data;
   }
-  public function setDateAdd($data) {
-    $this->_aData['page_date_add']=$data;
+
+  public function setSeoKeywords($data)
+  {
+    $this->_aData['page_seo_keywords'] = $data;
   }
-  public function setDateEdit($data) {
-    $this->_aData['page_date_edit']=$data;
+
+  public function setSeoDescription($data)
+  {
+    $this->_aData['page_seo_description'] = $data;
   }
-  public function setSeoKeywords($data) {
-    $this->_aData['page_seo_keywords']=$data;
+
+  public function setActive($data)
+  {
+    $this->_aData['page_active'] = $data;
   }
-  public function setSeoDescription($data) {
-    $this->_aData['page_seo_description']=$data;
+
+  public function setMain($data)
+  {
+    $this->_aData['page_main'] = $data;
   }
-  public function setActive($data) {
-    $this->_aData['page_active']=$data;
+
+  public function setSort($data)
+  {
+    $this->_aData['page_sort'] = $data;
   }
-  public function setMain($data) {
-    $this->_aData['page_main']=$data;
-  }
-  public function setSort($data) {
-    $this->_aData['page_sort']=$data;
-  }
-  public function setAutoBr($data) {
-    $this->_aData['page_auto_br']=$data;
+
+  public function setAutoBr($data)
+  {
+    $this->_aData['page_auto_br'] = $data;
   }
 }
+
 ?>

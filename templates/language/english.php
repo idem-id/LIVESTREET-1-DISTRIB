@@ -1166,7 +1166,7 @@ return array(
   'date_hours_back_less' => 'Less than an hour ago',
   'today' => 'Today',
 
-  'timezone_list'=> array(
+  'timezone_list' => array(
     '-12' => '[UTC - 12] Baker Island Time',
     '-11' => '[UTC - 11] Niue Time, Samoa Standard Time',
     '-10' => '[UTC - 10] Hawaii-Aleutian Standard Time, Cook Island Time',

@@ -15,33 +15,35 @@
 ---------------------------------------------------------
 */
 
-$sDirRoot=dirname(dirname(dirname(__FILE__)));
-set_include_path(get_include_path().PATH_SEPARATOR.$sDirRoot);
+$sDirRoot = dirname(dirname(dirname(__FILE__)));
+set_include_path(get_include_path() . PATH_SEPARATOR . $sDirRoot);
 chdir($sDirRoot);
 
-require_once($sDirRoot."/config/loader.php");
-require_once($sDirRoot."/engine/classes/Cron.class.php");
+require_once($sDirRoot . "/config/loader.php");
+require_once($sDirRoot . "/engine/classes/Cron.class.php");
 
-class NotifyCron extends Cron {
+class NotifyCron extends Cron
+{
   /**
    * Выбираем пул заданий и рассылаем по ним e-mail
    */
-  public function Client() {
+  public function Client()
+  {
     $aNotifyTasks = $this->Notify_GetTasksDelayed(Config::Get('module.notify.per_process'));
-    
-    if(empty($aNotifyTasks)) {
+
+    if (empty($aNotifyTasks)) {
       $this->Log("No tasks are found.");
       return;
     }
     /**
      * Последовательно загружаем задания на публикацию
      */
-    $aArrayId=array();
+    $aArrayId = array();
     foreach ($aNotifyTasks as $oTask) {
       $this->Notify_SendTask($oTask);
-      $aArrayId[]=$oTask->getTaskId();
+      $aArrayId[] = $oTask->getTaskId();
     }
-    $this->Log("Send notify: ".count($aArrayId));
+    $this->Log("Send notify: " . count($aArrayId));
     /**
      * Удаляем отработанные задания
      */
@@ -49,11 +51,11 @@ class NotifyCron extends Cron {
   }
 }
 
-$sLockFilePath=Config::Get('sys.cache.dir').'notify.lock';
+$sLockFilePath = Config::Get('sys.cache.dir') . 'notify.lock';
 /**
- * Создаем объект крон-процесса, 
+ * Создаем объект крон-процесса,
  * передавая параметром путь к лок-файлу
  */
-$app=new NotifyCron($sLockFilePath);
+$app = new NotifyCron($sLockFilePath);
 print $app->Exec();
 ?>

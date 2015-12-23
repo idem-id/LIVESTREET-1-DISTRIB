@@ -21,24 +21,26 @@
  * @package actions
  * @since 1.0
  */
-class ActionRegistration extends Action {
+class ActionRegistration extends Action
+{
   /**
    * Инициализация
    *
    */
-  public function Init() {
+  public function Init()
+  {
     /**
      * Проверяем аторизован ли юзер
      */
     if ($this->User_IsAuthorization()) {
-      $this->Message_AddErrorSingle($this->Lang_Get('registration_is_authorization'),$this->Lang_Get('attention'));
+      $this->Message_AddErrorSingle($this->Lang_Get('registration_is_authorization'), $this->Lang_Get('attention'));
       return Router::Action('error');
     }
     /**
      * Если включены инвайты то перенаправляем на страницу регистрации по инвайтам
      */
-    if (!$this->User_IsAuthorization() and Config::Get('general.reg.invite') and !in_array(Router::GetActionEvent(),array('invite','activate','confirm')) and !$this->CheckInviteRegister()) {
-      return Router::Action('registration','invite');
+    if (!$this->User_IsAuthorization() and Config::Get('general.reg.invite') and !in_array(Router::GetActionEvent(), array('invite', 'activate', 'confirm')) and !$this->CheckInviteRegister()) {
+      return Router::Action('registration', 'invite');
     }
     $this->SetDefaultEvent('index');
     /**
@@ -46,18 +48,20 @@ class ActionRegistration extends Action {
      */
     $this->Viewer_AddHtmlTitle($this->Lang_Get('registration'));
   }
+
   /**
    * Регистрируем евенты
    *
    */
-  protected function RegisterEvent() {
-    $this->AddEvent('index','EventIndex');
-    $this->AddEvent('confirm','EventConfirm');
-    $this->AddEvent('activate','EventActivate');
-    $this->AddEvent('invite','EventInvite');
+  protected function RegisterEvent()
+  {
+    $this->AddEvent('index', 'EventIndex');
+    $this->AddEvent('confirm', 'EventConfirm');
+    $this->AddEvent('activate', 'EventActivate');
+    $this->AddEvent('invite', 'EventInvite');
 
-    $this->AddEvent('ajax-validate-fields','EventAjaxValidateFields');
-    $this->AddEvent('ajax-registration','EventAjaxRegistration');
+    $this->AddEvent('ajax-validate-fields', 'EventAjaxValidateFields');
+    $this->AddEvent('ajax-registration', 'EventAjaxRegistration');
   }
 
 
@@ -70,7 +74,8 @@ class ActionRegistration extends Action {
   /**
    * Ajax валидация форму регистрации
    */
-  protected function EventAjaxValidateFields() {
+  protected function EventAjaxValidateFields()
+  {
     /**
      * Устанавливаем формат Ajax ответа
      */
@@ -78,23 +83,23 @@ class ActionRegistration extends Action {
     /**
      * Создаем объект пользователя и устанавливаем сценарий валидации
      */
-    $oUser=Engine::GetEntity('ModuleUser_EntityUser');
+    $oUser = Engine::GetEntity('ModuleUser_EntityUser');
     $oUser->_setValidateScenario('registration');
     /**
      * Пробегаем по переданным полям/значениям и валидируем их каждое в отдельности
      */
-    $aFields=getRequest('fields');
+    $aFields = getRequest('fields');
     if (is_array($aFields)) {
-      foreach($aFields as $aField) {
+      foreach ($aFields as $aField) {
         if (isset($aField['field']) and isset($aField['value'])) {
-          $this->Hook_Run('registration_validate_field', array('aField'=>&$aField));
+          $this->Hook_Run('registration_validate_field', array('aField' => &$aField));
 
-          $sField=$aField['field'];
-          $sValue=$aField['value'];
+          $sField = $aField['field'];
+          $sValue = $aField['value'];
           /**
            * Список полей для валидации
            */
-          switch($sField){
+          switch ($sField) {
             case 'login':
               $oUser->setLogin($sValue);
               break;
@@ -118,7 +123,7 @@ class ActionRegistration extends Action {
           /**
            * Валидируем поле
            */
-          $oUser->_Validate(array($sField),false);
+          $oUser->_Validate(array($sField), false);
         }
       }
     }
@@ -129,13 +134,15 @@ class ActionRegistration extends Action {
       /**
        * Получаем ошибки
        */
-      $this->Viewer_AssignAjax('aErrors',$oUser->_getValidateErrors());
+      $this->Viewer_AssignAjax('aErrors', $oUser->_getValidateErrors());
     }
   }
+
   /**
    * Обработка Ajax регистрации
    */
-  protected function EventAjaxRegistration() {
+  protected function EventAjaxRegistration()
+  {
     /**
      * Устанавливаем формат Ajax ответа
      */
@@ -143,7 +150,7 @@ class ActionRegistration extends Action {
     /**
      * Создаем объект пользователя и устанавливаем сценарий валидации
      */
-    $oUser=Engine::GetEntity('ModuleUser_EntityUser');
+    $oUser = Engine::GetEntity('ModuleUser_EntityUser');
     $oUser->_setValidateScenario('registration');
     /**
      * Заполняем поля (данные)
@@ -160,20 +167,20 @@ class ActionRegistration extends Action {
      */
     if (Config::Get('general.reg.activation')) {
       $oUser->setActivate(0);
-      $oUser->setActivateKey(md5(func_generator().time()));
+      $oUser->setActivateKey(md5(func_generator() . time()));
     } else {
       $oUser->setActivate(1);
       $oUser->setActivateKey(null);
     }
-    $this->Hook_Run('registration_validate_before', array('oUser'=>$oUser));
+    $this->Hook_Run('registration_validate_before', array('oUser' => $oUser));
     /**
      * Запускаем валидацию
      */
     if ($oUser->_Validate()) {
-      $this->Hook_Run('registration_validate_after', array('oUser'=>$oUser));
+      $this->Hook_Run('registration_validate_after', array('oUser' => $oUser));
       $oUser->setPassword(md5($oUser->getPassword()));
       if ($this->User_Add($oUser)) {
-        $this->Hook_Run('registration_after', array('oUser'=>$oUser));
+        $this->Hook_Run('registration_after', array('oUser' => $oUser));
         /**
          * Убиваем каптчу
          */
@@ -185,7 +192,7 @@ class ActionRegistration extends Action {
         /**
          * Если юзер зарегистрировался по приглашению то обновляем инвайт
          */
-        if (Config::Get('general.reg.invite') and $oInvite=$this->User_GetInviteByCode($this->GetInviteRegister())) {
+        if (Config::Get('general.reg.invite') and $oInvite = $this->User_GetInviteByCode($this->GetInviteRegister())) {
           $oInvite->setUserToId($oUser->getId());
           $oInvite->setDateUsed(date("Y-m-d H:i:s"));
           $oInvite->setUsed(1);
@@ -198,24 +205,24 @@ class ActionRegistration extends Action {
           /**
            * Отправляем на мыло письмо о подтверждении регистрации
            */
-          $this->Notify_SendRegistrationActivate($oUser,getRequestStr('password'));
-          $this->Viewer_AssignAjax('sUrlRedirect',Router::GetPath('registration').'confirm/');
+          $this->Notify_SendRegistrationActivate($oUser, getRequestStr('password'));
+          $this->Viewer_AssignAjax('sUrlRedirect', Router::GetPath('registration') . 'confirm/');
         } else {
-          $this->Notify_SendRegistration($oUser,getRequestStr('password'));
-          $oUser=$this->User_GetUserById($oUser->getId());
+          $this->Notify_SendRegistration($oUser, getRequestStr('password'));
+          $oUser = $this->User_GetUserById($oUser->getId());
           /**
            * Сразу авторизуем
            */
-          $this->User_Authorization($oUser,false);
+          $this->User_Authorization($oUser, false);
           $this->DropInviteRegister();
           /**
            * Определяем URL для редиректа после авторизации
            */
-          $sUrl=Config::Get('module.user.redirect_after_registration');
+          $sUrl = Config::Get('module.user.redirect_after_registration');
           if (getRequestStr('return-path')) {
-            $sUrl=getRequestStr('return-path');
+            $sUrl = getRequestStr('return-path');
           }
-          $this->Viewer_AssignAjax('sUrlRedirect',$sUrl ? $sUrl : Config::Get('path.root.web'));
+          $this->Viewer_AssignAjax('sUrlRedirect', $sUrl ? $sUrl : Config::Get('path.root.web'));
           $this->Message_AddNoticeSingle($this->Lang_Get('registration_ok'));
         }
       } else {
@@ -226,46 +233,50 @@ class ActionRegistration extends Action {
       /**
        * Получаем ошибки
        */
-      $this->Viewer_AssignAjax('aErrors',$oUser->_getValidateErrors());
+      $this->Viewer_AssignAjax('aErrors', $oUser->_getValidateErrors());
     }
   }
+
   /**
    * Показывает страничку регистрации
    * Просто вывод шаблона
    */
-  protected function EventIndex() {
+  protected function EventIndex()
+  {
 
   }
+
   /**
    * Обрабатывает активацию аккаунта
    */
-  protected function EventActivate() {
-    $bError=false;
+  protected function EventActivate()
+  {
+    $bError = false;
     /**
      * Проверяет передан ли код активации
      */
-    $sActivateKey=$this->GetParam(0);
-    if (!func_check($sActivateKey,'md5')) {
-      $bError=true;
+    $sActivateKey = $this->GetParam(0);
+    if (!func_check($sActivateKey, 'md5')) {
+      $bError = true;
     }
     /**
      * Проверяет верный ли код активации
      */
-    if (!($oUser=$this->User_GetUserByActivateKey($sActivateKey))) {
-      $bError=true;
+    if (!($oUser = $this->User_GetUserByActivateKey($sActivateKey))) {
+      $bError = true;
     }
     /**
      *
      */
     if ($oUser and $oUser->getActivate()) {
-      $this->Message_AddErrorSingle($this->Lang_Get('registration_activate_error_reactivate'),$this->Lang_Get('error'));
+      $this->Message_AddErrorSingle($this->Lang_Get('registration_activate_error_reactivate'), $this->Lang_Get('error'));
       return Router::Action('error');
     }
     /**
      * Если что то не то
      */
     if ($bError) {
-      $this->Message_AddErrorSingle($this->Lang_Get('registration_activate_error_code'),$this->Lang_Get('error'));
+      $this->Message_AddErrorSingle($this->Lang_Get('registration_activate_error_code'), $this->Lang_Get('error'));
       return Router::Action('error');
     }
     /**
@@ -278,19 +289,21 @@ class ActionRegistration extends Action {
      */
     if ($this->User_Update($oUser)) {
       $this->DropInviteRegister();
-      $this->Viewer_Assign('bRefreshToHome',true);
-      $this->User_Authorization($oUser,false);
+      $this->Viewer_Assign('bRefreshToHome', true);
+      $this->User_Authorization($oUser, false);
       return;
     } else {
       $this->Message_AddErrorSingle($this->Lang_Get('system_error'));
       return Router::Action('error');
     }
   }
+
   /**
    * Обработка кода приглашения при включеном режиме инвайтов
    *
    */
-  protected function EventInvite() {
+  protected function EventInvite()
+  {
     if (!Config::Get('general.reg.invite')) {
       return parent::EventNotFound();
     }
@@ -302,53 +315,62 @@ class ActionRegistration extends Action {
        * проверяем код приглашения на валидность
        */
       if ($this->CheckInviteRegister()) {
-        $sInviteId=$this->GetInviteRegister();
+        $sInviteId = $this->GetInviteRegister();
       } else {
-        $sInviteId=getRequestStr('invite_code');
+        $sInviteId = getRequestStr('invite_code');
       }
-      $oInvate=$this->User_GetInviteByCode($sInviteId);
+      $oInvate = $this->User_GetInviteByCode($sInviteId);
       if ($oInvate) {
         if (!$this->CheckInviteRegister()) {
-          $this->Session_Set('invite_code',$oInvate->getCode());
+          $this->Session_Set('invite_code', $oInvate->getCode());
         }
         return Router::Action('registration');
       } else {
-        $this->Message_AddError($this->Lang_Get('registration_invite_code_error'),$this->Lang_Get('error'));
+        $this->Message_AddError($this->Lang_Get('registration_invite_code_error'), $this->Lang_Get('error'));
       }
     }
   }
+
   /**
    * Пытается ли юзер зарегистрироваться с помощью кода приглашения
    *
    * @return bool
    */
-  protected function CheckInviteRegister() {
+  protected function CheckInviteRegister()
+  {
     if ($this->Session_Get('invite_code')) {
       return true;
     }
     return false;
   }
+
   /**
    * Вожвращает код приглашения из сессии
    *
    * @return string
    */
-  protected function GetInviteRegister() {
+  protected function GetInviteRegister()
+  {
     return $this->Session_Get('invite_code');
   }
+
   /**
    * Удаляет код приглашения из сессии
    */
-  protected function DropInviteRegister() {
+  protected function DropInviteRegister()
+  {
     if (Config::Get('general.reg.invite')) {
       $this->Session_Drop('invite_code');
     }
   }
+
   /**
    * Просто выводит шаблон для подтверждения регистрации
    *
    */
-  protected function EventConfirm() {
+  protected function EventConfirm()
+  {
   }
 }
+
 ?>

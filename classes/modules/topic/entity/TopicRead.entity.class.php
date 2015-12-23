@@ -21,45 +21,55 @@
  * @package modules.topic
  * @since 1.0
  */
-class ModuleTopic_EntityTopicRead extends Entity {
+class ModuleTopic_EntityTopicRead extends Entity
+{
   /**
    * Возвращает ID топика
    *
    * @return int|null
    */
-  public function getTopicId() {
+  public function getTopicId()
+  {
     return $this->_getDataOne('topic_id');
   }
+
   /**
    * Возвращает ID пользователя
    *
    * @return int|null
    */
-  public function getUserId() {
+  public function getUserId()
+  {
     return $this->_getDataOne('user_id');
   }
+
   /**
    * Возвращает дату прочтения
    *
    * @return string|null
    */
-  public function getDateRead() {
+  public function getDateRead()
+  {
     return $this->_getDataOne('date_read');
   }
+
   /**
    * Возвращает число комментариев в последнем прочтении топика
    *
    * @return int|null
    */
-  public function getCommentCountLast() {
+  public function getCommentCountLast()
+  {
     return $this->_getDataOne('comment_count_last');
   }
+
   /**
    * Возвращает ID последнего комментария
    *
    * @return int|null
    */
-  public function getCommentIdLast() {
+  public function getCommentIdLast()
+  {
     return $this->_getDataOne('comment_id_last');
   }
 
@@ -69,40 +79,50 @@ class ModuleTopic_EntityTopicRead extends Entity {
    *
    * @param int $data
    */
-  public function setTopicId($data) {
-    $this->_aData['topic_id']=$data;
+  public function setTopicId($data)
+  {
+    $this->_aData['topic_id'] = $data;
   }
+
   /**
    * Устанавливает ID пользователя
    *
    * @param int $data
    */
-  public function setUserId($data) {
-    $this->_aData['user_id']=$data;
+  public function setUserId($data)
+  {
+    $this->_aData['user_id'] = $data;
   }
+
   /**
    * Устанавливает дату прочтения
    *
    * @param string $data
    */
-  public function setDateRead($data) {
-    $this->_aData['date_read']=$data;
+  public function setDateRead($data)
+  {
+    $this->_aData['date_read'] = $data;
   }
+
   /**
    * Устанавливает число комментариев в последнем прочтении топика
    *
    * @param int $data
    */
-  public function setCommentCountLast($data) {
-    $this->_aData['comment_count_last']=$data;
+  public function setCommentCountLast($data)
+  {
+    $this->_aData['comment_count_last'] = $data;
   }
+
   /**
    * Устанавливает ID последнего комментария
    *
    * @param int $data
    */
-  public function setCommentIdLast($data) {
-    $this->_aData['comment_id_last']=$data;
+  public function setCommentIdLast($data)
+  {
+    $this->_aData['comment_id_last'] = $data;
   }
 }
+
 ?>

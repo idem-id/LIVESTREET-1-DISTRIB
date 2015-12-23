@@ -16,7 +16,7 @@
 */
 
 /**
- * Русский языковой файл для плагина "Статические страницы" 
+ * Русский языковой файл для плагина "Статические страницы"
  */
 return array(
   /**
@@ -24,7 +24,7 @@ return array(
    */
   'about' => 'О проекте',
   'download' => 'Скачать',
-  
+
   'admin' => 'Управление статическими страницами',
   'create' => 'Создание новой страницы',
   'edit' => 'Редактирование страницы',
@@ -40,14 +40,14 @@ return array(
   'create_text_error' => 'Текст страницы должен быть от 1 до 50000 символов',
   'create_seo_keywords' => 'SEO keywords',
   'create_seo_keywords_notice' => 'Ключевые слова для SEO-оптимизации',
-  'create_seo_description' => 'SEO description',  
+  'create_seo_description' => 'SEO description',
   'create_seo_description_notice' => 'Описание для SEO-оптимизации',
   'create_sort' => 'Сортировка',
   'create_sort_notice' => 'Устанавливает сортировку при отображении',
   'create_sort_error' => 'Сортировка должна быть числом',
-  'create_active' => 'показывать страницу',  
+  'create_active' => 'показывать страницу',
   'create_auto_br' => 'автоматические переносы строк',
-  'create_main' => 'отображать на главной странице',  
+  'create_main' => 'отображать на главной странице',
   'create_submit_save' => 'сохранить',
   'create_submit_save_ok' => 'Новая страница добавлена',
   'create_submit_cancel' => 'отмена',

@@ -30,4 +30,4 @@ return array(
 
   'jumbotron_heading' => 'Hello, world!',
   'jumbotron_text' => 'Изменить расположение элементов данной области можно в файле <strong>jumbotron.tpl</strong>, изменить текст - в <strong>russian.php</strong>.',
-) + (include_once ('russian.custom.php'));
+) + (include_once('russian.custom.php'));

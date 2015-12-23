@@ -18,14 +18,16 @@
 /**
  * Module for plugin Sitemap
  */
-class PluginPage_ModuleSitemap extends PluginPage_Inherit_PluginSitemap_ModuleSitemap {
+class PluginPage_ModuleSitemap extends PluginPage_Inherit_PluginSitemap_ModuleSitemap
+{
 
   /**
    * Change data for Sitemap Index
    *
    * @return array
    */
-  public function getExternalCounters() {
+  public function getExternalCounters()
+  {
     $aCounters = parent::getExternalCounters();
     $aCounters['pages'] = ceil($this->PluginPage_Page_GetCountOfActivePages() / Config::Get('plugin.sitemap.objects_per_page'));
 
@@ -38,7 +40,8 @@ class PluginPage_ModuleSitemap extends PluginPage_Inherit_PluginSitemap_ModuleSi
    * @param integer $iCurrPage
    * @return array
    */
-  public function getDataForPages($iCurrPage) {
+  public function getDataForPages($iCurrPage)
+  {
     $iPerPage = Config::Get('plugin.sitemap.objects_per_page');
     $sCacheKey = "sitemap_pages_{$iCurrPage}_" . $iPerPage;
 

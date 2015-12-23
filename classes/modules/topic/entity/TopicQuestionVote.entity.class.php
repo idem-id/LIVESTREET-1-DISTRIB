@@ -21,29 +21,35 @@
  * @package modules.topic
  * @since 1.0
  */
-class ModuleTopic_EntityTopicQuestionVote extends Entity {
+class ModuleTopic_EntityTopicQuestionVote extends Entity
+{
   /**
    * Возвращает ID топика
    *
    * @return int|null
    */
-  public function getTopicId() {
+  public function getTopicId()
+  {
     return $this->_getDataOne('topic_id');
   }
+
   /**
    * Возвращает ID проголосовавшего пользователя
    *
    * @return int|null
    */
-  public function getVoterId() {
+  public function getVoterId()
+  {
     return $this->_getDataOne('user_voter_id');
   }
+
   /**
    * Возвращает номер варианта
    *
    * @return int|null
    */
-  public function getAnswer() {
+  public function getAnswer()
+  {
     return $this->_getDataOne('answer');
   }
 
@@ -52,24 +58,30 @@ class ModuleTopic_EntityTopicQuestionVote extends Entity {
    *
    * @param int $data
    */
-  public function setTopicId($data) {
-    $this->_aData['topic_id']=$data;
+  public function setTopicId($data)
+  {
+    $this->_aData['topic_id'] = $data;
   }
+
   /**
    * Устанавливает ID проголосовавшего пользователя
    *
    * @param int $data
    */
-  public function setVoterId($data) {
-    $this->_aData['user_voter_id']=$data;
+  public function setVoterId($data)
+  {
+    $this->_aData['user_voter_id'] = $data;
   }
+
   /**
    * Устанавливает номер варианта
    *
    * @param int $data
    */
-  public function setAnswer($data) {
-    $this->_aData['answer']=$data;
+  public function setAnswer($data)
+  {
+    $this->_aData['answer'] = $data;
   }
 }
+
 ?>

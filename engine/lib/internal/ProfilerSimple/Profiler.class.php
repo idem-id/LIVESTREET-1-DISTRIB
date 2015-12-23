@@ -14,19 +14,21 @@
 *
 ---------------------------------------------------------
 */
+
 /**
  * Ведение профайлинга
  *
  * @package engine.lib
  * @since 1.0
  */
-class ProfilerSimple {
+class ProfilerSimple
+{
   /**
    * Инстанция профайлера
    *
    * @var ProfilerSimple
    */
-  static protected $oInstance=null;
+  static protected $oInstance = null;
   /**
    * Массив данных
    *
@@ -50,7 +52,7 @@ class ProfilerSimple {
    *
    * @var int|null
    */
-  protected $iTimePidCurrent=null;
+  protected $iTimePidCurrent = null;
   /**
    * Статус активности профайлера
    *
@@ -62,49 +64,54 @@ class ProfilerSimple {
    *
    * @var string|null
    */
-  protected $sFileName=null;
+  protected $sFileName = null;
 
   /**
    * Инициализация
    *
-   * @param string $sFileName  Путь до файла лога профайлера
-   * @param bool $bEnable  Статус активности
+   * @param string $sFileName Путь до файла лога профайлера
+   * @param bool $bEnable Статус активности
    */
-  protected function __construct($sFileName,$bEnable) {
-    $this->bEnable=$bEnable;
-    $this->sFileName=$sFileName;
-    $this->sRequestId=func_generator(32);
-    $this->iTimeId=0;
+  protected function __construct($sFileName, $bEnable)
+  {
+    $this->bEnable = $bEnable;
+    $this->sFileName = $sFileName;
+    $this->sRequestId = func_generator(32);
+    $this->iTimeId = 0;
   }
+
   /**
    * Ограничиваем объект только одним экземпляром
    *
    * @static
-   * @param null $sFileName  Путь до файла лога профайлера
-   * @param bool $bEnable  Статус активности
+   * @param null $sFileName Путь до файла лога профайлера
+   * @param bool $bEnable Статус активности
    * @return ProfilerSimple
    */
-  static public function getInstance($sFileName=null,$bEnable=true) {
+  static public function getInstance($sFileName = null, $bEnable = true)
+  {
     if (isset(self::$oInstance)) {
       return self::$oInstance;
     } else {
-      self::$oInstance= new self($sFileName,$bEnable);
+      self::$oInstance = new self($sFileName, $bEnable);
       return self::$oInstance;
     }
   }
+
   /**
    * Запуск подсчета времени выполнения операции
    *
-   * @param string $sName  Название операции
-   * @param string $sComment  Описание
+   * @param string $sName Название операции
+   * @param string $sComment Описание
    * @return bool|int
    */
-  public function Start($sName,$sComment='') {
+  public function Start($sName, $sComment = '')
+  {
     if (!$this->bEnable) {
       return false;
     }
     $this->iTimeId++;
-    $this->aTimes[$this->sRequestId.$this->iTimeId]=array(
+    $this->aTimes[$this->sRequestId . $this->iTimeId] = array(
       'request_id' => $this->sRequestId,
       'time_id' => $this->iTimeId,
       'time_pid' => $this->iTimePidCurrent,
@@ -112,69 +119,78 @@ class ProfilerSimple {
       'time_comment' => $sComment,
       'time_start' => microtime(),
     );
-    $this->iTimePidCurrent=$this->iTimeId;
+    $this->iTimePidCurrent = $this->iTimeId;
     return $this->iTimeId;
   }
+
   /**
    * Завершение подсчета времени выполнения операции
    *
-   * @param int $iTimeId  Номер операции
+   * @param int $iTimeId Номер операции
    * @return bool
    */
-  public function Stop($iTimeId) {
-    if (!$this->bEnable or !$iTimeId or !isset($this->aTimes[$this->sRequestId.$iTimeId])) {
+  public function Stop($iTimeId)
+  {
+    if (!$this->bEnable or !$iTimeId or !isset($this->aTimes[$this->sRequestId . $iTimeId])) {
       return false;
     }
-    $this->aTimes[$this->sRequestId.$iTimeId]['time_stop']=microtime();
-    $this->aTimes[$this->sRequestId.$iTimeId]['time_full']=$this->GetTimeFull($iTimeId);
-    $this->iTimePidCurrent=$this->aTimes[$this->sRequestId.$iTimeId]['time_pid'];
+    $this->aTimes[$this->sRequestId . $iTimeId]['time_stop'] = microtime();
+    $this->aTimes[$this->sRequestId . $iTimeId]['time_full'] = $this->GetTimeFull($iTimeId);
+    $this->iTimePidCurrent = $this->aTimes[$this->sRequestId . $iTimeId]['time_pid'];
   }
+
   /**
    * Сохранение лога в файл
    *
    * @return bool
    */
-  public function Save() {
+  public function Save()
+  {
     if (!$this->bEnable or !$this->sFileName) {
       return false;
     }
-    if ($fp=fopen($this->sFileName,"a")) {
+    if ($fp = fopen($this->sFileName, "a")) {
       foreach ($this->aTimes as $aTime) {
         /**
          * Проверяем есть ли "открытые" счетчики
          */
         if (!isset($aTime['time_full'])) {
           $this->Stop($aTime['time_id']);
-          $aTime=$this->aTimes[$aTime['request_id'].$aTime['time_id']];
+          $aTime = $this->aTimes[$aTime['request_id'] . $aTime['time_id']];
         }
 
-        if(!isset($aTime['time_pid'])) $aTime['time_pid']=0;
-        if(isset($aTime['time_comment']) and $aTime['time_comment']!='') {
-          $aTime['time_comment'] = preg_replace('/\s{1,}/',' ',$aTime['time_comment']);
+        if (!isset($aTime['time_pid'])) $aTime['time_pid'] = 0;
+        if (isset($aTime['time_comment']) and $aTime['time_comment'] != '') {
+          $aTime['time_comment'] = preg_replace('/\s{1,}/', ' ', $aTime['time_comment']);
         }
-        $s=date('Y-m-d H:i:s')."\t{$aTime['request_id']}\t{$aTime['time_full']}\t{$aTime['time_start']}\t{$aTime['time_stop']}\t{$aTime['time_id']}\t{$aTime['time_pid']}\t{$aTime['time_name']}\t{$aTime['time_comment']}\r\n";
-        fwrite($fp,$s);
+        $s = date('Y-m-d H:i:s') . "\t{$aTime['request_id']}\t{$aTime['time_full']}\t{$aTime['time_start']}\t{$aTime['time_stop']}\t{$aTime['time_id']}\t{$aTime['time_pid']}\t{$aTime['time_name']}\t{$aTime['time_comment']}\r\n";
+        fwrite($fp, $s);
       }
       fclose($fp);
     }
   }
+
   /**
    * Сохраняем лог при завершении работы
    */
-  public function __destruct() {
+  public function __destruct()
+  {
     $this->Save();
   }
+
   /**
    * Вычисляет полное время замера
    *
-   * @param  int   $iTimeId  Номер операции
+   * @param  int $iTimeId Номер операции
    * @return float
    */
-  protected function GetTimeFull($iTimeId) {
-    list($iStartSeconds,$iStartGeneral)=explode(' ',$this->aTimes[$this->sRequestId.$iTimeId]['time_start'],2);
-    list($iStopSeconds,$iStopGeneral)=explode(' ',$this->aTimes[$this->sRequestId.$iTimeId]['time_stop'],2);
+  protected function GetTimeFull($iTimeId)
+  {
+    list($iStartSeconds, $iStartGeneral) = explode(' ', $this->aTimes[$this->sRequestId . $iTimeId]['time_start'], 2);
+    list($iStopSeconds, $iStopGeneral) = explode(' ', $this->aTimes[$this->sRequestId . $iTimeId]['time_stop'], 2);
 
-    return ($iStopSeconds-$iStartSeconds)+($iStopGeneral-$iStartGeneral);
+    return ($iStopSeconds - $iStartSeconds) + ($iStopGeneral - $iStartGeneral);
   }
 }
+
 ?>

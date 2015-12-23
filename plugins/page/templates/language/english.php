@@ -16,7 +16,7 @@
 */
 
 /**
- * English language file for plug-in "Static pages" 
+ * English language file for plug-in "Static pages"
  */
 return array(
   /**
@@ -24,7 +24,7 @@ return array(
    */
   'about' => 'About the project',
   'download' => 'Download',
-  
+
   'admin' => 'Administering static pages',
   'create' => 'Page creation',
   'edit' => 'Page editing',
@@ -45,7 +45,7 @@ return array(
   'create_sort' => 'Sort',
   'create_sort_notice' => 'Sets the sorting when displaying',
   'create_sort_error' => 'Sorting must be a number',
-  'create_active' => 'Show active page',  
+  'create_active' => 'Show active page',
   'create_auto_br' => 'auto BR (new line)',
   'create_main' => 'display on the main page',
   'create_submit_save' => 'Save',

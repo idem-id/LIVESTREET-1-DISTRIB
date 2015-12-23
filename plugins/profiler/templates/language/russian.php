@@ -20,30 +20,30 @@
  */
 return array(
   'report_page_title' => 'Профилирование',
-  
+
   'reports_title' => 'Отчеты о профилировании',
   'table_date' => 'Дата начала работы',
   'table_time_full' => 'Время работы',
   'table_count_id' => 'Количество профилей',
   'report_delete' => 'Удалить',
   'report_delete_confirm' => 'Вы уверены, что хотите удалить выбранные отчеты?',
-  
+
   'dbstat_title' => 'Информацию о базе данных',
   'dbstat_count' => 'Всего записей',
   'dbstat_max_date' => 'Последняя дата',
   'import_label' => 'Импортировать начиная с',
   'import_notice' => 'В любом читаемом формате, напрмиер, Y-m-d H:i',
   'import_submit' => 'Импортировать в БД',
-  
+
   'report_delete_success' => 'Отчеты успешно удалены из базы данных',
   'report_delete_error' => 'При удалении отчетов произошла ошибка',
   'import_report_success' => 'Импортировано записей: %%count%%',
   'import_report_error' => 'При импорте отчетов в базу данных произошла ошибка',
-  
+
   'entries_show_all' => 'Показать все',
   'entries_show_tree' => 'Вывести дерево',
   'entries_show_query' => 'Запросы к БД',
-  
+
   'filter_title' => 'Фильтровать',
   'filter_highlight' => 'Подсветить',
   'filter_seconds' => 'секунд',

@@ -1,8 +1,8 @@
 <?php
 
 /**
-* English language file.
-*/
+ * English language file.
+ */
 return array(
   'footer_menu_user_profile' => 'My profile',
   'footer_menu_user_quest_title' => 'You do',
@@ -17,7 +17,7 @@ return array(
   'blog_join' => 'Join',
   'blog_expand_info' => 'About blog',
   'blog_fold_info' => 'Hide',
-  
+
   'profile_about_empty' => 'Empty...',
   'profile_about_edit' => 'Edit',
 );
