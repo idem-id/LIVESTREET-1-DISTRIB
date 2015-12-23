@@ -16,7 +16,7 @@
   <article itemprop="comment" itemscope="" itemtype="http://schema.org/Comment">
     {if !$oComment->getDelete() or $bOneComment or ($oUserCurrent and $oUserCurrent->isAdministrator())}
       <header class="comment-header">
-        <a name="comment{$oComment->getId()}"></a>
+        <a id="comment{$oComment->getId()}"></a>
         <a href="{$oUser->getUserWebPath()}"><img src="{$oUser->getProfileAvatarPath(48)}" alt="{$oUser->getLogin()}" class="comment-avatar" /></a>
 
         <ul class="list-unstyled small comment-info">

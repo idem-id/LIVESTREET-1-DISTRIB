@@ -23,8 +23,6 @@
           </div>
         </div>
       {/if}
-
-      <a name="comments"></a>
     </header>
 
 

@@ -9,7 +9,6 @@
 {/if}
 
 <article class="topic topic-type-{$oTopic->getType()} js-topic" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <meta itemprop="mainEntityOfPage" itemid="{$oTopic->getUrl()}" />
   <meta itemprop="image" content="{$topicImg}" />
   <meta itemprop="commentCount" content="{$oTopic->getCountComment()}" />
   <meta itemprop="dateModified" content="{$oTopic->getDateEdit()}" />

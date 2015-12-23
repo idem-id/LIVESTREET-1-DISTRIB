@@ -4,7 +4,7 @@
   <h1>{$aLang.people}</h1>
 </div>
 
-<form action="" method="POST" id="form-users-search" onsubmit="return false;" class="search-item">
+<form action="#" method="POST" id="form-users-search" onsubmit="return false;" class="search-item">
   <input id="search-user-login" type="text" placeholder="{$aLang.user_search_title_hint}" autocomplete="off" name="user_login" value="" class="form-control" onkeyup="ls.timer.run(ls.user.searchUsers,'users_search',['form-users-search'],1000);">
   <ul id="user-prefix-filter" class="list-unstyled list-inline search-abc">
     <li class="active"><a href="#" class="link-dotted" onclick="return ls.user.searchUsersByPrefix('',this);">{$aLang.user_search_filter_all}</a></li>
