@@ -54,6 +54,15 @@
 
 
 <div class="blog">
+  <!-- breadcrumbs -->
+  <div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="{cfg name='path.root.web'}" itemprop="url"><meta itemprop="title" content="{cfg name='view.name'}" /></a>
+  </div>
+  <div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="{$oBlog->getUrlFull()}" itemprop="url"><meta itemprop="title" content="{$oBlog->getTitle()|escape:'html'}" /></a>
+  </div>
+  <!-- / breadcrumbs -->
+
   <header class="blog-header">
     {if {cfg name='custom.blog.vote'}}
       <div id="vote_area_blog_{$oBlog->getId()}" class="small vote {if $oBlog->getRating() > 0}vote-count-positive{elseif $oBlog->getRating() < 0}vote-count-negative{/if} {if $oVote} voted {if $oVote->getDirection()>0}voted-up{elseif $oVote->getDirection()<0}voted-down{/if}{/if}">

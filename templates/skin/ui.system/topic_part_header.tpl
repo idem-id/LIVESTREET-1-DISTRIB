@@ -9,9 +9,26 @@
 {/if}
 
 <article class="topic topic-type-{$oTopic->getType()} js-topic" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <!-- breadcrumbs -->
+  {if !$bTopicList}
+    <div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+      <a href="{cfg name='path.root.web'}" itemprop="url"><meta itemprop="title" content="{cfg name='view.name'}" /></a>
+    </div>
+    <div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+      <a href="{$oBlog->getUrlFull()}" itemprop="url"><meta itemprop="title" content="{$oBlog->getTitle()|escape:'html'}" /></a>
+    </div>
+    <div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+      <a href="{$oTopic->getUrl()}" itemprop="url"><meta itemprop="title" content="{$oTopic->getTitle()|escape:'html'}" /></a>
+    </div>
+  {/if}
+  <!-- / breadcrumbs -->
+
+  <!-- meta -->
   <meta itemprop="image" content="{$topicImg}" />
   <meta itemprop="commentCount" content="{$oTopic->getCountComment()}" />
   <meta itemprop="dateModified" content="{$oTopic->getDateEdit()}" />
+  <!-- / meta -->
+
   <header class="topic-header">
     {if $bTopicList}<h2 class="topic-title" itemprop="name headline">{else}<h1 class="topic-title" itemprop="name headline">{/if}
       {if $bTopicList}

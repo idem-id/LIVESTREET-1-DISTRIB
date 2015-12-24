@@ -1,5 +1,16 @@
+<!-- breadcrumbs -->
+<div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+  <a href="{cfg name='path.root.web'}" itemprop="url"><meta itemprop="title" content="{cfg name='view.name'}" /></a>
+</div>
+<div itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+  <a href="{$oUserProfile->getUserWebPath()}" itemprop="url"><meta itemprop="title" content="{$oUserProfile->getLogin()|escape:'html'}" /></a>
+</div>
+<!-- / breadcrumbs -->
+
+<!-- meta -->
 <meta itemprop="image" content="{$oUserProfile->getProfileFotoPath()}" />
 <meta itemprop="url" content="{$oUserProfile->getUserWebPath()}" />
+<!-- / meta -->
 
 <div class="profile">
   {hook run='profile_top_begin' oUserProfile=$oUserProfile}
