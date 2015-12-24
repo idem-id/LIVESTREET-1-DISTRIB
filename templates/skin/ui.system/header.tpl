@@ -169,7 +169,7 @@
           <div id="content-wrapper" role="main"
             class="{if $noSidebar
             || $sAction == 'search'
-            || $sAction == 'comments'}col-md-12{else}col-md-8{/if} content{if $sidebarPosition == 'left'} content-right{/if}"
+            || $sAction == 'comments'}col-md-12{else}col-md-9{/if} content{if $sidebarPosition == 'left'} content-right{/if}"
             {if $sMenuItemSelect=='profile'}itemscope="" itemtype="http://schema.org/Person"{/if}>
 
             {include file='nav_content.tpl'}

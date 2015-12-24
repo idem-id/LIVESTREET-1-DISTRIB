@@ -61,12 +61,16 @@ ls.userfeed = ( function ($) {
   };
 
   this.getMore = function () {
+    var getMore = $('#userfeed_get_more');
+    var getLastId = $('#userfeed_last_id');
+    var getLoadedTopics = $('#userfeed_loaded_topics');
+
     if (this.isBusy) {
       return;
     }
-    var lastId = $('#userfeed_last_id').val();
+    var lastId = getLastId.val();
     if (!lastId) return;
-    $('#userfeed_get_more').addClass('userfeed_loading');
+    getMore.addClass('userfeed_loading');
     this.isBusy = true;
 
     var url = aRouter['feed'] + 'get_more/';
@@ -75,13 +79,13 @@ ls.userfeed = ( function ($) {
     ls.hook.marker('getMoreBefore');
     ls.ajax(url, params, function (data) {
       if (!data.bStateError && data.topics_count) {
-        $('#userfeed_loaded_topics').append(data.result);
-        $('#userfeed_last_id').attr('value', data.iUserfeedLastId);
+        getLoadedTopics.append(data.result);
+        getLastId.attr('value', data.iUserfeedLastId);
       }
       if (!data.topics_count) {
-        $('#userfeed_get_more').hide();
+        getMore.hide();
       }
-      $('#userfeed_get_more').removeClass('userfeed_loading');
+      getMore.removeClass('userfeed_loading');
       ls.hook.run('ls_userfeed_get_more_after', [lastId, data]);
       this.isBusy = false;
     }.bind(this));

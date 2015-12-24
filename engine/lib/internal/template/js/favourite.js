@@ -60,11 +60,15 @@ ls.favourite = (function ($) {
   };
 
   this.showEditTags = function (idTarget, type, obj) {
+    var targetType = $('#favourite-form-tags-target-type');
+    var targetId = $('#favourite-form-tags-target-id');
+    var getTags = $('#favourite-form-tags-tags');
     var form = $('#favourite-form-tags');
-    $('#favourite-form-tags-target-type').val(type);
-    $('#favourite-form-tags-target-id').val(idTarget);
+
+    targetType.val(type);
+    targetId.val(idTarget);
     var text = '';
-    var tags = $('.js-favourite-tags-' + $('#favourite-form-tags-target-type').val() + '-' + $('#favourite-form-tags-target-id').val());
+    var tags = $('.js-favourite-tags-' + targetType.val() + '-' + targetId.val());
     tags.find('.js-favourite-tag-user a').each(function (k, tag) {
       if (text) {
         text = text + ', ' + $(tag).text();
@@ -72,7 +76,7 @@ ls.favourite = (function ($) {
         text = $(tag).text();
       }
     });
-    $('#favourite-form-tags-tags').val(text);
+    getTags.val(text);
     //$(obj).parents('.js-favourite-insert-after-form').after(form);
     form.jqmShow();
 
@@ -85,15 +89,18 @@ ls.favourite = (function ($) {
   };
 
   this.saveTags = function (form) {
+    var targetType = $('#favourite-form-tags-target-type');
+    var targetId = $('#favourite-form-tags-target-id');
     var url = aRouter['ajax'] + 'favourite/save-tags/';
+
     ls.hook.marker('saveTagsBefore');
     ls.ajaxSubmit(url, $(form), function (result) {
       if (result.bStateError) {
         ls.msg.error(null, result.sMsg);
       } else {
         this.hideEditTags();
-        var type = $('#favourite-form-tags-target-type').val();
-        var tags = $('.js-favourite-tags-' + type + '-' + $('#favourite-form-tags-target-id').val());
+        var type = targetType.val();
+        var tags = $('.js-favourite-tags-' + type + '-' + targetId.val());
         tags.find('.js-favourite-tag-user').detach();
         var edit = tags.find('.js-favourite-tag-edit');
         $.each(result.aTags, function (k, v) {

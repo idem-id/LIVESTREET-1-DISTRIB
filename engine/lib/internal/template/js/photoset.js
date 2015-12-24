@@ -105,6 +105,8 @@ ls.photoset = ( function ($) {
   };
 
   this.getMore = function (topic_id) {
+    var photosetImage = $('.photoset-image');
+
     if (this.isLoading) return;
     this.isLoading = true;
 
@@ -119,8 +121,8 @@ ls.photoset = ( function ($) {
             var image = '<li><a class="photoset-image" href="' + photo.path + '" rel="[photoset]" title="' + photo.description + '"><img src="' + photo.path_thumb + '" alt="' + photo.description + '" /></a></li>';
             $('#topic-photo-images').append(image);
             this.idLast = photo.id;
-            $('.photoset-image').unbind('click');
-            $('.photoset-image').prettyPhoto({
+            photosetImage.unbind('click');
+            photosetImage.prettyPhoto({
               social_tools: '',
               show_title: false,
               slideshow: false,
@@ -155,16 +157,18 @@ ls.photoset = ( function ($) {
   };
 
   this.showForm = function () {
+    var uploadForm = $('#photoset-upload-form');
     var $select = $('#photoset-start-upload');
+
     if ($select.length) {
       var pos = $select.offset();
       w = $select.outerWidth();
       h = $select.outerHeight();
       t = pos.top + h - 30 + 'px';
       l = pos.left - 15 + 'px';
-      $('#photoset-upload-form').css({'top': t, 'left': l});
+      uploadForm.css({'top': t, 'left': l});
     }
-    $('#photoset-upload-form').show();
+    uploadForm.show();
   };
 
   this.showMainPhoto = function (id) {

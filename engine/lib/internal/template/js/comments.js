@@ -38,16 +38,19 @@ ls.comments = (function ($) {
 
   // Добавляет комментарий
   this.add = function (formObj, targetId, targetType) {
+    var commentText = $('#form_comment_text');
+    var buttonSubmit = $('#comment-button-submit');
+
     if (this.options.wysiwyg) {
       $('#' + formObj + ' textarea').val(tinyMCE.activeEditor.getContent());
     }
     formObj = $('#' + formObj);
 
-    $('#form_comment_text').addClass(this.options.classes.form_loader).attr('readonly', true);
-    $('#comment-button-submit').attr('disabled', 'disabled');
+    commentText.addClass(this.options.classes.form_loader).attr('readonly', true);
+    buttonSubmit.attr('disabled', 'disabled');
 
     ls.ajax(this.options.type[targetType].url_add, formObj.serializeJSON(), function (result) {
-      $('#comment-button-submit').removeAttr('disabled');
+      buttonSubmit.removeAttr('disabled');
       if (!result) {
         this.enableFormComment();
         ls.msg.error('Error', 'Please try again later');
@@ -58,7 +61,7 @@ ls.comments = (function ($) {
         ls.msg.error(null, result.sMsg);
       } else {
         this.enableFormComment();
-        $('#form_comment_text').val('');
+        commentText.val('');
 
         // Load new comments
         this.load(targetId, targetType, result.sCommentId, true);
@@ -70,13 +73,17 @@ ls.comments = (function ($) {
 
   // Активирует форму
   this.enableFormComment = function () {
-    $('#form_comment_text').removeClass(this.options.classes.form_loader).attr('readonly', false);
+    var commentText = $('#form_comment_text');
+    commentText.removeClass(this.options.classes.form_loader).attr('readonly', false);
   };
 
 
   // Показывает/скрывает форму комментирования
   this.toggleCommentForm = function (idComment, bNoFocus) {
+    var commentText = $('#form_comment_text');
+    var commentReply = $('#form_comment_reply');
     var reply = $('#reply');
+
     if (!reply.length) {
       return;
     }
@@ -90,14 +97,14 @@ ls.comments = (function ($) {
       tinyMCE.execCommand('mceRemoveControl', true, 'form_comment_text');
     }
     reply.insertAfter('#comment_id_' + idComment).show();
-    $('#form_comment_text').val('');
-    $('#form_comment_reply').val(idComment);
+    commentText.val('');
+    commentReply.val(idComment);
 
     this.iCurrentShowFormComment = idComment;
     if (this.options.wysiwyg) {
       tinyMCE.execCommand('mceAddControl', true, 'form_comment_text');
     }
-    if (!bNoFocus) $('#form_comment_text').focus();
+    if (!bNoFocus) commentText.focus();
 
     if ($('html').hasClass('ie7')) {
       var inputs = $('input.input-text, textarea');
@@ -108,7 +115,9 @@ ls.comments = (function ($) {
 
   // Подгружает новые комментарии
   this.load = function (idTarget, typeTarget, selfIdComment, bNotFlushNew) {
-    var idCommentLast = $("#comment_last_id").val();
+    var lastId = $('#comment_last_id');
+    var countComments = $('#count-comments');
+    var idCommentLast = lastId.val();
 
     // Удаляем подсветку у комментариев
     if (!bNotFlushNew) {
@@ -143,8 +152,8 @@ ls.comments = (function ($) {
       } else {
         var aCmt = result.aComments;
         if (aCmt.length > 0 && result.iMaxIdComment) {
-          $("#comment_last_id").val(result.iMaxIdComment);
-          $('#count-comments').text(parseInt($('#count-comments').text()) + aCmt.length);
+          lastId.val(result.iMaxIdComment);
+          countComments.text(parseInt(countComments.text()) + aCmt.length);
           if (ls.blocks) {
             var curItemBlock = ls.blocks.getCurrentItem('stream');
             if (curItemBlock.data('type') == 'comment') {
@@ -184,19 +193,21 @@ ls.comments = (function ($) {
 
   // Вставка комментария
   this.inject = function (idCommentParent, idComment, sHtml) {
+    var commentWrapperId = $('#comment_wrapper_id_' + idCommentParent);
     var newComment = $('<div>', {
       'class': 'comment-wrapper',
       id: 'comment_wrapper_id_' + idComment
     }).html(sHtml);
+
     if (idCommentParent) {
       // Уровень вложенности родителя
-      var iCurrentTree = $('#comment_wrapper_id_' + idCommentParent).parentsUntil('#comments').length;
+      var iCurrentTree = commentWrapperId.parentsUntil('#comments').length;
       if (iCurrentTree == ls.registry.get('comment_max_tree')) {
         // Определяем id предыдушего родителя
-        var prevCommentParent = $('#comment_wrapper_id_' + idCommentParent).parent();
+        var prevCommentParent = commentWrapperId.parent();
         idCommentParent = parseInt(prevCommentParent.attr('id').replace('comment_wrapper_id_', ''));
       }
-      $('#comment_wrapper_id_' + idCommentParent).append(newComment);
+      commentWrapperId.append(newComment);
     } else {
       $('#comments').append(newComment);
     }
@@ -206,6 +217,7 @@ ls.comments = (function ($) {
 
   // Удалить/восстановить комментарий
   this.toggle = function (obj, commentId) {
+    var getCommentId = $('#comment_id_' + commentId);
     var url = aRouter['ajax'] + 'comment/delete/';
     var params = {idComment: commentId};
 
@@ -219,9 +231,9 @@ ls.comments = (function ($) {
       } else {
         ls.msg.notice(null, result.sMsg);
 
-        $('#comment_id_' + commentId).removeClass(this.options.classes.comment_self + ' ' + this.options.classes.comment_new + ' ' + this.options.classes.comment_deleted + ' ' + this.options.classes.comment_current);
+        getCommentId.removeClass(this.options.classes.comment_self + ' ' + this.options.classes.comment_new + ' ' + this.options.classes.comment_deleted + ' ' + this.options.classes.comment_current);
         if (result.bState) {
-          $('#comment_id_' + commentId).addClass(this.options.classes.comment_deleted);
+          getCommentId.addClass(this.options.classes.comment_deleted);
         }
         $(obj).text(result.sTextToggle);
         ls.hook.run('ls_comments_toggle_after', [obj, commentId, result]);
@@ -232,10 +244,12 @@ ls.comments = (function ($) {
 
   // Предпросмотр комментария
   this.preview = function (divPreview) {
+    var commentText = $('#form_comment_text');
+
     if (this.options.wysiwyg) {
-      $("#form_comment_text").val(tinyMCE.activeEditor.getContent());
+      commentText.val(tinyMCE.activeEditor.getContent());
     }
-    if ($("#form_comment_text").val() == '') return;
+    if (commentText.val() == '') return;
     $("#comment_preview_" + this.iCurrentShowFormComment).remove();
     $('#reply').before('<div id="comment_preview_' + this.iCurrentShowFormComment + '" class="comment-preview text"></div>');
     ls.tools.textPreview('form_comment_text', false, 'comment_preview_' + this.iCurrentShowFormComment);
@@ -244,10 +258,12 @@ ls.comments = (function ($) {
 
   // Устанавливает число новых комментариев
   this.setCountNewComment = function (count) {
+    var newCommentsCounter = $('#new_comments_counter');
+
     if (count > 0) {
-      $('#new_comments_counter').show().text(count);
+      newCommentsCounter.show().text(count);
     } else {
-      $('#new_comments_counter').text(0).hide();
+      newCommentsCounter.text(0).hide();
     }
   };
 
@@ -306,8 +322,8 @@ ls.comments = (function ($) {
     if (!this.options.folding) {
       return false;
     }
-    $(".folding").each(function (index, element) {
-      if ($(element).parent(".comment").next(".comment-wrapper").length == 0) {
+    $('.folding').each(function (index, element) {
+      if ($(element).parent('.comment').next('.comment-wrapper').length == 0) {
         $(element).hide();
       } else {
         $(element).show();
@@ -317,21 +333,21 @@ ls.comments = (function ($) {
   };
 
   this.expandComment = function (folding) {
-    $(folding).removeClass("folded").parent().nextAll(".comment-wrapper").show();
+    $(folding).removeClass('folded').parent().nextAll('.comment-wrapper').show();
   };
 
   this.collapseComment = function (folding) {
-    $(folding).addClass("folded").parent().nextAll(".comment-wrapper").hide();
+    $(folding).addClass('folded').parent().nextAll('.comment-wrapper').hide();
   };
 
   this.expandCommentAll = function () {
-    $.each($(".folding"), function (k, v) {
+    $.each($('.folding'), function (k, v) {
       this.expandComment(v);
     }.bind(this));
   };
 
   this.collapseCommentAll = function () {
-    $.each($(".folding"), function (k, v) {
+    $.each($('.folding'), function (k, v) {
       this.collapseComment(v);
     }.bind(this));
   };
@@ -358,8 +374,8 @@ ls.comments = (function ($) {
     });
 
     if (this.options.folding) {
-      $(".folding").click(function (e) {
-        if ($(e.target).hasClass("folded")) {
+      $('.folding').click(function (e) {
+        if ($(e.target).hasClass('folded')) {
           this.expandComment(e.target);
         } else {
           this.collapseComment(e.target);

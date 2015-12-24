@@ -28,10 +28,10 @@ body {
 .text {
   font-size: 14px;
   pre.source {
-    background-color: #f7f7f7;
-    border-color: #eaeaea;
     margin: 0;
     padding: 5px;
+    border-color: #eaeaea;
+    background-color: #f7f7f7;
   }
 }
 
@@ -215,7 +215,21 @@ form.search {
   }
   &.block-type-profile {
     .profile-photo-wrapper {
-      text-align: center;
+      .status {
+        display: block;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        box-shadow: 2px 2px 3px rgba(0,0,0,.2);
+        top: auto;
+        right: 5px;
+        bottom: 5px;
+        left: auto;
+        i.fa {
+          font-size: 16px;
+        }
+      }
     }
   }
 }

@@ -44,7 +44,8 @@ ls.blocks = (function ($) {
     var content = $('.js-block-' + block + '-content');
     this.showProgress(content);
 
-    $('.js-block-' + block + '-item').removeClass(this.options.active);
+    var item = $('.js-block-' + block + '-item');
+    item.removeClass(this.options.active);
     $(obj).addClass(this.options.active);
 
     ls.ajax(this.options.type[type].url, params, function (result) {
@@ -63,8 +64,10 @@ ls.blocks = (function ($) {
     /**
      * Если вкладку передаем как строчку - значение data-type
      */
+    var item = $('.js-block-' + block + '-item');
+
     if (typeof(obj) == 'string') {
-      $('.js-block-' + block + '-item').each(function (k, v) {
+      item.each(function (k, v) {
         if ($(v).data('type') == obj) {
           obj = v;
           return;
@@ -78,11 +81,14 @@ ls.blocks = (function ($) {
       return false;
     }
 
-    $('.js-block-' + block + '-item').removeClass(this.options.active);
+    var item = $('.js-block-' + block + '-item');
+    var content = $('.js-block-' + block + '-content');
+
+    item.removeClass(this.options.active);
     $(obj).addClass(this.options.active);
 
-    $('.js-block-' + block + '-content').hide();
-    $('.js-block-' + block + '-content').each(function (k, v) {
+    content.hide();
+    content.each(function (k, v) {
       if ($(v).data('type') == $(obj).data('type')) {
         $(v).show();
       }
@@ -121,23 +127,26 @@ ls.blocks = (function ($) {
   };
 
   this.getCurrentItem = function (block) {
-    if ($('.js-block-' + block + '-nav').is(':visible')) {
-      return $('.js-block-' + block + '-nav').find('.js-block-' + block + '-item.' + this.options.active);
+    var nav = $('.js-block-' + block + '-nav');
+    if (nav.is(':visible')) {
+      return nav.find('.js-block-' + block + '-item.' + this.options.active);
     } else {
       return $('.js-block-' + block + '-dropdown-items').find('.js-block-' + block + '-item.' + this.options.active);
     }
   };
 
   this.initSwitch = function (block) {
-    $('.js-block-' + block + '-item').click(function () {
+    var item = $('.js-block-' + block + '-item');
+    item.click(function () {
       ls.blocks.switchTab(this, block);
       return false;
     });
   };
 
   this.init = function (block, params) {
+    var item = $('.js-block-' + block + '-item');
     params = params || {};
-    $('.js-block-' + block + '-item').click(function () {
+    item.click(function () {
       ls.blocks.load(this, block);
       return false;
     });
@@ -156,9 +165,10 @@ ls.blocks = (function ($) {
   };
 
   this.initNavigation = function (block, count) {
+    var nav = $('.js-block-' + block + '-nav');
     count = count || 3;
-    if ($('.js-block-' + block + '-nav').find('li').length >= count) {
-      $('.js-block-' + block + '-nav').hide();
+    if (nav.find('li').length >= count) {
+      nav.hide();
       $('.js-block-' + block + '-dropdown').show();
       // Dropdown
       var trigger = $('.js-block-' + block + '-dropdown-trigger');
@@ -190,7 +200,7 @@ ls.blocks = (function ($) {
       });
     } else {
       // Transform nav to dropdown
-      $('.js-block-' + block + '-nav').show();
+      nav.show();
       $('.js-block-' + block + '-dropdown').hide();
     }
     ls.hook.run('ls_blocks_init_navigation_after', [block, count], this);

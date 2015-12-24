@@ -51,9 +51,7 @@
 
     <ul class="list-unstyled list-inline small topic-info">
       <li class="topic-info-author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <a href="{$oUser->getUserWebPath()}">
-          <img src="{$oUser->getProfileAvatarPath(24)}" alt="{$oUser->getLogin()}" class="avatar" itemprop="image" />
-        </a>
+        <a href="{$oUser->getUserWebPath()}"><img src="{$oUser->getProfileAvatarPath(24)}" alt="{$oUser->getLogin()}" class="avatar" itemprop="image" /></a>
         <span itemprop="name">
           <a rel="author" href="{$oUser->getUserWebPath()}" itemprop="url">{$oUser->getLogin()}</a>
         </span>

@@ -26,6 +26,11 @@
               <a href="{$oUser->getUserWebPath()}"  {if $iAuthorId == $oUser->getId()}title="{if $sAuthorNotice}{$sAuthorNotice}{/if}" class="comment-topic-author"{/if} itemprop="url">{$oUser->getLogin()}</a>
             </span>
           </li>
+          <!-- online-offline status -->
+          <li class="{if $oUser->isOnline()}text-success{else}text-danger{/if} comment-author-status">
+            <i title="{if $oUser->isOnline()}{$aLang.user_status_online}{else}{$aLang.user_status_offline}{/if}" class="fa fa-power-off"></i>
+          </li>
+          <!-- / online-offline status -->
           <li class="comment-date">
             <a href="{if $oConfig->GetValue('module.comment.nested_per_page')}{router page='comments'}{else}#comment{/if}{$oComment->getId()}" class="link-dotted" title="{$aLang.comment_url_notice}" itemprop="url">
               <time datetime="{date_format date=$oComment->getDate() format='c'}" itemprop="datePublished">

@@ -14,14 +14,16 @@ ls.wall = (function ($) {
    * Добавление записи
    */
   this.add = function (sText, iPid) {
-    $('.js-button-wall-submit').attr('disabled', true);
+    var wallSubmit = $('.js-button-wall-submit');
+
+    wallSubmit.attr('disabled', true);
     var url = aRouter['profile'] + this.options.login + '/wall/add/';
     var params = {sText: sText, iPid: iPid};
 
     ls.hook.marker('addBefore');
     $('#wall-text').addClass('loader');
     ls.ajax(url, params, function (result) {
-      $('.js-button-wall-submit').attr('disabled', false);
+      wallSubmit.attr('disabled', false);
       if (result.bStateError) {
         ls.msg.error(null, result.sMsg);
       } else {
@@ -36,14 +38,15 @@ ls.wall = (function ($) {
   };
 
   this.addReply = function (sText, iPid) {
-    $('.js-button-wall-submit').attr('disabled', true);
+    var wallSubmit = $('.js-button-wall-submit');
+    wallSubmit.attr('disabled', true);
     var url = aRouter['profile'] + this.options.login + '/wall/add/';
     var params = {sText: sText, iPid: iPid};
 
     ls.hook.marker('addReplyBefore');
     $('#wall-reply-text-' + iPid).addClass('loader');
     ls.ajax(url, params, function (result) {
-      $('.js-button-wall-submit').attr('disabled', false);
+      wallSubmit.attr('disabled', false);
       if (result.bStateError) {
         ls.msg.error(null, result.sMsg);
       } else {
@@ -80,35 +83,40 @@ ls.wall = (function ($) {
   };
 
   this.loadNext = function () {
-    var divLast = $('#wall-container').find('.js-wall-item:last');
+    var buttonNext = $('#wall-button-next');
+    var wallContainer = $('#wall-container');
+    var divLast = wallContainer.find('.js-wall-item:last');
+
     if (divLast.length) {
       var idLess = divLast.attr('id').replace('wall-item-', '');
     } else {
       return false;
     }
-    $('#wall-button-next').addClass('loader');
+    buttonNext.addClass('loader');
     this.load(idLess, '', function (result) {
       if (result.bStateError) {
         ls.msg.error(null, result.sMsg);
       } else {
         if (result.iCountWall) {
-          $('#wall-container').append(result.sText);
+          wallContainer.append(result.sText);
         }
         var iCount = result.iCountWall - result.iCountWallReturn;
         if (iCount) {
           $('#wall-count-next').text(iCount);
         } else {
-          $('#wall-button-next').detach();
+          buttonNext.detach();
         }
         ls.hook.run('ls_wall_loadnext_after', [idLess, result]);
       }
-      $('#wall-button-next').removeClass('loader');
+      buttonNext.removeClass('loader');
     }.bind(this));
     return false;
   };
 
   this.loadNew = function () {
-    var divFirst = $('#wall-container').find('.js-wall-item:first');
+    var wallContainer = $('#wall-container');
+    var divFirst = wallContainer.find('.js-wall-item:first');
+
     if (divFirst.length) {
       var idMore = divFirst.attr('id').replace('wall-item-', '');
     } else {
@@ -119,7 +127,7 @@ ls.wall = (function ($) {
         ls.msg.error(null, result.sMsg);
       } else {
         if (result.iCountWall) {
-          $('#wall-container').prepend(result.sText);
+          wallContainer.prepend(result.sText);
         }
         ls.hook.run('ls_wall_loadnew_after', [idMore, result]);
       }
@@ -129,6 +137,7 @@ ls.wall = (function ($) {
 
   this.loadReplyNew = function (iPid) {
     var divFirst = $('#wall-reply-container-' + iPid).find('.js-wall-reply-item:last');
+
     if (divFirst.length) {
       var idMore = divFirst.attr('id').replace('wall-reply-item-', '');
     } else {
@@ -149,6 +158,7 @@ ls.wall = (function ($) {
 
   this.loadReplyNext = function (iPid) {
     var divLast = $('#wall-reply-container-' + iPid).find('.js-wall-reply-item:first');
+
     if (divLast.length) {
       var idLess = divLast.attr('id').replace('wall-reply-item-', '');
     } else {
@@ -225,6 +235,7 @@ ls.wall = (function ($) {
   this.remove = function (iId) {
     var url = aRouter['profile'] + this.options.login + '/wall/remove/';
     var params = {iId: iId};
+
     ls.hook.marker('removeBefore');
     ls.ajax(url, params, function (result) {
       if (result.bStateError) {

@@ -5,8 +5,8 @@
   <div class="panel-body">
 
     <div class="profile-photo-wrapper">
-      <span class="label {if $oUserProfile->isOnline()}label-success{else}label-danger{/if} status">
-        {if $oUserProfile->isOnline()}{$aLang.user_status_online}{else}{$aLang.user_status_offline}{/if}
+      <span class="label {if $oUserProfile->isOnline()}label-success{else}label-danger{/if} status" title="{if $oUserProfile->isOnline()}{$aLang.user_status_online}{else}{$aLang.user_status_offline}{/if}">
+        <i class="fa fa-power-off"></i>
       </span>
       <a href="{$oUserProfile->getUserWebPath()}"><img src="{$oUserProfile->getProfileFotoPath()}" alt="{$oUserProfile->getLogin()}" class="profile-photo" id="foto-img" /></a>
     </div>

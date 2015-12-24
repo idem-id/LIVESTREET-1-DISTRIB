@@ -80,9 +80,11 @@ ls.stream = ( function ($) {
     if (this.isBusy) {
       return;
     }
+    var getMore = $('#stream_get_more');
     var lastId = $('#stream_last_id').val();
+
     if (!lastId) return;
-    $('#stream_get_more').addClass('stream_loading');
+    getMore.addClass('stream_loading');
     this.isBusy = true;
 
     var url = aRouter['stream'] + 'get_more/';
@@ -95,9 +97,9 @@ ls.stream = ( function ($) {
         $('#stream_last_id').attr('value', data.iStreamLastId);
       }
       if (!data.events_count) {
-        $('#stream_get_more').hide();
+        getMore.hide();
       }
-      $('#stream_get_more').removeClass('stream_loading');
+      getMore.removeClass('stream_loading');
       ls.hook.run('ls_stream_get_more_after', [lastId, data]);
       this.isBusy = false;
     }.bind(this));
@@ -107,9 +109,11 @@ ls.stream = ( function ($) {
     if (this.isBusy) {
       return;
     }
+    var getMore = $('#stream_get_more');
     var lastId = $('#stream_last_id').val();
+
     if (!lastId) return;
-    $('#stream_get_more').addClass('stream_loading');
+    getMore.addClass('stream_loading');
     this.isBusy = true;
 
     var url = aRouter['stream'] + 'get_more_all/';
@@ -122,9 +126,9 @@ ls.stream = ( function ($) {
         $('#stream_last_id').attr('value', data.iStreamLastId);
       }
       if (!data.events_count) {
-        $('#stream_get_more').hide();
+        getMore.hide();
       }
-      $('#stream_get_more').removeClass('stream_loading');
+      getMore.removeClass('stream_loading');
       ls.hook.run('ls_stream_get_more_all_after', [lastId, data]);
       this.isBusy = false;
     }.bind(this));
@@ -134,9 +138,11 @@ ls.stream = ( function ($) {
     if (this.isBusy) {
       return;
     }
+    var getMore = $('#stream_get_more');
     var lastId = $('#stream_last_id').val();
+
     if (!lastId) return;
-    $('#stream_get_more').addClass('stream_loading');
+    getMore.addClass('stream_loading');
     this.isBusy = true;
 
     var url = aRouter['stream'] + 'get_more_user/';
@@ -153,9 +159,9 @@ ls.stream = ( function ($) {
         $('#stream_last_id').attr('value', data.iStreamLastId);
       }
       if (!data.events_count) {
-        $('#stream_get_more').hide();
+        getMore.hide();
       }
-      $('#stream_get_more').removeClass('stream_loading');
+      getMore.removeClass('stream_loading');
       ls.hook.run('ls_stream_get_more_by_user_after', [lastId, iUserId, data]);
       this.isBusy = false;
     }.bind(this));

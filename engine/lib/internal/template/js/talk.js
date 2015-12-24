@@ -9,9 +9,11 @@ ls.talk = (function ($) {
    * Добавляет пользователя к переписке
    */
   this.addToTalk = function (idTalk) {
-    var sUsers = $('#talk_speaker_add').val();
+    var speakerAdd = $('#talk_speaker_add');
+    var sUsers = speakerAdd.val();
+
     if (!sUsers) return false;
-    $('#talk_speaker_add').val('');
+    speakerAdd.val('');
 
     var url = aRouter['talk'] + 'ajaxaddtalkuser/';
     var params = {users: sUsers, idTalk: idTalk};
@@ -76,9 +78,12 @@ ls.talk = (function ($) {
    * Добавляет пользователя в черный список
    */
   this.addToBlackList = function () {
-    var sUsers = $('#talk_blacklist_add').val();
+    var blacklist = $('#black_list');
+    var blacklistAdd = $('#talk_blacklist_add');
+    var sUsers = blacklistAdd.val();
+
     if (!sUsers) return false;
-    $('#talk_blacklist_add').val('');
+    blacklistAdd.val('');
 
     var url = aRouter['talk'] + 'ajaxaddtoblacklist/';
     var params = {users: sUsers};
@@ -92,13 +97,13 @@ ls.talk = (function ($) {
           if (item.bStateError) {
             ls.msg.notice(null, item.sMsg);
           } else {
-            var list = $('#black_list');
+            var list = blacklist;
             if (list.length == 0) {
               list = $('<ul class="list" id="black_list"></ul>');
               $('#black_list_block').append(list);
             }
             var listItem = $('<li id="blacklist_item_' + item.sUserId + '_area"><a href="#" class="user">' + item.sUserLogin + '</a> - <a href="#" id="blacklist_item_' + item.sUserId + '" class="delete">' + ls.lang.get('delete') + '</a></li>');
-            $('#black_list').append(listItem);
+            blacklist.append(listItem);
             ls.hook.run('ls_talk_add_to_black_list_item_after', [item], listItem);
           }
         });
@@ -141,7 +146,8 @@ ls.talk = (function ($) {
    * Добавляет или удаляет друга из списка получателей
    */
   this.toggleRecipient = function (login, add) {
-    var to = $.map($('#talk_users').val().split(','), function (item, index) {
+    var users = $('#talk_users');
+    var to = $.map(users.val().split(','), function (item, index) {
       item = $.trim(item);
       return item != '' ? item : null;
     });
@@ -151,15 +157,17 @@ ls.talk = (function ($) {
     } else {
       to = $.richArray.without(to, login);
     }
-    $('#talk_users').val(to.join(', '));
+    users.val(to.join(', '));
   };
 
   /**
    * Очищает поля фильтра
    */
   this.clearFilter = function () {
-    $('#block_talk_search_content').find('input[type="text"]').val('');
-    $('#block_talk_search_content').find('input[type="checkbox"]').removeAttr("checked");
+    var searchContent = $('#block_talk_search_content');
+
+    searchContent.find('input[type="text"]').val('');
+    searchContent.find('input[type="checkbox"]').removeAttr("checked");
     return false;
   };
 

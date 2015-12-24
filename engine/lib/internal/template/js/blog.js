@@ -38,9 +38,12 @@ ls.blog = (function ($) {
    * Отправляет приглашение вступить в блог
    */
   this.addInvite = function (idBlog) {
-    var sUsers = $('#blog_admin_user_add').val();
+    var userAdd = $('#blog_admin_user_add');
+    var sUsers = userAdd.val();
+    var invList = $('#invited_list');
+
     if (!sUsers) return false;
-    $('#blog_admin_user_add').val('');
+    userAdd.val('');
 
     var url = aRouter['blog'] + 'ajaxaddbloginvite/';
     var params = {users: sUsers, idBlog: idBlog};
@@ -54,11 +57,11 @@ ls.blog = (function ($) {
           if (item.bStateError) {
             ls.msg.error(null, item.sMsg);
           } else {
-            if ($('#invited_list').length == 0) {
+            if (invList.length == 0) {
               $('#invited_list_block').append($('<ul class="list" id="invited_list"></ul>'));
             }
             var listItem = $('<li><a href="' + item.sUserWebPath + '" class="user">' + item.sUserLogin + '</a></li>');
-            $('#invited_list').append(listItem);
+            invList.append(listItem);
             $('#blog-invite-empty').hide();
             ls.hook.run('ls_blog_add_invite_user_after', [idBlog, item], listItem);
           }
@@ -142,19 +145,22 @@ ls.blog = (function ($) {
    * Поиск блогов
    */
   this.searchBlogs = function (form) {
+    var listSearch = $('#blogs-list-search');
+    var listOriginal = $('#blogs-list-original');
     var url = aRouter['blogs'] + 'ajax-search/';
     var inputSearch = $('#' + form).find('input');
+
     inputSearch.addClass('loader');
 
     ls.hook.marker('searchBlogsBefore');
     ls.ajaxSubmit(url, form, function (result) {
       inputSearch.removeClass('loader');
       if (result.bStateError) {
-        $('#blogs-list-search').hide();
-        $('#blogs-list-original').show();
+        listSearch.hide();
+        listOriginal.show();
       } else {
-        $('#blogs-list-original').hide();
-        $('#blogs-list-search').html(result.sText).show();
+        listOriginal.hide();
+        listSearch.html(result.sText).show();
         ls.hook.run('ls_blog_search_blogs_after', [form, result]);
       }
     });

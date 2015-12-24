@@ -101,13 +101,15 @@ ls.user = (function ($) {
    * @param sImgFile
    */
   this.showResizeAvatar = function (sImgFile) {
+    var originalImg = $('#avatar-resize-original-img');
+
     if (this.jcropAvatar) {
       this.jcropAvatar.destroy();
     }
-    $('#avatar-resize-original-img').attr('src', sImgFile + '?' + Math.random());
+    originalImg.attr('src', sImgFile + '?' + Math.random());
     $('#avatar-resize').jqmShow();
     var $this = this;
-    $('#avatar-resize-original-img').Jcrop({
+    originalImg.Jcrop({
       aspectRatio: 1,
       minSize: [32, 32]
     }, function () {
@@ -214,13 +216,15 @@ ls.user = (function ($) {
    * @param sImgFile
    */
   this.showResizeFoto = function (sImgFile) {
+    var originalImg = $('#foto-resize-original-img');
+
     if (this.jcropFoto) {
       this.jcropFoto.destroy();
     }
-    $('#foto-resize-original-img').attr('src', sImgFile + '?' + Math.random());
+    originalImg.attr('src', sImgFile + '?' + Math.random());
     $('#foto-resize').jqmShow();
     var $this = this;
-    $('#foto-resize-original-img').Jcrop({
+    originalImg.Jcrop({
       minSize: [32, 32]
     }, function () {
       $this.jcropFoto = this;
@@ -301,8 +305,11 @@ ls.user = (function ($) {
    * @param aFields
    */
   this.validateRegistrationFields = function (aFields, sForm) {
+    var validateErrorHide = 'validate-error-hide';
+    var validateErrorShow = 'validate-error-show';
     var url = aRouter.registration + 'ajax-validate-fields/';
     var params = {fields: aFields};
+
     if (typeof(sForm) == 'string') {
       sForm = $('#' + sForm);
     }
@@ -314,10 +321,10 @@ ls.user = (function ($) {
       }
       $.each(aFields, function (i, aField) {
         if (result.aErrors && result.aErrors[aField.field][0]) {
-          sForm.find('.validate-error-field-' + aField.field).removeClass('validate-error-hide').addClass('validate-error-show').text(result.aErrors[aField.field][0]);
+          sForm.find('.validate-error-field-' + aField.field).removeClass(validateErrorHide).addClass(validateErrorShow).text(result.aErrors[aField.field][0]);
           sForm.find('.validate-ok-field-' + aField.field).hide();
         } else {
-          sForm.find('.validate-error-field-' + aField.field).removeClass('validate-error-show').addClass('validate-error-hide');
+          sForm.find('.validate-error-field-' + aField.field).removeClass(validateErrorShow).addClass(validateErrorHide);
           sForm.find('.validate-ok-field-' + aField.field).show();
         }
       });
@@ -342,6 +349,8 @@ ls.user = (function ($) {
    * @param form
    */
   this.registration = function (form) {
+    var validateErrorHide = 'validate-error-hide';
+    var validateErrorShow = 'validate-error-show';
     var url = aRouter.registration + 'ajax-registration/';
 
     this.formLoader(form);
@@ -354,11 +363,11 @@ ls.user = (function ($) {
         if (typeof(form) == 'string') {
           form = $('#' + form);
         }
-        form.find('.validate-error-show').removeClass('validate-error-show').addClass('validate-error-hide');
+        form.find('.validate-error-show').removeClass(validateErrorShow).addClass(validateErrorHide);
         if (result.aErrors) {
           $.each(result.aErrors, function (sField, aErrors) {
             if (aErrors[0]) {
-              form.find('.validate-error-field-' + sField).removeClass('validate-error-hide').addClass('validate-error-show').text(aErrors[0]);
+              form.find('.validate-error-field-' + sField).removeClass(validateErrorHide).addClass(validateErrorShow).text(aErrors[0]);
             }
           });
         } else {
@@ -379,6 +388,8 @@ ls.user = (function ($) {
    * @param form
    */
   this.login = function (form) {
+    var validateErrorHide = 'validate-error-hide';
+    var validateErrorShow = 'validate-error-show';
     var url = aRouter.login + 'ajax-login/';
 
     this.formLoader(form);
@@ -388,10 +399,10 @@ ls.user = (function ($) {
       if (typeof(form) == 'string') {
         form = $('#' + form);
       }
-      form.find('.validate-error-show').removeClass('validate-error-show').addClass('validate-error-hide');
+      form.find('.validate-error-show').removeClass(validateErrorShow).addClass(validateErrorHide);
 
       if (result.bStateError) {
-        form.find('.validate-error-login').removeClass('validate-error-hide').addClass('validate-error-show').html(result.sMsg);
+        form.find('.validate-error-login').removeClass(validateErrorHide).addClass(validateErrorShow).html(result.sMsg);
       } else {
         if (result.sMsg) {
           ls.msg.notice(null, result.sMsg);
@@ -427,6 +438,8 @@ ls.user = (function ($) {
    * @param form
    */
   this.reminder = function (form) {
+    var validateErrorHide = 'validate-error-hide';
+    var validateErrorShow = 'validate-error-show';
     var url = aRouter.login + 'ajax-reminder/';
 
     this.formLoader(form);
@@ -436,10 +449,10 @@ ls.user = (function ($) {
       if (typeof(form) == 'string') {
         form = $('#' + form);
       }
-      form.find('.validate-error-show').removeClass('validate-error-show').addClass('validate-error-hide');
+      form.find('.validate-error-show').removeClass(validateErrorShow).addClass(validateErrorHide);
 
       if (result.bStateError) {
-        form.find('.validate-error-reminder').removeClass('validate-error-hide').addClass('validate-error-show').text(result.sMsg);
+        form.find('.validate-error-reminder').removeClass(validateErrorHide).addClass(validateErrorShow).text(result.sMsg);
       } else {
         form.find('input').val('');
         if (result.sMsg) {
@@ -458,6 +471,8 @@ ls.user = (function ($) {
    * @param form
    */
   this.reactivation = function (form) {
+    var validateErrorHide = 'validate-error-hide';
+    var validateErrorShow = 'validate-error-show';
     var url = aRouter.login + 'ajax-reactivation/';
 
     ls.hook.marker('reactivationBefore');
@@ -465,10 +480,10 @@ ls.user = (function ($) {
       if (typeof(form) == 'string') {
         form = $('#' + form);
       }
-      form.find('.validate-error-show').removeClass('validate-error-show').addClass('validate-error-hide');
+      form.find('.validate-error-show').removeClass(validateErrorShow).addClass(validateErrorHide);
 
       if (result.bStateError) {
-        form.find('.validate-error-reactivation').removeClass('validate-error-hide').addClass('validate-error-show').text(result.sMsg);
+        form.find('.validate-error-reactivation').removeClass(validateErrorHide).addClass(validateErrorShow).text(result.sMsg);
       } else {
         form.find('input').val('');
         if (result.sMsg) {
@@ -483,19 +498,22 @@ ls.user = (function ($) {
    * Поиск пользователей
    */
   this.searchUsers = function (form) {
+    var listSearch = $('#users-list-search');
+    var listOriginal = $('#users-list-original');
     var url = aRouter['people'] + 'ajax-search/';
     var inputSearch = $('#' + form).find('input');
+
     inputSearch.addClass('loader');
 
     ls.hook.marker('searchUsersBefore');
     ls.ajaxSubmit(url, form, function (result) {
       inputSearch.removeClass('loader');
       if (result.bStateError) {
-        $('#users-list-search').hide();
-        $('#users-list-original').show();
+        listSearch.hide();
+        listOriginal.show();
       } else {
-        $('#users-list-original').hide();
-        $('#users-list-search').html(result.sText).show();
+        listOriginal.hide();
+        listSearch.html(result.sText).show();
         ls.hook.run('ls_user_search_users_after', [form, result]);
       }
     });
@@ -505,22 +523,26 @@ ls.user = (function ($) {
    * Поиск пользователей по началу логина
    */
   this.searchUsersByPrefix = function (sPrefix, obj) {
+    var getLogin = $('#search-user-login');
+    var listSearch = $('#users-list-search');
+    var listOriginal = $('#users-list-original');
     obj = $(obj);
     var url = aRouter['people'] + 'ajax-search/';
     var params = {user_login: sPrefix, isPrefix: 1};
-    $('#search-user-login').addClass('loader');
+
+    getLogin.addClass('loader');
 
     ls.hook.marker('searchUsersByPrefixBefore');
     ls.ajax(url, params, function (result) {
-      $('#search-user-login').removeClass('loader');
+      getLogin.removeClass('loader');
       $('#user-prefix-filter').find('.active').removeClass('active');
       obj.parent().addClass('active');
       if (result.bStateError) {
-        $('#users-list-search').hide();
-        $('#users-list-original').show();
+        listSearch.hide();
+        listOriginal.show();
       } else {
-        $('#users-list-original').hide();
-        $('#users-list-search').html(result.sText).show();
+        listOriginal.hide();
+        listSearch.html(result.sText).show();
         ls.hook.run('ls_user_search_users_by_prefix_after', [sPrefix, obj, result]);
       }
     });

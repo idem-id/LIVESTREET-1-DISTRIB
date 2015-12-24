@@ -79,13 +79,13 @@ ls.toolbar.topic = (function ($) {
  * Функционал кнопки "UP"
  */
 ls.toolbar.up = (function ($) {
-
   this.init = function () {
+    var toolbarScrollup = $('#toolbar_scrollup');
     $(window).scroll(function () {
       if ($(window).scrollTop() > $(window).height() / 2) {
-        $('#toolbar_scrollup').fadeIn(500);
+        toolbarScrollup.fadeIn(500);
       } else {
-        $('#toolbar_scrollup').fadeOut(500);
+        toolbarScrollup.fadeOut(500);
       }
     });
   };

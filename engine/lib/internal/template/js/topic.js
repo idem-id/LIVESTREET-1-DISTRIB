@@ -21,10 +21,12 @@ ls.topic = (function ($) {
   };
 
   this.insertImageToEditor = function (sUrl, sAlign, sTitle) {
+    var windowUploadImg = $('#window_upload_img');
+
     sAlign = sAlign == 'center' ? 'class="image-center"' : 'align="' + sAlign + '"';
     $.markItUp({replaceWith: '<img src="' + sUrl + '" title="' + sTitle + '" ' + sAlign + ' />'});
-    $('#window_upload_img').find('input[type="text"]').val('');
-    $('#window_upload_img').jqmHide();
+    windowUploadImg.find('input[type="text"]').val('');
+    windowUploadImg.jqmHide();
     return false;
   };
 

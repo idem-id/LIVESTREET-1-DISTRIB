@@ -5,15 +5,17 @@ ls.usernote = ( function ($) {
   this.sText = '';
 
   this.showForm = function (sText) {
+    var formText = $('#usernote-form-text');
+
     $('#usernote-button-add').hide();
     $('#usernote-note').hide();
     $('#usernote-form').show();
     if (this.sText) {
-      $('#usernote-form-text').html(this.sText);
+      formText.html(this.sText);
     } else {
-      $('#usernote-form-text').val('');
+      formText.val('');
     }
-    $('#usernote-form-text').focus();
+    formText.focus();
     return false;
   };
 

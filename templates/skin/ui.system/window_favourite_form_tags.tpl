@@ -17,8 +17,8 @@
               <input type="text" name="tags" value="" id="favourite-form-tags-tags" class="form-control autocomplete-tags-sep">
             </div>
 
-            <button type="submit" name="" class="btn btn-success" />{$aLang.favourite_form_tags_button_save}</button>
-            <button type="submit" name="" class="btn btn-default jqmClose" />{$aLang.favourite_form_tags_button_cancel}</button>
+            <button type="submit" class="btn btn-success">{$aLang.favourite_form_tags_button_save}</button>
+            <button type="submit" class="btn btn-default jqmClose">{$aLang.favourite_form_tags_button_cancel}</button>
           </form>
         </div>
 
