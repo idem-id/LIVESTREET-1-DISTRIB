@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
 
 
   // Скролл
-  $(window).scrollTo(0, 0);  // kitsune.fix
+  $(window).scrollTo(window);
 
 
   // Тул-бар топиков
