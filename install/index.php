@@ -544,10 +544,10 @@ class Install
       /**
        * Получаем данные из сессии (если они туда были вложены на предыдущих итерациях шага)
        */
-      $this->Assign('install_db_server', 'localhost', self::GET_VAR_FROM_SESSION);
+      $this->Assign('install_db_server', '127.0.0.1', self::GET_VAR_FROM_SESSION);
       $this->Assign('install_db_port', '3306', self::GET_VAR_FROM_SESSION);
-      $this->Assign('install_db_name', 'social', self::GET_VAR_FROM_SESSION);
-      $this->Assign('install_db_user', 'root', self::GET_VAR_FROM_SESSION);
+      $this->Assign('install_db_name', 'db_name', self::GET_VAR_FROM_SESSION);
+      $this->Assign('install_db_user', 'db_user', self::GET_VAR_FROM_SESSION);
       $this->Assign('install_db_password', '', self::GET_VAR_FROM_SESSION);
       $this->Assign('install_db_create_check', '', self::GET_VAR_FROM_SESSION);
       $this->Assign('install_db_prefix', 'prefix_', self::GET_VAR_FROM_SESSION);

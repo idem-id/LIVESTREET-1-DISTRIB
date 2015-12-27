@@ -38,9 +38,9 @@ body {
 .count-new {
   display: inline-block;
   padding: 0 4px;
+  color: #fff !important;
   border-radius: 4px;
   background-color: #090;
-  color: #fff !important;
 }
 
 form.search {
@@ -61,13 +61,13 @@ form.search {
         }
       }
       .form-control-feedback {
+        line-height: 35px;
         position: absolute;
+        z-index: 4;
         display: block;
         width: 30px;
         height: 35px;
-        line-height: 35px;
         text-align: center;
-        z-index: 4;
         &.validate-ok {
           right: 30px;
         }
@@ -81,9 +81,9 @@ form.search {
         cursor: pointer;
       }
       .captcha-input {
-        height: 74px;
         line-height: 54px;
         max-width: none;
+        height: 74px;
       }
     }
   }
@@ -108,8 +108,8 @@ form.search {
           .strength,
           .rating {
             display: block;
-            color: #fff;
             padding: 0 4px;
+            color: #fff;
             border-radius: 4px;
           }
           .strength {
@@ -126,13 +126,13 @@ form.search {
         }
         a {
           i.fa {
-            padding: 5px 0;
-            margin-right: 10px;
             width: 2em;
+            margin-right: 10px;
+            padding: 5px 0;
+            opacity: .6;
+            color: #fff;
             border-radius: 4px;
             background: #333;
-            color: #fff;
-            opacity: .6;
           }
           &:hover {
             i.fa {
@@ -143,9 +143,9 @@ form.search {
         .messages-count {
           display: inline-block;
           padding: 0 4px;
+          color: #fff;
           border-radius: 4px;
           background-color: #090;
-          color: #fff;
         }
       }
     }
@@ -216,16 +216,17 @@ form.search {
   &.block-type-profile {
     .profile-photo-wrapper {
       .status {
-        display: block;
-        width: 32px;
-        height: 32px;
-        text-align: center;
         line-height: 32px;
-        box-shadow: 2px 2px 3px rgba(0,0,0,.2);
         top: auto;
         right: 5px;
         bottom: 5px;
         left: auto;
+        display: block;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        border: 1px solid #fff;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, .2);
         i.fa {
           font-size: 16px;
         }
@@ -252,6 +253,29 @@ form.search {
   .comment-actions {
     text-align: right;
   }
+  .folding {
+    font-family: 'FontAwesome';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: absolute;
+    top: 18px;
+    left: -20px;
+    display: block;
+    cursor: pointer;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+    &:before {
+      content: '\f147';
+    }
+    &.folded {
+      &:before {
+        content: '\f196';
+      }
+    }
+  }
 }
 
 /**
@@ -259,7 +283,7 @@ form.search {
  * -------------------------------------------------------------------------- */
 
 .modal {
-  &.modal-write{
+  &.modal-write {
     .write-list {
       li {
         .write-item-image {
@@ -305,45 +329,133 @@ article {
       &[href*='vk.com'],
       &[href*='youtube.com'] {
         &:before {
-          display: inline-block;
-          margin-right: 2px;
-          padding: 2px 0;
-          width: 1.5em;
-          border-radius: 2px;
-          background: #337ab7;
-          color: #fff;
-          content: '';
-          vertical-align: middle;
-          text-align: center;
+          font-family: 'FontAwesome';
+          font-size: 85%;
           font-weight: normal;
           font-style: normal;
-          font-size: 85%;
-          font-family: 'FontAwesome';
           line-height: 1;
+          display: inline-block;
+          width: 1.5em;
+          margin-right: 2px;
+          padding: 2px 0;
+          content: '';
+          text-align: center;
+          vertical-align: middle;
+          color: #fff;
+          border-radius: 2px;
+          background: #337ab7;
         }
       }
-      &[href*='amazon.com']         {&:before {content: '\f270';}}
-      &[href*='codepen.io']         {&:before {content: '\f1cb';}}
-      &[href*='deviantart.com']     {&:before {content: '\f1bd';}}
-      &[href*='dropbox.com']        {&:before {content: '\f16b';}}
-      &[href*='facebook.com']       {&:before {content: '\f09a';}}
-      &[href*='github.com']         {&:before {content: '\f113';}}
-      &[href*='google.com']         {&:before {content: '\f1a0';}}
-      &[href*='google.ru']          {&:before {content: '\f1a0';}}
-      &[href*='instagram.com']      {&:before {content: '\f16d';}}
-      &[href*='jsfiddle.net']       {&:before {content: '\f1cc';}}
-      &[href*='last.fm']            {&:before {content: '\f202';}}
-      &[href*='microsoft.com']      {&:before {content: '\f17a';}}
-      &[href*='ok.ru']              {&:before {content: '\f263';}}
-      &[href*='pinterest.com']      {&:before {content: '\f231';}}
-      &[href*='plus.google.com']    {&:before {content: '\f0d5';}}
-      &[href*='soundcloud.com']     {&:before {content: '\f1be';}}
-      &[href*='stackoverflow.com']  {&:before {content: '\f16c';}}
-      &[href*='steampowered.com']   {&:before {content: '\f1b6';}}
-      &[href*='twitter.com']        {&:before {content: '\f099';}}
-      &[href*='vimeo.com']          {&:before {content: '\f27d';}}
-      &[href*='vk.com']             {&:before {content: '\f189';}}
-      &[href*='youtube.com']        {&:before {content: '\f167';}}
+      &[href*='amazon.com'] {
+        &:before {
+          content: '\f270';
+        }
+      }
+      &[href*='codepen.io'] {
+        &:before {
+          content: '\f1cb';
+        }
+      }
+      &[href*='deviantart.com'] {
+        &:before {
+          content: '\f1bd';
+        }
+      }
+      &[href*='dropbox.com'] {
+        &:before {
+          content: '\f16b';
+        }
+      }
+      &[href*='facebook.com'] {
+        &:before {
+          content: '\f09a';
+        }
+      }
+      &[href*='github.com'] {
+        &:before {
+          content: '\f113';
+        }
+      }
+      &[href*='google.com'] {
+        &:before {
+          content: '\f1a0';
+        }
+      }
+      &[href*='google.ru'] {
+        &:before {
+          content: '\f1a0';
+        }
+      }
+      &[href*='instagram.com'] {
+        &:before {
+          content: '\f16d';
+        }
+      }
+      &[href*='jsfiddle.net'] {
+        &:before {
+          content: '\f1cc';
+        }
+      }
+      &[href*='last.fm'] {
+        &:before {
+          content: '\f202';
+        }
+      }
+      &[href*='microsoft.com'] {
+        &:before {
+          content: '\f17a';
+        }
+      }
+      &[href*='ok.ru'] {
+        &:before {
+          content: '\f263';
+        }
+      }
+      &[href*='pinterest.com'] {
+        &:before {
+          content: '\f231';
+        }
+      }
+      &[href*='plus.google.com'] {
+        &:before {
+          content: '\f0d5';
+        }
+      }
+      &[href*='soundcloud.com'] {
+        &:before {
+          content: '\f1be';
+        }
+      }
+      &[href*='stackoverflow.com'] {
+        &:before {
+          content: '\f16c';
+        }
+      }
+      &[href*='steampowered.com'] {
+        &:before {
+          content: '\f1b6';
+        }
+      }
+      &[href*='twitter.com'] {
+        &:before {
+          content: '\f099';
+        }
+      }
+      &[href*='vimeo.com'] {
+        &:before {
+          content: '\f27d';
+        }
+      }
+      &[href*='vk.com'] {
+        &:before {
+          content: '\f189';
+        }
+      }
+      &[href*='youtube.com'] {
+        &:before {
+          content: '\f167';
+        }
+      }
     }
   }
 }
@@ -374,14 +486,14 @@ article {
   height: auto !important;
   background: none !important;
   &:before {
-    display: block;
-    color: #fff;
-    text-align: center;
+    font-family: 'FontAwesome';
+    font-size: 14px;
     font-weight: normal;
     font-style: normal;
-    font-size: 14px;
-    font-family: 'FontAwesome';
     line-height: 1;
+    display: block;
+    text-align: center;
+    color: #fff;
   }
 }
 
@@ -392,11 +504,11 @@ article {
 .openid-service-yandex,
 .openid-service-mailru {
   &:before {
+    font-size: 32px;
+    line-height: 64px;
     width: 64px;
     height: 64px;
     border-radius: 10px;
-    font-size: 32px;
-    line-height: 64px;
   }
 }
 
@@ -407,11 +519,11 @@ article {
 .openid-service-yandex-sm,
 .openid-service-mailru-sm {
   &:before {
+    font-size: 24px;
+    line-height: 48px;
     width: 48px;
     height: 48px;
     border-radius: 10px;
-    font-size: 24px;
-    line-height: 48px;
   }
 }
 

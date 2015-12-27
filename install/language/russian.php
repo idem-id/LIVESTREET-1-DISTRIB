@@ -28,7 +28,7 @@ return array(
   'error_db_saved' => 'Не удалось сохранить данные в базе.',
   'error_db_no_data' => "Не удалось получить данные из базы.",
 
-  'error_local_config_invalid' => 'Файл локальной конфигурации /config/config.local.php не найден.',
+  'error_local_config_invalid' => 'Файл локальной конфигурации <code>/config/config.local.php</code> не найден.',
 
   'site_name_invalid' => 'Указано недопустимое название сайта.',
   'site_description_invalid' => 'Указано недопустимое описание сайта.',
@@ -55,7 +55,7 @@ return array(
   'install_title' => 'Установка LiveStreet',
   'step' => 'Шаг',
 
-  'start_paragraph' => '<p>Добро пожаловать в систему установки LiveStreet &copy; 1.0.3 (модификация от <a href="https://kitsune.solar/">Kitsune Solar</a>). Ознакомьтесь с результатами и следуйте подсказкам.</p><p><strong>Внимание.</strong> Для успешной инсталляции вы должны переименовать файл /config/config.local.php.dist на /config/config.local.php и дать этому файлу права на запись.</p><p><strong>Внимание.</strong> Директории /tmp, /logs, /uploads, /templates/compiled, /templates/cache должны иметь права на запись.</p>',
+  'start_paragraph' => '<p>Добро пожаловать в систему установки LiveStreet &copy; 1.0.3 (модификация от <a href="https://kitsune.solar/">Kitsune Solar</a>). Ознакомьтесь с результатами и следуйте подсказкам.</p><p><strong>Внимание!</strong> Для успешной инсталляции вы должны переименовать файл <code>/config/config.local.php.dist</code> на <code>/config/config.local.php</code> и дать этому файлу права на запись.</p><p><strong>Внимание.</strong> Директории <code>/tmp</code>, <code>/logs</code>, <code>/uploads</code>, <code>/templates/compiled</code>, <code>/templates/cache</code> должны иметь права на запись.</p>',
 
   'php_params' => 'Основные настройки PHP',
   'php_params_version' => 'PHP версии не ниже 5.2.0',
@@ -65,13 +65,13 @@ return array(
   'php_params_simplexml' => 'Поддержка SimpleXML',
 
   'local_config' => 'Локальная конфигурация',
-  'local_config_file' => 'Файл /config/config.local.php существует и доступен для записи',
-  'local_temp_dir' => 'Директория /tmp существует и доступна для записи',
-  'local_logs_dir' => 'Директория /logs существует и доступна для записи',
-  'local_uploads_dir' => 'Директория /uploads существует и доступна для записи',
-  'local_templates_dir' => 'Директория /templates/compiled существует и доступна для записи',
-  'local_templates_cache_dir' => 'Директория /templates/cache существует и доступна для записи',
-  'local_plugins_dir' => 'Директория /plugins существует и доступна для записи',
+  'local_config_file' => 'Файл <code>/config/config.local.php</code> существует и доступен для записи',
+  'local_temp_dir' => 'Директория <code>/tmp</code> существует и доступна для записи',
+  'local_logs_dir' => 'Директория <code>/logs</code> существует и доступна для записи',
+  'local_uploads_dir' => 'Директория <code>/uploads</code> существует и доступна для записи',
+  'local_templates_dir' => 'Директория <code>/templates/compiled</code> существует и доступна для записи',
+  'local_templates_cache_dir' => 'Директория <code>/templates/cache</code> существует и доступна для записи',
+  'local_plugins_dir' => 'Директория <code>/plugins</code> существует и доступна для записи',
 
   'db_params' => 'Настройка базы данных',
   'db_params_host' => 'Имя сервера БД',

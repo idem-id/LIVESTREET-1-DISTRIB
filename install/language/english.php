@@ -28,7 +28,7 @@ return array(
   'error_db_saved' => 'Unable to save data into the DB.',
   'error_db_no_data' => "Unable to get data from the DB.",
 
-  'error_local_config_invalid' => "Can't find local configuration file - /config/config.local.php.",
+  'error_local_config_invalid' => "Can't find local configuration file - <code>/config/config.local.php</code>.",
 
   'site_name_invalid' => 'Chosen site name is not allowed.',
   'site_description_invalid' => 'Chosen site description is not allowed.',
@@ -55,7 +55,7 @@ return array(
   'install_title' => 'LiveStreet Installation',
   'step' => 'Step',
 
-  'start_paragraph' => '<p>Welcome to LiveStreet &copy; 1.0.3 installation. </p><p><strong>Notice:</strong> You have to rename file - /config/config.local.php.dist to /config/config.local.php and apply read-write (rw) permission to it.</p><p><strong>Notice:</strong> Make sure that the following directories have rw permissions: /tmp, /logs, /uploads, /templates/compiled, /templates/cache</p>',
+  'start_paragraph' => '<p>Welcome to LiveStreet &copy; 1.0.3 (modification by <a href="https://kitsune.solar/">Kitsune Solar</a>) installation. </p><p><strong>Notice:</strong> You have to rename file - <code>/config/config.local.php.dist</code> to <code>/config/config.local.php</code> and apply read-write (rw) permission to it.</p><p><strong>Notice:</strong> Make sure that the following directories have rw permissions: <code>/tmp</code>, <code>/logs</code>, <code>/uploads</code>, <code>/templates/compiled</code>, <code>/templates/cache</code>.</p>',
 
   'php_params' => 'General PHP Configuration',
   'php_params_version' => 'PHP ver. 5.2.0 or higher',
@@ -65,13 +65,13 @@ return array(
   'php_params_simplexml' => 'SimpleXML support',
 
   'local_config' => 'Local Configuration',
-  'local_config_file' => 'File /config/config.local.php exists and writable',
-  'local_temp_dir' => 'Directory /tmp exists and writable',
-  'local_logs_dir' => 'Directory /logs exists and writable',
-  'local_uploads_dir' => 'Directory /uploads exists and writable',
-  'local_templates_dir' => 'Directory /templates/compiled exists and writable',
-  'local_templates_cache_dir' => 'Directory /templates/cache exists and writable',
-  'local_plugins_dir' => 'Directory /plugins exists and writable',
+  'local_config_file' => 'File <code>/config/config.local.php</code> exists and writable',
+  'local_temp_dir' => 'Directory <code>/tmp</code> exists and writable',
+  'local_logs_dir' => 'Directory <code>/logs</code> exists and writable',
+  'local_uploads_dir' => 'Directory <code>/uploads</code> exists and writable',
+  'local_templates_dir' => 'Directory <code>/templates/compiled</code> exists and writable',
+  'local_templates_cache_dir' => 'Directory <code>/templates/cache</code> exists and writable',
+  'local_plugins_dir' => 'Directory <code>/plugins</code> exists and writable',
 
   'db_params' => 'Database (DB) configuration',
   'db_params_host' => 'DB hostname',

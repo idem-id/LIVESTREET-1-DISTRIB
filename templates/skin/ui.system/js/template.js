@@ -155,7 +155,7 @@ jQuery(document).ready(function ($) {
   ls.blocks.initSwitch('popup-login');
 
   // комментарии
-  ls.comments.options.folding = false;
+  ls.comments.options.folding = true;
   ls.comments.init();
 
   // избранное

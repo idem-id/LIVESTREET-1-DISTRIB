@@ -170,7 +170,7 @@ return array(
   'blog_admin_user_invited' => 'Список приглашенных',
   'blog_admin_user_add_header' => 'Пригласить пользователей',
   'blog_admin_user_add_empty' => 'Нет приглашенных пользователей',
-  'blog_close_show' => 'Это закрытый блог, у Вас нет прав на просмотр контента',
+  'blog_close_show' => 'Это закрытый блог! У Вас нет прав на просмотр контента.',
   'blog_user_invite_add_self' => 'Нельзя отправить приглашение самому себе',
   'blog_user_invite_add_ok' => 'Пользователю %%login%% отправлено приглашение',
   'blog_user_invite_remove_ok' => 'Приглашение для пользователя %%login%% удалено',
