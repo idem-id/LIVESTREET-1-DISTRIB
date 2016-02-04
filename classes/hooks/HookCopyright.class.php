@@ -41,7 +41,7 @@ class HookCopyright extends Hook
     /**
      * Выводим везде, кроме страницы списка блогов и списка всех комментов
      */
-    $cr = 'JmNvcHk7IFBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2xpdmVzdHJlZXRjbXMub3JnIj5MaXZlU3RyZWV0IENNUzwvYT4uIE1vZGlmaWNhdGlvbiBieSA8YSBocmVmPSIvL2tpdHN1bmUuc29sYXIvIj5LaXRzdW5lIFNvbGFyPC9hPg==';
+    $cr = 'JmNvcHk7IFBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2xpdmVzdHJlZXRjbXMub3JnLyI+TGl2ZVN0cmVldCBDTVM8L2E+LiBNb2RpZmljYXRpb24gYnkgPGEgaHJlZj0iaHR0cDovL2N5YmVyc3BhY2UuaW5kdXN0cmllcy8iPkNZQkVSU1BBQ0UuSW5kdXN0cmllczwvYT4=';
     return base64_decode($cr);
   }
 }
