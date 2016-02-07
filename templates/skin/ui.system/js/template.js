@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
 
 
   // Скролл
-  $(window).scrollTo(window);
+  //$(window).scrollTo(window);
 
 
   // Тул-бар топиков
